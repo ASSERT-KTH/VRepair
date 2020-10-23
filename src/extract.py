@@ -35,13 +35,20 @@ def tokenize_pre_and_post(tmpfile,path_to_diff):
         pre_version_function_path.parent.mkdir(parents=True, exist_ok=True)
         post_version_function_path.parent.mkdir(parents=True, exist_ok=True)
 
+        pre_tokens = ""
+        post_tokens = ""
+        for token in tu_pre.cursor.get_tokens():
+            pre_tokens+=repr(token.spelling.replace(' ', '<S2SV_blank>'))[1:-1] + ' '
+        for token in tu_post.cursor.get_tokens():
+            post_tokens+=repr(token.spelling.replace(' ', '<S2SV_blank>'))[1:-1] + ' '
+        if pre_tokens == post_tokens:
+            return
+
         with codecs.open(pre_version_function_path, 'w', 'utf-8') as f:
-            for token in tu_pre.cursor.get_tokens():
-                f.write(repr(token.spelling.replace(' ', '<S2SV_blank>'))[1:-1] + ' ')
+            f.write(pre_tokens)
 
         with codecs.open(post_version_function_path, 'w', 'utf-8') as f:
-            for token in tu_post.cursor.get_tokens():
-                f.write(repr(token.spelling.replace(' ', '<S2SV_blank>'))[1:-1] + ' ')
+            f.write(post_tokens)
     except Exception as e:
         print("Tokenize error: " + str(e))
         return
@@ -94,9 +101,9 @@ def get_func_pair_diff(pre_version_file, post_version_file):
             pre_func_decl_cursor = pre_version_file_func_decl_cursor[pre_index]
             for index in range(post_index, post_max_index):
                 post_func_decl_cursor = post_version_file_func_decl_cursor[index]
-                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling):
-                    pre_func_decl_cursor_str = pre_version_file_str[pre_func_decl_cursor.extent.begin_int_data-2:pre_func_decl_cursor.extent.end_int_data-2]+'\n'
-                    post_func_decl_cursor_str = post_version_file_str[post_func_decl_cursor.extent.begin_int_data-2:post_func_decl_cursor.extent.end_int_data-2]+'\n'
+                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling and pre_version_file_str[pre_func_decl_cursor.extent.end_int_data-2] != ';' and post_version_file_str[post_func_decl_cursor.extent.end_int_data-2] != ';'):
+                    pre_func_decl_cursor_str = pre_version_file_str[pre_func_decl_cursor.extent.begin_int_data-2:pre_func_decl_cursor.extent.end_int_data-1]
+                    post_func_decl_cursor_str = post_version_file_str[post_func_decl_cursor.extent.begin_int_data-2:post_func_decl_cursor.extent.end_int_data-1]
 
                     diff = list(difflib.unified_diff(pre_func_decl_cursor_str.splitlines(True), post_func_decl_cursor_str.splitlines(True), fromfile=pre_func_decl_cursor.spelling+'.function', tofile=pre_func_decl_cursor.spelling+'.function',  n=1000000))
                     if diff:

@@ -21,7 +21,7 @@ def check_out(pre_version_file, post_version_file, out_beam, num_tokens, sample)
         pre_version_tokens = pre_version_file_str.split(' ') + ["<S2SV_null>"] * num_tokens
 
         parse_error=True
-        special = re.compile("^<S2SV_(Del|Add|Mod)(Start|End)>$")
+        special = re.compile("^<S2SV_Mod(Start|End)>$")
         # Check each beam position
         for out_str in out_beam:
             chk_file_str=""
@@ -39,11 +39,11 @@ def check_out(pre_version_file, post_version_file, out_beam, num_tokens, sample)
                         out_pre = ['<S2SV_OUTNOMATCH>'] * num_tokens
                     else:
                         out_pre = out_tokens[out_idx+1:out_idx+num_tokens+1]
-                        if (out_tokens[out_idx] == '<S2SV_DelEnd>' or out_tokens[out_idx] == '<S2SV_ModEnd>'):
-                            # Post token sequence is at least num_tokens forward
-                            # Jumping num_tokens is safe because of while loop
-                            pre_tokens = pre_version_tokens[i:i+num_tokens]
-                            i+=num_tokens
+                        if (out_tokens[out_idx] == '<S2SV_ModEnd>'):
+                            # Post token sequence is at least num_tokens+1 forward
+                            # Jumping num_tokens+1 is safe because of while loop
+                            pre_tokens = pre_version_tokens[i+1:i+num_tokens+1]
+                            i+=num_tokens+1
                             while i < len(pre_version_tokens) and ' '.join(out_pre) != ' '.join(pre_tokens): # No match yet
                                 pre_tokens = pre_tokens[1:num_tokens]+[pre_version_tokens[i]]
                                 i+=1

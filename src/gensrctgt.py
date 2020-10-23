@@ -50,11 +50,11 @@ def get_token_pair_diff(pre_version_file, post_version_file, num_tokens):
                     elif state % 100 == num_tokens-1:
                         post_tokens = post_tokens[1:num_tokens] + [t[1:]]
                         if state >= 300: # addition
-                            tgt += '<S2SV_AddStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' '
+                            tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' '
                         elif state >= 200: # modify
                             tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' <S2SV_ModEnd> '+' '.join(post_tokens)+' '
                         elif state >= 100: # delete
-                            tgt += '<S2SV_DelStart> '+' '.join(pre_tokens)+' <S2SV_DelEnd> '+' '.join(post_tokens)+' '
+                            tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' <S2SV_ModEnd> '+' '.join(post_tokens)+' '
                         state = 3
                         pre_tokens=post_tokens
                     else:
@@ -96,17 +96,17 @@ def get_token_pair_diff(pre_version_file, post_version_file, num_tokens):
                           post_tokens[0:num_tokens-(state % 100)]
             
             if state >= 300: # addition
-                tgt += '<S2SV_AddStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' '
+                tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' '
             elif state >= 200: # modify
                 tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' '+' '.join(new_tokens)+' <S2SV_ModEnd> '+' '.join(post_tokens)+' '
             elif state >= 100: # delete
-                tgt += '<S2SV_DelStart> '+' '.join(pre_tokens)+' <S2SV_DelEnd> '+' '.join(post_tokens)+' '
+                tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' <S2SV_ModEnd> '+' '.join(post_tokens)+' '
             if not tgt:
                 print(f'ERROR: {pre_version_file_str} found no target changes in {diff}')
             return (pre_version_file_str,tgt)
         else:
             print(f'No diff found for {pre_version_file}')
-            return (pre_version_file_str,'<S2SV_NoDiffMarker> '+(' <S2SV_null>'*num_tokens))
+            sys.exit(2)
     except Exception as e:
         print("Get token pair fail: "+str(e))
 
