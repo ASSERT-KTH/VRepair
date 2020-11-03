@@ -16,7 +16,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              tensorboard_log_dir,
                              train_features_file, train_labels_file,
                              valid_features_file, valid_labels_file,
-                             train_steps=200000, valid_steps=10000,
+                             train_steps=500000, valid_steps=20000,
                              src_vocab_size=1000, tgt_vocab_size=1000,
                              src_seq_length=1000, tgt_seq_length=200,
                              number_of_gpus=1, batch_size=16,
@@ -110,7 +110,7 @@ def get_opennmt_vocab_config(save_data_path_pattern,
 
 def default_hpc2n_job_script(opennmt_vocab_config_path,
                              opennmt_train_config_path, gpu_type='k80',
-                             number_of_gpus='1', time='48:00:00'):
+                             number_of_gpus='1', time='120:00:00'):
     hpc2n_job_script = '''\
 #!/bin/bash
 
@@ -163,6 +163,12 @@ def update_num_dec_layers(config, num_layers):
     return config
 
 
+def update_num_layers(config, num_layers):
+    config['enc_layers'] = num_layers
+    config['dec_layers'] = num_layers
+    return config
+
+
 def update_num_heads(config, num_heads):
     config['heads'] = num_heads
     return config
@@ -198,9 +204,14 @@ def main():
         assert(file.exists())
 
     learning_rate_sweep = list((update_learning_rate, learning_rate)
-                               for learning_rate in [0.001, 0.0005])
+                               for learning_rate in [0.001, 0.0005, 0.0001])
+    hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
+                             for hidden_size in [128, 256])
+    num_layers_sweep = list((update_num_layers, num_layers)
+                            for num_layers in [4, 6])
 
-    parameter_sweep = [learning_rate_sweep]
+
+    parameter_sweep = [learning_rate_sweep, hidden_size_sweep, num_layers_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
