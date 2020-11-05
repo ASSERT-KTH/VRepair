@@ -23,8 +23,8 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              valid_batch_size=1, optim='adam',
                              learning_rate=0.001, warmup_steps=5000,
                              decay_method='noam', label_smoothing=0.1,
-                             enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
-                             word_vec_size=256, transformer_ff=1024,
+                             enc_layers=6, dec_layers=6, heads=6, rnn_size=256,
+                             word_vec_size=256, transformer_ff=512,
                              dropout=0.1, attention_dropout=0.1,
                              seed=0):
     opennmt_train_config = nested_dict()
@@ -206,7 +206,7 @@ def main():
     learning_rate_sweep = list((update_learning_rate, learning_rate)
                                for learning_rate in [0.001, 0.0005, 0.0001])
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
-                             for hidden_size in [128, 256])
+                             for hidden_size in [64, 128])
     num_layers_sweep = list((update_num_layers, num_layers)
                             for num_layers in [4, 6])
 
