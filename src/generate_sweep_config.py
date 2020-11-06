@@ -23,7 +23,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              valid_batch_size=1, optim='adam',
                              learning_rate=0.001, warmup_steps=5000,
                              decay_method='noam', label_smoothing=0.1,
-                             enc_layers=6, dec_layers=6, heads=6, rnn_size=256,
+                             enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
                              word_vec_size=256, transformer_ff=512,
                              dropout=0.1, attention_dropout=0.1,
                              seed=0):
