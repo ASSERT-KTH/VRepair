@@ -204,7 +204,7 @@ def main():
                              for hidden_size in [64, 128])
 
 
-    parameter_sweep = [learning_rate_sweep, hidden_size_sweep, num_layers_sweep]
+    parameter_sweep = [learning_rate_sweep, hidden_size_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
