@@ -22,6 +22,8 @@ def get_token_pair_diff(pre_version_file, post_version_file, num_tokens):
 
         diff = list(difflib.unified_diff(pre_token_per_line.splitlines(True), post_token_per_line.splitlines(True), fromfile=str(pre_version_file), tofile='post_version',  n=1000000))
         if diff:
+            if num_tokens == 1000: 
+                return (pre_version_file_str,post_version_file_str)
             # States:
             #  0: start
             #  1,2: preamble processing
@@ -116,6 +118,7 @@ def main(argv):
     if num_tokens < 2:
         print("Usage: python gensrctgt.py BugFixTokenDir num_tokens")
         print("       num_tokens must be 2 or more")
+        print("       num_tokens set to 1000 results in whole file as target")
         sys.exit(2)
     root_path = Path(bug_fix_pair_path)
     pre_version_files = []
