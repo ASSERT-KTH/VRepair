@@ -37,9 +37,9 @@ def read_all_data(data_dir):
     src_nonempty_list = []
     tgt_nonempty_list = []
     for src, tgt in zip(src_list, tgt_list):
-        if not src.isspace() and not tgt.isspace():
-                src_nonempty_list.append(src)
-                tgt_nonempty_list.append(tgt)
+        if src.strip() and tgt.strip():
+            src_nonempty_list.append(src)
+            tgt_nonempty_list.append(tgt)
     return src_nonempty_list, tgt_nonempty_list
 
 
