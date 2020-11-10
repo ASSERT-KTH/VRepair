@@ -94,6 +94,9 @@ def split_train_val_test(src_list, tgt_list, split_range):
 def main(argv):
     args = parser.parse_args(argv)
 
+    assert(len(args.split_range) == 3)
+    assert(sum(args.split_range) == 100)
+
     data_dir = Path(args.data_dir).resolve()
     src_list, tgt_list = read_all_data(data_dir)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
