@@ -51,6 +51,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['overwrite'] = False
     opennmt_train_config['train_steps'] = train_steps
     opennmt_train_config['valid_steps'] = valid_steps
+    opennmt_train_config['save_checkpoint_steps'] = valid_steps
 
     opennmt_train_config['optim'] = optim
     opennmt_train_config['learning_rate'] = learning_rate
