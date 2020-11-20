@@ -101,7 +101,13 @@ def get_func_pair_diff(pre_version_file, post_version_file):
             pre_func_decl_cursor = pre_version_file_func_decl_cursor[pre_index]
             for index in range(post_index, post_max_index):
                 post_func_decl_cursor = post_version_file_func_decl_cursor[index]
-                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling and pre_version_file_str[pre_func_decl_cursor.extent.end_int_data-2] != ';' and post_version_file_str[post_func_decl_cursor.extent.end_int_data-2] != ';'):
+                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling and 
+                   pre_func_decl_cursor.extent.end_int_data <= len(pre_version_file_str) and 
+                   pre_func_decl_cursor.extent.end_int_data > pre_func_decl_cursor.extent.begin_int_data +2 and 
+                   pre_version_file_str[pre_func_decl_cursor.extent.end_int_data-2] != ';' and 
+                   post_func_decl_cursor.extent.end_int_data <= len(post_version_file_str) and 
+                   post_func_decl_cursor.extent.end_int_data > post_func_decl_cursor.extent.begin_int_data +2 and 
+                   post_version_file_str[post_func_decl_cursor.extent.end_int_data-2] != ';'):
                     pre_func_decl_cursor_str = pre_version_file_str[pre_func_decl_cursor.extent.begin_int_data-2:pre_func_decl_cursor.extent.end_int_data-1]
                     post_func_decl_cursor_str = post_version_file_str[post_func_decl_cursor.extent.begin_int_data-2:post_func_decl_cursor.extent.end_int_data-1]
 
