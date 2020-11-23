@@ -21,8 +21,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              src_seq_length=1000, tgt_seq_length=200,
                              number_of_gpus=1, batch_size=8,
                              valid_batch_size=1, optim='adam',
-                             learning_rate=0.001, warmup_steps=5000,
-                             decay_method='noam', label_smoothing=0.1,
+                             learning_rate=0.001, label_smoothing=0.1,
                              enc_layers=2, dec_layers=2, rnn_size=128,
                              word_vec_size=128, dropout=0.1,
                              attention_dropout=0.1, seed=0):
@@ -55,8 +54,6 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
 
     opennmt_train_config['optim'] = optim
     opennmt_train_config['learning_rate'] = learning_rate
-    opennmt_train_config['warmup_steps'] = warmup_steps
-    opennmt_train_config['decay_method'] = decay_method
     opennmt_train_config['label_smoothing'] = label_smoothing
 
     opennmt_train_config['encoder_type'] = 'brnn'
