@@ -90,7 +90,6 @@ def get_opennmt_vocab_config(save_data_path_pattern,
     opennmt_vocab_config['n_sample'] = -1
     opennmt_vocab_config['src_seq_length'] = src_seq_length
     opennmt_vocab_config['tgt_seq_length'] = tgt_seq_length
-    opennmt_vocab_config['share_vocab'] = True
 
     opennmt_vocab_config['data']['github']['path_src'] = train_features_file
     opennmt_vocab_config['data']['github']['path_tgt'] = train_labels_file
