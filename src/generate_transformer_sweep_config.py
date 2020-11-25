@@ -17,7 +17,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              train_features_file, train_labels_file,
                              valid_features_file, valid_labels_file,
                              train_steps=400000, valid_steps=20000,
-                             src_vocab_size=1000, tgt_vocab_size=1000,
+                             src_vocab_size=2000, tgt_vocab_size=2000,
                              src_seq_length=1000, tgt_seq_length=200,
                              number_of_gpus=1, batch_size=8,
                              valid_batch_size=1, optim='adam',
@@ -40,7 +40,6 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['tgt_vocab_size'] = tgt_vocab_size
     opennmt_train_config['src_seq_length'] = src_seq_length
     opennmt_train_config['tgt_seq_length'] = tgt_seq_length
-    opennmt_train_config['share_vocab'] = True
 
     opennmt_train_config['data']['github']['path_src'] = train_features_file
     opennmt_train_config['data']['github']['path_tgt'] = train_labels_file
@@ -69,10 +68,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['transformer_ff'] = transformer_ff
     opennmt_train_config['dropout'] = [dropout]
     opennmt_train_config['attention_dropout'] = [attention_dropout]
-    opennmt_train_config['share_decoder_embeddings'] = True
-    opennmt_train_config['share_embeddings'] = True
     opennmt_train_config['copy_attn'] = True
-    opennmt_train_config['copy_attn_force'] = True
 
     opennmt_train_config['tensorboard'] = True
     opennmt_train_config['tensorboard_log_dir'] = tensorboard_log_dir
