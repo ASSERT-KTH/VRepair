@@ -1,3 +1,4 @@
+import re
 import sys
 import itertools
 import difflib
@@ -115,16 +116,32 @@ def get_token_pair_diff(pre_version_file, post_version_file, num_tokens):
 def main(argv):
     bug_fix_pair_path = argv[1]
     num_tokens = int(argv[2])
+    if len(argv) > 3:
+        metadata_file = Path(argv[3])
+        if not metadata_file.exists():
+            # Force usage error message
+            num_tokens=0
+    else:
+        metadata_file = None
     if num_tokens < 2:
-        print("Usage: python gensrctgt.py BugFixTokenDir num_tokens")
+        print("Usage: python gensrctgt.py BugFixTokenDir num_tokens [metadata]")
         print("       num_tokens must be 2 or more")
         print("       num_tokens set to 1000 results in whole file as target")
+        print("       metadata optionally includes CWE numbers for each commit")
         sys.exit(2)
     root_path = Path(bug_fix_pair_path)
     pre_version_files = []
     post_version_files = []
     src_lines=""
     tgt_lines=""
+
+    hash_to_cwe = {}
+    if metadata_file:
+        metadata_lines = open(metadata_file).read().split("\n")
+        for l in metadata_lines:
+            search = re.search(r'/([0123456789abcdef]+) *,.*, *(CWE-[0123456789]*) *,',l)
+            if search:
+                hash_to_cwe[search.group(1)] = search.group(2)
 
     for day in root_path.iterdir():
         for commit_id in day.iterdir():
@@ -143,7 +160,14 @@ def main(argv):
     for pre_version_file, post_version_file in files:
         print(pre_version_file, flush=True)
         (src, tgt) = get_token_pair_diff(pre_version_file, post_version_file, num_tokens)
-        src_lines += src+'\n'
+        if hash_to_cwe:
+            search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
+            if search and search.group(1) in hash_to_cwe:
+                src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
+            else:
+                src_lines += 'CWE-000 '+src+'\n'
+        else:
+            src_lines += src+'\n'
         tgt_lines += tgt[:-1]+'\n' # Remove trailing space but add newline
     
     src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.src.txt')

@@ -25,8 +25,8 @@ def read_all_data(data_dir):
     # Read all data as they are.
     for year in ('2017', '2018'):
         for month in ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'):
-            src_filename = f'BugFixTokenPairs_{year}_{month}.src.txt'
-            tgt_filename = f'BugFixTokenPairs_{year}_{month}.tgt.txt'
+            src_filename = f'BugFixNoDup_{year}_{month}.src.txt'
+            tgt_filename = f'BugFixNoDup_{year}_{month}.tgt.txt'
 
             with open(data_dir / src_filename) as f:
                 src_list.extend(f.read().splitlines())
@@ -38,7 +38,8 @@ def read_all_data(data_dir):
     tgt_nonempty_list = []
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
-            src_nonempty_list.append(src)
+            # Add null CWE value to this pretraining data
+            src_nonempty_list.append("CWE-000 "+src)
             tgt_nonempty_list.append(tgt)
     return src_nonempty_list, tgt_nonempty_list
 
