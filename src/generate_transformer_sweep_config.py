@@ -69,6 +69,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['dropout'] = [dropout]
     opennmt_train_config['attention_dropout'] = [attention_dropout]
     opennmt_train_config['copy_attn'] = True
+    opennmt_train_config['position_encoding'] = True
 
     opennmt_train_config['tensorboard'] = True
     opennmt_train_config['tensorboard_log_dir'] = tensorboard_log_dir
