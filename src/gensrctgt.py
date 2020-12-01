@@ -8,16 +8,9 @@ from pathlib import Path
 from multiprocessing import Pool
 from unidiff import PatchSet
 
-def get_token_pair_diff(pre_version_file, post_version_file, num_tokens):
+def get_token_pair_diff(pre_version_file,pre_version_file_str,
+                          post_version_file_str, num_tokens):
     try:
-        pre_version_file_str = open(pre_version_file).read()
-        post_version_file_str = open(post_version_file).read()
-
-        if pre_version_file_str.endswith(' '):
-            pre_version_file_str=pre_version_file_str[:-1]
-        if post_version_file_str.endswith(' '):
-            post_version_file_str=post_version_file_str[:-1]
-
         pre_token_per_line = pre_version_file_str.replace(' ','\n') 
         post_token_per_line = post_version_file_str.replace(' ','\n') 
 
@@ -159,16 +152,23 @@ def main(argv):
 
     for pre_version_file, post_version_file in files:
         print(pre_version_file, flush=True)
-        (src, tgt) = get_token_pair_diff(pre_version_file, post_version_file, num_tokens)
-        if hash_to_cwe:
-            search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
-            if search and search.group(1) in hash_to_cwe:
-                src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
+        pre_version_file_str = open(pre_version_file).read()
+        post_version_file_str = open(post_version_file).read()
+        if pre_version_file_str.endswith(' '):
+            pre_version_file_str=pre_version_file_str[:-1]
+        if post_version_file_str.endswith(' '):
+            post_version_file_str=post_version_file_str[:-1]
+        if pre_version_file_str.endswith('}') and post_version_file_str.endswith('}'):
+            (src, tgt) = get_token_pair_diff(pre_version_file, pre_version_file_str, post_version_file_str, num_tokens)
+            if hash_to_cwe:
+                search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
+                if search and search.group(1) in hash_to_cwe:
+                    src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
+                else:
+                    src_lines += 'CWE-000 '+src+'\n'
             else:
-                src_lines += 'CWE-000 '+src+'\n'
-        else:
-            src_lines += src+'\n'
-        tgt_lines += tgt[:-1]+'\n' # Remove trailing space but add newline
+                src_lines += src+'\n'
+            tgt_lines += tgt[:-1]+'\n' # Remove trailing space but add newline
     
     src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.src.txt')
     tgt_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.tgt.txt')

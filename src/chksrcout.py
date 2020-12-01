@@ -8,16 +8,8 @@ from pathlib import Path
 from multiprocessing import Pool
 from unidiff import PatchSet
 
-def check_out(pre_version_file, post_version_file, out_beam, num_tokens, sample):
+def check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens, sample):
     try:
-        pre_version_file_str = open(pre_version_file).read()
-        post_version_file_str = open(post_version_file).read()
-
-        if pre_version_file_str.endswith(' '):
-            pre_version_file_str=pre_version_file_str[:-1]
-        if post_version_file_str.endswith(' '):
-            post_version_file_str=post_version_file_str[:-1]
-
         pre_version_tokens = pre_version_file_str.split(' ') + ["<S2SV_null>"] * num_tokens
 
         parse_error=True
@@ -114,8 +106,15 @@ def main(argv):
     for pre_version_file, post_version_file in files:
         print(f'Sample {beam_group}: {pre_version_file}', flush=True)
         out_beam = out_lines[beam_group*beam_width:beam_group*beam_width+beam_width]
-        chk_lines += check_out(pre_version_file, post_version_file, out_beam, num_tokens,beam_group) +'\n'
-        beam_group+=1
+        pre_version_file_str = open(pre_version_file).read()
+        post_version_file_str = open(post_version_file).read()
+        if pre_version_file_str.endswith(' '):
+            pre_version_file_str=pre_version_file_str[:-1]
+        if post_version_file_str.endswith(' '):
+            post_version_file_str=post_version_file_str[:-1]
+        if pre_version_file_str.endswith('}') and post_version_file_str.endswith('}'):
+            chk_lines += check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens,beam_group) +'\n'
+            beam_group+=1
     
     chk_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.chk.txt')
 
