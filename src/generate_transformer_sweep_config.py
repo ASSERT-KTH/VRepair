@@ -25,6 +25,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
                              word_vec_size=256, transformer_ff=512,
                              dropout=0.1, attention_dropout=0.1,
+                             accum_count=4, early_stopping=4
                              seed=0):
     opennmt_train_config = nested_dict()
 
@@ -51,6 +52,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['train_steps'] = train_steps
     opennmt_train_config['valid_steps'] = valid_steps
     opennmt_train_config['save_checkpoint_steps'] = valid_steps
+    opennmt_train_config['early_stopping'] = early_stopping
 
     opennmt_train_config['optim'] = optim
     opennmt_train_config['learning_rate'] = learning_rate
@@ -70,6 +72,8 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
     opennmt_train_config['attention_dropout'] = [attention_dropout]
     opennmt_train_config['copy_attn'] = True
     opennmt_train_config['position_encoding'] = True
+    opennmt_train_config['accum_count'] = accum_count
+    opennmt_train_config['bridge'] = True
 
     opennmt_train_config['tensorboard'] = True
     opennmt_train_config['tensorboard_log_dir'] = tensorboard_log_dir
