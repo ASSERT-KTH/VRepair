@@ -25,7 +25,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
                              word_vec_size=256, transformer_ff=512,
                              dropout=0.1, attention_dropout=0.1,
-                             accum_count=4, early_stopping=4
+                             accum_count=4, early_stopping=4,
                              seed=0):
     opennmt_train_config = nested_dict()
 
