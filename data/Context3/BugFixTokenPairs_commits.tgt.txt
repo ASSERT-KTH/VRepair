@@ -22,7 +22,6 @@
 <S2SV_ModStart> char combname [ L_BUFSIZE <S2SV_ModEnd> ] ; l_int32 <S2SV_ModStart> ( combname , L_BUFSIZE <S2SV_ModEnd> , "sel_comb_%dh" , <S2SV_ModStart> ( combname , L_BUFSIZE <S2SV_ModEnd> , "sel_comb_%dv" ,
 <S2SV_ModStart> ++ len ) { <S2SV_ModStart> == '\\\\' ) { if ( * end_ptr == '\\0' ) { return 0 ; } end_ptr ++ ; } } <S2SV_ModEnd> out = (
 <S2SV_ModStart> str ) ; <S2SV_ModEnd> g_string_free ( result
-<S2SV_ModStart> ; JSObjectRef globalobject <S2SV_ModEnd> ; JSStringRef js_script <S2SV_ModStart> JSContextGetGlobalObject ( context <S2SV_ModEnd> ) ; js_script <S2SV_ModStart> ) ; } <S2SV_ModEnd> JSStringRelease ( js_script
 <S2SV_ModStart> == 0 ) if ( received_protocol ) { fprintf ( stderr , "received_protocol<S2SV_blank>is<S2SV_blank>set<S2SV_blank>already\\n" ) ; exit ( EXIT_FAILURE ) ; } else <S2SV_ModStart> { uschar * hn ; if ( received_protocol ) { fprintf ( stderr , "received_protocol<S2SV_blank>is<S2SV_blank>set<S2SV_blank>already\\n" ) ; exit ( EXIT_FAILURE ) ; }
 <S2SV_ModStart> ( ret = ff_set_dimensions ( avctx , <S2SV_ModEnd> s -> width <S2SV_ModStart> s -> height <S2SV_ModEnd> ) ) <
 <S2SV_ModStart> & 0xFFFFFFFF ; int remaining ; <S2SV_ModStart> ) continue ; <S2SV_ModEnd> remaining = avpriv_dnxhd_get_frame_size <S2SV_ModStart> ; if ( <S2SV_ModEnd> remaining <= 0 <S2SV_ModStart> 0 ) { <S2SV_ModEnd> remaining = dnxhd_get_hr_frame_size <S2SV_ModStart> ; if ( <S2SV_ModEnd> remaining <= 0 <S2SV_ModStart> <= 0 ) continue ; } dctx -> remaining = remaining ; <S2SV_ModEnd> if ( buf_size
@@ -166,7 +165,6 @@
 <S2SV_ModStart> <S2SV_null> <S2SV_null> static BOOL <S2SV_ModEnd> nsc_encode_subsampling ( NSC_CONTEXT <S2SV_ModStart> UINT16 y ; <S2SV_ModEnd> UINT32 tempWidth ; <S2SV_ModStart> ; UINT32 tempHeight ; if ( ! context ) return FALSE <S2SV_ModStart> 2 ) ; if ( tempHeight == 0 ) return FALSE ; if ( tempWidth > context -> priv -> PlaneBuffersLength / tempHeight ) return FALSE ; <S2SV_ModStart> ++ ) { BYTE * <S2SV_ModStart> 1 ) ; BYTE * <S2SV_ModStart> 1 ) ; const INT8 * <S2SV_ModStart> * tempWidth ; const INT8 * <S2SV_ModStart> + tempWidth ; const INT8 * <S2SV_ModStart> * tempWidth ; const INT8 * <S2SV_ModStart> ; } } return TRUE ;
 <S2SV_ModStart> UINT32 nsc_rle_encode ( const
 <S2SV_ModStart> <S2SV_null> <S2SV_null> static BOOL <S2SV_ModEnd> nsc_encode_sse2 ( NSC_CONTEXT <S2SV_ModStart> ) ; } return TRUE ;
-<S2SV_ModStart> TRUE ; } <S2SV_ModEnd> } else if <S2SV_ModStart> TRUE ; } <S2SV_ModEnd> } else if <S2SV_ModStart> command_usage = P7ZIP <S2SV_ModEnd> ; return TRUE
 <S2SV_ModStart> gchar * filename = NULL ; gint file_handle <S2SV_ModStart> use_gimp_2_8_features ) ; file_handle = g_file_open_tmp ( "gimp-test-XXXXXX.xcf" , & filename , NULL ) ; g_assert ( file_handle != - 1 ) ; close ( file_handle <S2SV_ModEnd> ) ; file
 <S2SV_ModStart> = conn ; <S2SV_ModEnd> g_debug ( "GsmXSMPClient:<S2SV_blank>Initializing<S2SV_blank>client<S2SV_blank>%s"
 <S2SV_ModStart> ) ; } <S2SV_ModEnd> } <S2SV_null> <S2SV_null>
@@ -178,9 +176,6 @@
 <S2SV_ModStart> ) ; } if ( ( ( ctxt -> inputNr > 40 ) && ( ( ctxt -> options & XML_PARSE_HUGE ) == 0 ) ) || ( ctxt -> inputNr > 1024 ) ) { xmlFatalErr ( ctxt , XML_ERR_ENTITY_LOOP , NULL ) ; while ( ctxt -> inputNr > 1 ) xmlFreeInputStream ( inputPop ( ctxt ) ) ; return ( - 1 ) ; }
 <S2SV_ModStart> l ) ; <S2SV_ModEnd> } } if <S2SV_ModStart> XML_ERR_NAME_TOO_LONG , "Name" ) ; return ( NULL ) ; } if ( ctxt -> input -> cur - ctxt -> input -> base < len ) { xmlFatalErr ( ctxt , XML_ERR_INTERNAL_ERROR , "unexpected<S2SV_blank>change<S2SV_blank>of<S2SV_blank>input<S2SV_blank>buffer"
 <S2SV_ModStart> gboolean res ; g_autofree gchar * trusted = NULL ; <S2SV_ModStart> TRUE ; } trusted = nautilus_file_get_metadata ( file , NAUTILUS_METADATA_KEY_DESKTOP_FILE_TRUSTED , NULL ) ; <S2SV_ModStart> ( file ) && trusted != NULL
-<S2SV_ModStart> ) ) { mark_desktop_file_executable <S2SV_ModEnd> ( job ,
-<S2SV_ModStart> , _ ( "_Cancel" ) , GTK_RESPONSE_CANCEL ) ; gtk_dialog_set_default_response ( GTK_DIALOG ( dialog ) , GTK_RESPONSE_CANCEL <S2SV_ModEnd> ) ; if <S2SV_ModStart> , _ ( "Trust<S2SV_blank>and<S2SV_blank>_Launch" ) , GTK_RESPONSE_OK ) ; } <S2SV_ModEnd> g_signal_connect ( dialog
-<S2SV_ModStart> ) { case GTK_RESPONSE_OK : { file = nautilus_file_get_location ( parameters -> file ) ; nautilus_file_set_metadata ( parameters -> file , NAUTILUS_METADATA_KEY_DESKTOP_FILE_TRUSTED , NULL , "yes" ) ; nautilus_file_mark_desktop_file_executable ( file , parameters -> parent_window , TRUE , NULL , NULL ) ; nautilus_file_invalidate_all_attributes ( parameters -> file ) ; <S2SV_ModEnd> screen = gtk_widget_get_screen <S2SV_ModStart> uri ) ; <S2SV_ModEnd> g_object_unref ( file
 <S2SV_ModStart> { guint uint_val ; if ( value_len < 4 ) break ; uint_val <S2SV_ModStart> { gboolean bool_val ; if ( value_len < 4 ) break ; bool_val
 <S2SV_ModStart> size_t columns , rows ; rows = MagickMax ( GetImageListLength ( images ) , <S2SV_ModEnd> ( size_t ) <S2SV_ModStart> ( ThreadResource ) ) <S2SV_ModStart> ) AcquireQuantumMemory ( rows <S2SV_ModEnd> , sizeof ( <S2SV_ModStart> NULL ) ; columns = MaxPixelChannels ; for ( next = images ; next != ( Image * ) NULL ; next = next -> next ) columns = MagickMax ( next -> columns , columns ) ; for ( i = 0 <S2SV_ModEnd> ; i < <S2SV_ModStart> ( ssize_t ) rows <S2SV_ModEnd> ; i ++
 <S2SV_ModStart> ; END_OF_READING : <S2SV_ModEnd> CloseBlob ( image <S2SV_ModStart> -> previous ; if ( tmp == image2 ) image2 = ( Image * ) NULL ;
@@ -267,7 +262,6 @@
 <S2SV_ModStart> name , MaxTextExtent - 1
 <S2SV_ModStart> image ) ; if ( GetNextImageInList ( image ) != ( Image * ) NULL )
 <S2SV_ModStart> = 1.0f / MagickMax ( w . x , MagickMax <S2SV_ModEnd> ( w .
-<S2SV_ModStart> ( const size_t <S2SV_ModEnd> , const DDSVector4 <S2SV_ModStart> const DDSVector4 * <S2SV_ModEnd> , const DDSVector3 <S2SV_ModStart> , const DDSVector3 <S2SV_ModEnd> , DDSVector4 * <S2SV_ModStart> , DDSVector4 * <S2SV_ModEnd> , DDSVector4 * <S2SV_ModStart> , DDSVector4 * <S2SV_ModEnd> , unsigned char <S2SV_ModStart> unsigned char * , size_t ) , <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
 <S2SV_ModStart> , y , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> x ) , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> ; } } return ( <S2SV_ModStart> dds_info , 8 , exception ) ) <S2SV_ModEnd> ; } <S2SV_null>
 <S2SV_ModStart> , y , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> x ) , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> ; } } return ( <S2SV_ModStart> dds_info , 16 , exception ) ) <S2SV_ModEnd> ; } <S2SV_null>
 <S2SV_ModStart> , y , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> x ) , MagickMin <S2SV_ModEnd> ( 4 , <S2SV_ModStart> ; } } return ( <S2SV_ModStart> dds_info , 16 , exception ) ) <S2SV_ModEnd> ; } <S2SV_null>
@@ -405,7 +399,6 @@
 <S2SV_ModStart> ) ; } if ( g_settings_privatereports ) { if ( world_readable_dump ) log ( "Not<S2SV_blank>going<S2SV_blank>to<S2SV_blank>make<S2SV_blank>dump<S2SV_blank>directories<S2SV_blank>world<S2SV_blank>readable<S2SV_blank>because<S2SV_blank>PrivateReports<S2SV_blank>is<S2SV_blank>on" ) ; mode = DEFAULT_DUMP_DIR_MODE ; my_euid = 0 ; }
 <S2SV_ModStart> ) ; } if ( g_settings_privatereports ) { if ( ( g_opts & OPT_x ) ) log ( "Not<S2SV_blank>going<S2SV_blank>to<S2SV_blank>make<S2SV_blank>dump<S2SV_blank>directories<S2SV_blank>world<S2SV_blank>readable<S2SV_blank>because<S2SV_blank>PrivateReports<S2SV_blank>is<S2SV_blank>on" ) ; mode = DEFAULT_DUMP_DIR_MODE ; my_euid = 0 ; }
 <S2SV_ModStart> ( dest_filename , "wx" <S2SV_ModEnd> ) ; if
-<S2SV_ModStart> g_tv_comment , FILENAME_COMMENT ) ; problem_data_reload_from_dump_dir ( ) ; update_gui_state_from_problem_data ( 0
 <S2SV_ModStart> dd ) ; <S2SV_ModEnd> } } <S2SV_null>
 <S2SV_ModStart> == GTK_RESPONSE_OK ) { <S2SV_ModStart> item_name ) ; problem_data_reload_from_dump_dir ( ) ; update_gui_state_from_problem_data ( 0 ) ; }
 <S2SV_ModStart> O_APPEND | O_CREAT | O_NOFOLLOW
@@ -1370,384 +1363,22 @@
 <S2SV_ModStart> goto errout ; int limit = ( info -> type == 2 ? vi -> channels : 1 ) * ci -> blocksizes [ 1 ] / 2 ; if ( info -> begin > info -> end || info -> end > limit ) { goto errout ; }
 <S2SV_ModStart> * zone ; size_t tilemap_size ; <S2SV_ModStart> . height ; tilemap_size = <S2SV_ModEnd> x_size * y_size <S2SV_ModStart> struct map_tile ) ; if ( x_size == 0 || tilemap_size / x_size / sizeof ( struct map_tile ) != y_size || ! ( tilemap = malloc ( tilemap_size
 <S2SV_ModStart> available_length ) { size_t original_length = memory_length ; <S2SV_ModStart> -> d_memory , original_length <S2SV_ModEnd> ) ; qp
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.64<S2SV_blank>2014/07/24<S2SV_blank>19:35:39<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> ) ) ; if ( q < p ) { DPRINTF ( ( "Wrapped<S2SV_blank>around<S2SV_blank>%p<S2SV_blank><<S2SV_blank>%p\\n" , q , p ) ) ; goto out ; }
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>softmagic.c,v<S2SV_blank>1.190<S2SV_blank>2014/06/03<S2SV_blank>19:01:34<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.61<S2SV_blank>2014/06/04<S2SV_blank>17:23:19<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> + tail ; size_t ss = sst -> sst_dirlen < h -> h_min_size_standard_stream ? CDF_SHORT_SEC_SIZE ( h ) : CDF_SEC_SIZE ( h ) ; <S2SV_ModStart> b ) <= ss <S2SV_ModEnd> * sst -> <S2SV_ModStart> b ) , ss <S2SV_ModEnd> * sst -> <S2SV_ModStart> -> sst_len , ss <S2SV_ModEnd> , sst ->
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.60<S2SV_blank>2014/05/21<S2SV_blank>13:04:38<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> cdf_secid_t ) ( ( <S2SV_ModStart> sat_len * size ) / sizeof ( maxsector ) <S2SV_ModStart> if ( sid >= <S2SV_ModEnd> maxsector ) { <S2SV_ModStart> DPRINTF ( ( "Sector<S2SV_blank>%d<S2SV_blank>>=<S2SV_blank>%d\\n" <S2SV_ModEnd> , sid ,
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>softmagic.c,v<S2SV_blank>1.171<S2SV_blank>2014/01/08<S2SV_blank>22:02:06<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>apprentice.c,v<S2SV_blank>1.210<S2SV_blank>2014/05/14<S2SV_blank>23:15:42<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>softmagic.c,v<S2SV_blank>1.196<S2SV_blank>2014/11/07<S2SV_blank>15:24:14<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>funcs.c,v<S2SV_blank>1.81<S2SV_blank>2015/05/28<S2SV_blank>19:26:59<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> c . len = 20 + level <S2SV_ModEnd> ) * sizeof
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.55<S2SV_blank>2014/02/27<S2SV_blank>23:26:17<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> if ( pos + len <S2SV_ModStart> "u\\n" , pos + len
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>readcdf.c,v<S2SV_blank>1.40<S2SV_blank>2014/03/06<S2SV_blank>15:23:33<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> count , const cdf_directory_t * root_storage <S2SV_ModEnd> ) { size_t <S2SV_ModStart> ( ms ) && root_storage <S2SV_ModStart> = cdf_clsid_to_mime ( root_storage -> d_storage_uuid <S2SV_ModEnd> , clsid2mime )
 <S2SV_ModStart> sst , const cdf_directory_t * root_storage <S2SV_ModEnd> ) { cdf_summary_info_header_t <S2SV_ModStart> break ; } if ( root_storage ) { <S2SV_ModStart> = cdf_clsid_to_mime ( root_storage -> d_storage_uuid <S2SV_ModEnd> , clsid2desc ) <S2SV_ModStart> - 2 ; } <S2SV_ModStart> , count , root_storage <S2SV_ModEnd> ) ; free
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>funcs.c,v<S2SV_blank>1.73<S2SV_blank>2014/09/10<S2SV_blank>18:41:51<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>softmagic.c,v<S2SV_blank>1.197<S2SV_blank>2014/11/11<S2SV_blank>17:48:23<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>softmagic.c,v<S2SV_blank>1.188<S2SV_blank>2014/05/14<S2SV_blank>23:15:42<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.62<S2SV_blank>2014/06/04<S2SV_blank>17:26:07<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> ) { size_t tail = <S2SV_ModEnd> ( i << <S2SV_ModStart> ) + 1 ; if ( cdf_check_stream_offset ( sst , h , p , tail * sizeof ( uint32_t ) , __LINE__ ) == - 1 ) goto out ; size_t ofs = CDF_GETUINT32 ( p , tail
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.56<S2SV_blank>2014/05/05<S2SV_blank>16:11:21<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> ) { size_t <S2SV_ModEnd> maxcount ; const <S2SV_ModStart> -> si_count = CDF_TOLE4 <S2SV_ModEnd> ( si -> <S2SV_ModStart> = NULL ; <S2SV_ModEnd> if ( cdf_read_property_info <S2SV_ModStart> - 1 ) <S2SV_ModEnd> return - 1 <S2SV_ModStart> - 1 ; <S2SV_ModEnd> return 0 ;
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>apprentice.c,v<S2SV_blank>1.227<S2SV_blank>2014/11/28<S2SV_blank>02:46:39<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> = FILE_ELF_PHNUM_MAX ; ms -> elf_notes_max = FILE_ELF_NOTES_MAX ;
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>file.c,v<S2SV_blank>1.159<S2SV_blank>2014/11/28<S2SV_blank>02:46:39<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>magic.c,v<S2SV_blank>1.90<S2SV_blank>2014/12/04<S2SV_blank>15:56:46<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> return 0 ; case MAGIC_PARAM_ELF_NOTES_MAX : ms -> elf_notes_max = * ( const size_t * ) val ; return 0 ;
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.59<S2SV_blank>2014/05/14<S2SV_blank>23:22:48<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> 1 ) ; if ( nelements == 0 ) { DPRINTF ( ( "CDF_VECTOR<S2SV_blank>with<S2SV_blank>nelements<S2SV_blank>==<S2SV_blank>0\\n" ) ) ; goto out ; } <S2SV_ModStart> j < nelements && i < sh . sh_properties
 <S2SV_ModStart> buffer ) { goffset offset = 0 ; gsize original_size = client -> auth_buffer -> len ; g_byte_array_append <S2SV_ModEnd> ( client -> <S2SV_ModStart> ( client -> auth_buffer , buffer -> data <S2SV_ModEnd> , buffer -> <S2SV_ModStart> pos ) ; while ( TRUE ) { guint8 * line_start = client -> auth_buffer -> data + offset ; gsize remaining_data = client -> auth_buffer -> len - offset ; guint8 * line_end ; line_end = memmem ( line_start , remaining_data , AUTH_LINE_SENTINEL , strlen ( AUTH_LINE_SENTINEL ) ) ; if ( line_end ) { offset = ( line_end + strlen ( AUTH_LINE_SENTINEL ) - line_start ) ; if ( ! auth_line_is_valid ( line_start , line_end ) ) return FIND_AUTH_END_ABORT ; * line_end = 0 ; if ( auth_line_is_begin ( line_start ) ) return offset - original_size ; } else { g_byte_array_remove_range ( client -> auth_buffer , 0 , offset ) <S2SV_ModEnd> ; if ( <S2SV_ModStart> ( client -> auth_buffer -> len >= 16 * 1024 ) return FIND_AUTH_END_ABORT ; return FIND_AUTH_END_CONTINUE <S2SV_ModEnd> ; } } <S2SV_ModStart> ; } } <S2SV_ModEnd> } <S2SV_null> <S2SV_null>
 <S2SV_ModStart> client -> proxy ) ; g_byte_array_free ( client -> auth_buffer , TRUE
 <S2SV_ModStart> ; client -> auth_buffer = g_byte_array_new ( ) <S2SV_ModEnd> ; client ->
 <S2SV_ModStart> ) ; } else if ( auth_end == FIND_AUTH_END_ABORT ) { buffer_unref ( buffer ) ; if ( client -> proxy -> log_messages ) g_print ( "Invalid<S2SV_blank>AUTH<S2SV_blank>line,<S2SV_blank>aborting\\n" ) ; side_closed ( side ) ; break ; }
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void AddSubPST ( <S2SV_ModStart> = pst ; } Sp <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> enum fchooserret CMapFilter <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FVAllSelected ( <S2SV_ModStart> any ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FVAnyCharSelected ( <S2SV_ModStart> val ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> FontViewBase * FVAny <S2SV_ModStart> ) fv_list ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVChangeChar ( FontView <S2SV_ModStart> ) ; } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVChangeDisplayFont ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVChar ( FontView <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> GFont * FVCheckFont <S2SV_ModStart> ] ) ; } ex <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVCopyInnards ( <S2SV_ModStart> -> colcnt ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVCreateInnards ( <S2SV_ModStart> bdf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVDelay ( FontView <S2SV_ModStart> func ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVDoTransform ( <S2SV_ModStart> cvt_none ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVDrawInfo ( FontView <S2SV_ModStart> ; return ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVEncodingMenuBuild ( <S2SV_ModStart> enc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVExpose ( <S2SV_ModStart> true ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVExtraEncSlots ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> SplineChar * FVFindACharInDisplay <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVForceEncodingMenuBuild ( <S2SV_ModStart> enc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> lineChar <S2SV_ModEnd> * FVMakeChar ( <S2SV_ModStart> base_sc ) ; } # d <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAddEncodingName ( <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAddExtrema ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAddUnencoded ( <S2SV_ModStart> cnt ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAnchorPairs ( <S2SV_ModStart> active_layer ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutoCounter ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutoHintSubs ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutoHint ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutoInstr ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutoWidth ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuAutotrace ( <S2SV_ModStart> ct ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBDFInfo ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBaseHoriz ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBaseVert ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBitmaps ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBlendToNew ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBuildAccent ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBuildComposite ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuBuildDuplicate ( <S2SV_ModStart> ) ) ; } # i <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCIDFontInfo ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCanonicalContours ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCanonicalStart ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCenter ( <S2SV_ModStart> MID_Center ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeChar ( <S2SV_ModStart> mid ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeGlyph ( <S2SV_ModStart> gc_generic ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeLayer ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeMMBlend ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeSupplement ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuChangeXHeight ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCharInfo ( <S2SV_ModStart> pos ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCleanup ( <S2SV_ModStart> 1 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClearBackground ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClearHints ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClearInstrs ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClearSpecialData ( <S2SV_ModStart> fv ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClear ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuClose ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCluster ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCompact ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCompareFonts ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCompareL2L ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCondense ( <S2SV_ModStart> NULL ) ; } # d <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuContextualHelp ( <S2SV_ModStart> "fontview.html" ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuConvert2CID ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuConvertByCMap ( <S2SV_ModStart> cmapfilename ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyFgBg ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyFrom ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyL2L ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyLookupData ( <S2SV_ModStart> ct_lookups ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyRef ( <S2SV_ModStart> ct_reference ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopyWidth ( <S2SV_ModStart> ut_rbearing ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCopy ( <S2SV_ModStart> ct_fullcopy ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCorrectDir ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCorrectRefs ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCreateMM ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuCut ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDefineGroups ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDeltas ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDeselectAll ( <S2SV_ModStart> fv ) ; } en <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDetachAndRemoveGlyphs ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDetachGlyphs ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDisplayByGroups ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDisplaySubs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuDontAutoHint ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuEditInstrs ( <S2SV_ModStart> sc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuEditTable ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuEmbolden ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuExecute ( <S2SV_ModStart> NULL ) ; } # e <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuExit ( <S2SV_ModStart> NULL ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuFindProblems ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuFindRpl ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuFlattenByCMap ( <S2SV_ModStart> cmapname ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuFlatten ( <S2SV_ModStart> cidmaster ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuFontInfo ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuForceEncode ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGenerateFamily ( <S2SV_ModStart> gf_macfamily ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGenerateTTC ( <S2SV_ModStart> gf_ttc ) ; } ex <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGenerate ( <S2SV_ModStart> gf_none ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGlyphLabel ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGlyphsBoth ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGlyphsRefs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGlyphsSplines ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGlyphsWhite ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuGotoChar ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuHistograms ( <S2SV_ModStart> hist_blues ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuImport ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuInline ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuInsertBlank ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuInsertFont ( <S2SV_ModStart> new ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuInterpFonts ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuInvertSelection ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuItalic ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuJoin ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuJustify ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuKPCloseup ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuKernByClasses ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuKernPairs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuLigatures ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuLoadEncoding ( <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuLoadNamelist ( <S2SV_ModStart> new ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMATHInfo ( <S2SV_ModStart> active_layer ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMMInfo ( <S2SV_ModStart> mm ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMMValid ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMagnify ( <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMakeFromFont ( <S2SV_ModStart> map ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMakeNamelist ( <S2SV_ModStart> file ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMassRename ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMergeFonts ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuMergeKern ( <S2SV_ModStart> map ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuNLTransform ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuNameGlyphs ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOblique ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOpenBitmap ( <S2SV_ModStart> ) ; } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOpenMetrics ( <S2SV_ModStart> show ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOpenOutline ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOpen ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOutline ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuOverlap ( <S2SV_ModStart> over_findinter ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuPOV ( <S2SV_ModStart> pov_data ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuPasteAfter ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuPasteInto ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuPaste ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuPrint ( <S2SV_ModStart> NULL ) ; } # i <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRedo ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuReencode ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveEncoding ( <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveFontFromCID ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveKern ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveUndoes ( <S2SV_ModStart> map ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveUnused ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRemoveVKern ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRenameByNamelist ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuReplaceWithRef ( <S2SV_ModStart> .001 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRevertBackup ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRevertGlyph ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRevert ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRmInstrTables ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRound2Hundredths ( <S2SV_ModStart> 100.0 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuRound2Int ( <S2SV_ModStart> 1.0 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSameGlyphAs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSaveAs ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSave ( <S2SV_ModStart> fv ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectAll ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectAutohintable ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectByName ( <S2SV_ModStart> gw ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectByPST ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectByScript ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectChanged ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectColor ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectHintingNeeded ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSelectWorthOutputting ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSetColor ( <S2SV_ModStart> col ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSetExtremumBound ( <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSetWidth ( <S2SV_ModStart> wt_vwidth ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShadow ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowAtt ( <S2SV_ModStart> active_layer ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowBitmap ( <S2SV_ModStart> bdf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowDependentRefs ( <S2SV_ModStart> sc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowDependentSubs ( <S2SV_ModStart> sc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowMetrics ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuShowSubFont ( <S2SV_ModStart> new ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSimplifyMore ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSimplify ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSize ( <S2SV_ModStart> ; } } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSmallCaps ( <S2SV_ModStart> gc_smallcaps ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuStroke ( <S2SV_ModStart> fv ) ; } # <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuSubSup ( <S2SV_ModStart> gc_subsuper ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuTransform ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuUndoFontLevel ( <S2SV_ModStart> undo ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuUndo ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuUnlinkRef ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuVKernByClasses ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuVKernFromHKern ( <S2SV_ModStart> b ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuValidate ( <S2SV_ModStart> ff_none ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuWSize ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMenuWireframe ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVMouse ( <S2SV_ModStart> 2 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVRefreshChar ( FontView <S2SV_ModStart> ; } } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVRegenChar ( FontView <S2SV_ModStart> sc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVResize ( <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVScrollToChar ( FontView <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVScrollToGID ( <S2SV_ModStart> ] ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FVScroll ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FVSelCount ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FVSelectByName ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVSelectByScript ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVSelectColor ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVSetColor ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVSetUIToMatch ( FontView <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVShowInfo ( <S2SV_ModStart> * fv ) ; v <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVShowSubFont ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVSimplify ( <S2SV_ModStart> smpl ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVTimer ( <S2SV_ModStart> ) ; } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FVTitleUpdate ( FontViewBase <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FVWindowMenuBuild ( <S2SV_ModStart> ; } } } GM <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_BiggerGlyphCache ( <S2SV_ModStart> sf ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_ChangeDisplayBitmap ( <S2SV_ModStart> 1 ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_ChangeGID ( <S2SV_ModStart> ] ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_LayerChanged ( <S2SV_ModStart> old ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_ReattachCVs ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FV_ShowFilled ( <S2SV_ModStart> = NULL ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FontIsActive ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> ntView <S2SV_ModEnd> * FontNew ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> SplineFont * FontOfFilename <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FontViewFinishNonStatic ( ) <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontViewFinish ( <S2SV_ModStart> fvpopupmenu ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontViewInit ( <S2SV_ModStart> FontViewFinishNonStatic ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontViewOpenKids ( <S2SV_ModStart> subfontcnt ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> FontViewRemove ( FontView <S2SV_ModStart> b ) ; } ex <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontViewSetTitle ( <S2SV_ModStart> ititle ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontViewSetTitles ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int FontViewWinInfo ( <S2SV_ModStart> colcnt ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> FontView * FontView_Append <S2SV_ModStart> fv ) ; } Fo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontView_Close ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> FontView * FontView_Create <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontView_Free ( <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontView_ReformatAll ( <S2SV_ModStart> ) ; } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FontView_ReformatOne ( <S2SV_ModStart> ct_pointer ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int GS_Cancel ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int GS_OK ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> ar <S2SV_ModEnd> * GetPostScriptFontName ( <S2SV_ModStart> temp ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int IsBackupName ( <S2SV_ModStart> '~' ) ; } in <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> KFFontViewInits ( struct <S2SV_ModStart> gsize ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuAbout ( GWindow <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuExit ( GWindow <S2SV_ModStart> NULL ) ; } ch <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuHelp ( GWindow <S2SV_ModStart> "overview.html" ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuIndex ( GWindow <S2SV_ModStart> "IndexFS.html" ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuLicense ( GWindow <S2SV_ModStart> "license.html" ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuNew ( GWindow <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuPrefs ( GWindow <S2SV_ModStart> ( ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuSaveAll ( GWindow <S2SV_ModStart> return ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MenuXRes ( GWindow <S2SV_ModStart> ( ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> MergeKernInfo ( SplineFont <S2SV_ModStart> temp ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> SCPreparePopup ( GWindow <S2SV_ModStart> msg ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int SFAnyChanged ( <S2SV_ModStart> changed ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int SS_Cancel ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int SS_OK ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int SS_ScriptChanged ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int SaveAs_FormatChange ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> enum merge_type SelMergeType <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> char * SubMatch <S2SV_ModStart> name ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int WildMatch ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> _FVCloseWindows ( FontView <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void _FVMenuChangeChar ( <S2SV_ModStart> pos ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int _FVMenuClose ( <S2SV_ModStart> b ) { } else if ( warn_script_unsaved && fv -> script_unsaved && AskScriptChanged ( ) == 2 ) { return false ; <S2SV_ModStart> true ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> t <S2SV_ModEnd> _FVMenuGenerate ( FontView <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> _FVMenuOpen ( FontView <S2SV_ModStart> ) ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> t <S2SV_ModEnd> _FVMenuSaveAs ( FontView <S2SV_ModStart> ok ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> t <S2SV_ModEnd> _FVMenuSave ( FontView <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> enum fchooserret _FVSaveAsFilterFunc <S2SV_ModStart> return fc_hide ; } in <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void _MenuExit ( <S2SV_ModStart> 0 ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> _MenuWarnings ( GWindow <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> FontView * __FontViewCreate <S2SV_ModStart> fv ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void aplistbuild ( <S2SV_ModStart> FVMenuAnchorPairs ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void balistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void cblistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void cdlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void cflistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void * ddgencharlist <S2SV_ModStart> data ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void delistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void do_Adobe_Pua ( <S2SV_ModStart> = 0 ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void edlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void ellistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void enlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void fllistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int fv_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int getorigin ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gllistcheck ( <S2SV_ModStart> mid ; } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gs_activateMe ( <S2SV_ModStart> ) ) { } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gs_charEvent ( <S2SV_ModStart> event ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gs_doClose ( <S2SV_ModStart> = true ; } # d <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gs_doResize ( <S2SV_ModStart> ) ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int gs_e_h ( <S2SV_ModStart> true ) ; } ch <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void gs_sizeSet ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int gs_sub_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void htlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void infolistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void lylistcheck ( <S2SV_ModStart> = sub ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int md_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void mmlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void mtlistcheck ( <S2SV_ModStart> ; } } } # i <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void noop ( <S2SV_ModStart> ) ) { } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void sllistcheck ( <S2SV_ModStart> = fv ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int ss_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void trlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void utf82u_annot_strncat ( <S2SV_ModStart> = 0 ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int v_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void validlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void vwlistcheck ( <S2SV_ModStart> ; } } } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> unichar_t * AskSetting <S2SV_ModStart> ret ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void ChangeSetting ( <S2SV_ModStart> NULL ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void CheckObsoletePrefs ( <S2SV_ModStart> | old_otf_flags ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int DefaultEncoding ( <S2SV_ModStart> enc ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void DefaultXUID ( <S2SV_ModStart> buffer ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void FileChooserPrefsChanged ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> GListAddStr ( GGadget <S2SV_ModStart> false ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> GListReplaceStr ( GGadget <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void GetFileChooserPrefs ( <S2SV_ModStart> ; } } } # d <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void ParseMacMapping ( <S2SV_ModStart> 0xff ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void ParseNewMacFeature ( <S2SV_ModStart> = default_mac_feature_map ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Pref_DefaultMapping ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Pref_DelMapping ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Pref_EditMapping ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> GTextInfo * Pref_MappingList <S2SV_ModStart> ti ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Pref_MappingSel ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Pref_NewMapping ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void PrefsInit ( <S2SV_ModStart> tab_name ) ; } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int PrefsUI_GetPrefs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void PrefsUI_LoadPrefs_FromFile ( <S2SV_ModStart> ) ; } } vo <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void PrefsUI_LoadPrefs ( <S2SV_ModStart> prefs_usecairo ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void PrefsUI_SavePrefs ( <S2SV_ModStart> p ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void PrefsUI_SetDefaults ( <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int PrefsUI_SetPrefs ( <S2SV_ModStart> false ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> char * PrefsUI_getFontForgeShareDir <S2SV_ModStart> ( ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Prefs_BrowseFile ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Prefs_Cancel ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> id <S2SV_ModEnd> Prefs_LoadDefaultPreferences ( void <S2SV_ModStart> filename ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Prefs_Ok ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int Prefs_ScriptBrowse ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> void ProcessFileChooserPrefs ( <S2SV_ModStart> FileChooserPrefsChanged ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int encmatch ( <S2SV_ModStart> e_unknown ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> char * getPfaEditPrefs <S2SV_ModStart> return prefs ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> <S2SV_null> <S2SV_null> atic <S2SV_ModEnd> int set_e_h ( <S2SV_ModStart> true ) ; } st <S2SV_ModEnd> <S2SV_null> <S2SV_null> <S2SV_null>
 <S2SV_ModStart> -> type == et_controlevent && event -> u . control . subtype == et_textchanged ) { sd -> fv -> script_unsaved = ! GTextFieldIsEmpty ( GWidgetGetControl ( sd -> gw , CID_Script ) ) ; } else if ( event -> type == et_controlevent && event -> u . control . subtype == et_save ) { sd -> fv -> script_unsaved = false ; } else if ( event -> type ==
 <S2SV_ModStart> file ) ; GTextFieldSaved ( gt ) ;
 <S2SV_ModStart> header_len > LEVEL_3_MAX_HEADER_LEN || header_len < RAW_DATA_LEN ( header )
@@ -1784,11 +1415,9 @@
 <S2SV_ModStart> , NULL , <S2SV_ModEnd> data ) ;
 <S2SV_ModStart> object * obj <S2SV_ModEnd> , const char
 <S2SV_ModStart> * obj , <S2SV_ModEnd> const char * <S2SV_ModStart> const char * name ) { const <S2SV_ModEnd> char * p <S2SV_ModStart> out ) ; <S2SV_ModEnd> } <S2SV_null> <S2SV_null>
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.46<S2SV_blank>2011/09/16<S2SV_blank>21:23:59<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> >> 2 ; if ( q + o >= e ) goto out ;
 <S2SV_ModStart> id ) { size_t ss = <S2SV_ModEnd> CDF_SEC_SIZE ( h <S2SV_ModStart> ( h ) ; size_t pos = CDF_SEC_POS ( h , id ) ; assert ( ss <S2SV_ModStart> ( off_t ) pos <S2SV_ModEnd> , ( (
 <S2SV_ModStart> id ) { size_t ss = <S2SV_ModEnd> CDF_SHORT_SEC_SIZE ( h <S2SV_ModStart> ( h ) ; size_t pos = CDF_SHORT_SEC_POS ( h , id ) ; assert ( ss <S2SV_ModStart> len ) ; if ( sst -> sst_len < ( size_t ) id ) { DPRINTF ( ( "bad<S2SV_blank>sector<S2SV_blank>id<S2SV_blank>%d<S2SV_blank>><S2SV_blank>%d\\n" , id , sst -> sst_len ) ) ; return - 1 ; } <S2SV_ModStart> sst_tab ) + pos <S2SV_ModEnd> , len )
-<S2SV_ModStart> <S2SV_null> FILE_RCSID ( "@(#)$File:<S2SV_blank>cdf.c,v<S2SV_blank>1.49<S2SV_blank>2012/02/20<S2SV_blank>20:04:37<S2SV_blank>christos<S2SV_blank>Exp<S2SV_blank>$" <S2SV_ModEnd> ) <S2SV_null> <S2SV_null>
 <S2SV_ModStart> ++ ) { size_t ofs = CDF_GETUINT32 ( p , ( i << 1 ) + 1 ) ; <S2SV_ModStart> ) p + ofs <S2SV_ModEnd> - 2 * <S2SV_ModStart> sizeof ( uint32_t ) <S2SV_ModStart> - p , offs <S2SV_ModEnd> ) ) ;
 <S2SV_ModStart> size_t ss = CDF_SHORT_SEC_SIZE <S2SV_ModEnd> ( h ) <S2SV_ModStart> ( pos > CDF_SEC_SIZE ( h ) <S2SV_ModEnd> * sst -> <S2SV_ModStart> , pos , CDF_SEC_SIZE ( h ) <S2SV_ModEnd> * sst ->
 <S2SV_ModStart> size_t ss = CDF_SHORT_SEC_SIZE <S2SV_ModEnd> ( h )
@@ -2026,7 +1655,6 @@
 <S2SV_ModStart> { if ( user_sid_size > ( ( record_data_size - 4 ) - user_sid_offset ) ) { libcerror_error_set ( error , LIBCERROR_ERROR_DOMAIN_RUNTIME , LIBCERROR_RUNTIME_ERROR_VALUE_OUT_OF_BOUNDS , "%s:<S2SV_blank>user<S2SV_blank>SID<S2SV_blank>data<S2SV_blank>size<S2SV_blank>value<S2SV_blank>out<S2SV_blank>of<S2SV_blank>bounds." , function ) ; goto on_error ; } if ( <S2SV_ModStart> 0 ) { if ( strings_size > ( ( record_data_size - 4 ) - strings_offset ) ) { libcerror_error_set ( error , LIBCERROR_ERROR_DOMAIN_RUNTIME , LIBCERROR_RUNTIME_ERROR_VALUE_OUT_OF_BOUNDS , "%s:<S2SV_blank>strings<S2SV_blank>size<S2SV_blank>value<S2SV_blank>out<S2SV_blank>of<S2SV_blank>bounds." , function ) ; goto on_error ; } <S2SV_ModStart> 0 ) { if ( data_size > ( ( record_data_size - 4 ) - data_offset ) ) { libcerror_error_set ( error , LIBCERROR_ERROR_DOMAIN_RUNTIME , LIBCERROR_RUNTIME_ERROR_VALUE_OUT_OF_BOUNDS , "%s:<S2SV_blank>data<S2SV_blank>size<S2SV_blank>value<S2SV_blank>out<S2SV_blank>of<S2SV_blank>bounds." , function ) ; goto on_error ; } <S2SV_ModStart> ; libcnotify_print_data ( <S2SV_ModEnd> & ( record_data <S2SV_ModStart> ) data_size , LIBCNOTIFY_PRINT_DATA_FLAG_GROUP_DATA ) ; } # endif if ( libfvalue_value_type_initialize ( & ( record_values -> data ) , LIBFVALUE_VALUE_TYPE_BINARY_DATA , error ) != 1 ) { libcerror_error_set ( error , LIBCERROR_ERROR_DOMAIN_RUNTIME , LIBCERROR_RUNTIME_ERROR_INITIALIZE_FAILED , "%s:<S2SV_blank>unable<S2SV_blank>to<S2SV_blank>create<S2SV_blank>data<S2SV_blank>value." , function ) ; goto on_error ; } if ( libfvalue_value_set_data ( record_values -> data , & ( record_data [ record_data_offset ] ) , ( size_t ) data_size ,
 <S2SV_ModStart> ) ) { if ( uri_ptr [ alias_len ] == '.' ) { char * s = uri_ptr + alias_len + 1 ; if ( * s == '.' ) ++ s ; if ( * s == '/' || * s == '\\0' ) { size_t vlen = buffer_string_length ( ds -> value ) ; if ( 0 != alias_len && ds -> key -> ptr [ alias_len - 1 ] != '/' && 0 != vlen && ds -> value -> ptr [ vlen - 1 ] == '/' ) { con -> http_status = 403 ; return HANDLER_FINISHED ; } } }
 <S2SV_ModStart> 0 ) { const int qslen = blen - qs ; <S2SV_ModStart> + qs , ( size_t ) qslen ) ; qs = j <S2SV_ModEnd> ; j += <S2SV_ModStart> ; j += qslen <S2SV_ModEnd> ; } buffer_string_set_length
-<S2SV_ModStart> , CONST_STR_LEN ( "%2f?" ) , CONST_STR_LEN ( "/?" ) ) ; run_burl_normalize ( psrc , ptmp , flags , __LINE__ , CONST_STR_LEN ( "/%2f?" ) , CONST_STR_LEN ( "//?" ) ) ; run_burl_normalize ( psrc , ptmp , flags , __LINE__ , CONST_STR_LEN (
 <S2SV_ModStart> return false ; if ( url_len >= sizeof ( url_address ) ) { applog ( LOG_WARNING , "%s:<S2SV_blank>Truncating<S2SV_blank>overflowed<S2SV_blank>address<S2SV_blank>\'%.*s\'" , __func__ , url_len , url_begin ) ; url_len = sizeof ( url_address ) - 1 ; }
 <S2SV_ModStart> ; if ( n2size < 1 <S2SV_ModEnd> ) { applog
 <S2SV_ModStart> SQL_DESC_COUNT && ( intptr_t <S2SV_ModEnd> ) value < <S2SV_ModStart> == SQL_DESC_PARAMETER_TYPE && ( intptr_t ) <S2SV_ModStart> != SQL_PARAM_INPUT && ( intptr_t ) <S2SV_ModStart> != SQL_PARAM_OUTPUT && ( intptr_t ) <S2SV_ModStart> != SQL_PARAM_INPUT_OUTPUT && ( intptr_t ) <S2SV_ModStart> != SQL_PARAM_INPUT_OUTPUT_STREAM && ( intptr_t )
@@ -3549,7 +3177,6 @@
 <S2SV_ModStart> ; uint32_t pkg_size ; if ( pkg -> body_size > RPC_PKG_MAX_BODY_SIZE ) { return - 1 ; } pkg_size <S2SV_ModStart> send_buf_size ) ; if ( send_buf == NULL ) { return - 1 ; } <S2SV_ModEnd> } memcpy (
 <S2SV_ModStart> connection == NULL || strlen ( connection ) > UT_WS_SVR_MAX_HEADER_SIZE
 <S2SV_ModStart> ( length > 1 <S2SV_ModEnd> ) { if
-<S2SV_ModStart> mask2 , * mask3 , * mask4 , * mask5 , * mask6 , * mask7 <S2SV_ModEnd> ; const char <S2SV_ModStart> = NULL ; mask3 = NULL ; mask4 = NULL ; mask5 = NULL ; mask6 = NULL ; mask7 <S2SV_ModEnd> = NULL ; <S2SV_ModStart> return NULL ; length = strlen ( mask <S2SV_ModEnd> ) + 256 <S2SV_ModStart> + 1 ; mask2 <S2SV_ModEnd> = malloc ( <S2SV_ModStart> if ( ! mask2 <S2SV_ModEnd> ) goto end <S2SV_ModStart> seconds ) ; mask2 <S2SV_ModEnd> [ 0 ] <S2SV_ModStart> = '\\0' ; if ( strftime ( mask2 <S2SV_ModEnd> , length - <S2SV_ModStart> - 1 , mask <S2SV_ModEnd> , date_tmp ) <S2SV_ModStart> , date_tmp ) == 0 ) mask2 [ 0 ] = '\\0' ; mask3 = weechat_string_replace ( mask2 , dir_separator , "\\01" ) ; if ( ! mask3 ) goto end ; mask4 = weechat_buffer_string_replace_local_var ( buffer , mask3 ) ; if ( ! mask4 ) goto end ; mask5 = weechat_string_replace ( mask4 , dir_separator , weechat_config_string ( logger_config_file_replacement_char ) ) ; if ( ! mask5 ) goto end ; # ifdef __CYGWIN__ mask6 = weechat_string_replace ( mask5 , "\\\\" , weechat_config_string ( logger_config_file_replacement_char ) ) ; # else mask6 = strdup ( mask5 ) ; # endif if ( ! mask6 ) goto end ; mask7 = weechat_string_replace ( mask6 , "\\01" , dir_separator ) ; if ( ! mask7 ) goto end <S2SV_ModStart> ) weechat_string_tolower ( mask7 <S2SV_ModEnd> ) ; if <S2SV_ModStart> , mask , mask7 <S2SV_ModEnd> ) ; } <S2SV_ModStart> ; if ( mask3 ) free ( mask3 ) ; if ( mask4 ) free ( mask4 ) ; if ( mask5 ) free ( mask5 ) ; if ( mask6 ) free ( mask6 <S2SV_ModEnd> ) ; return <S2SV_ModStart> ) ; return mask7 <S2SV_ModEnd> ; } c
 <S2SV_ModStart> , dlt ; int wtap_encap ; struct eth_phdr eth ; void * phdr ; <S2SV_ModStart> pkt_len ) ; wtap_encap = wtap_pcap_encap_to_wtap_encap ( dlt ) ; switch ( wtap_encap ) { case WTAP_ENCAP_ETHERNET : eth . fcs_len = - 1 ; phdr = & eth ; break ; default : phdr = NULL ; break ; } dissector_try_uint_new <S2SV_ModEnd> ( wtap_encap_dissector_table , <S2SV_ModStart> ( wtap_encap_dissector_table , wtap_encap <S2SV_ModEnd> , next_tvb , <S2SV_ModStart> pinfo , tree , TRUE , phdr
 <S2SV_ModStart> struct ieee_802_11_phdr phdr ; int wtap_encap ; struct eth_phdr eth ; void * phdrp <S2SV_ModStart> } else { wtap_encap = wtap_pcap_encap_to_wtap_encap ( dlt ) ; switch ( wtap_encap ) { case WTAP_ENCAP_ETHERNET : eth . fcs_len = - 1 ; phdrp = & eth ; break ; default : phdrp = NULL ; break ; } dissector_try_uint_new <S2SV_ModEnd> ( wtap_encap_dissector_table , <S2SV_ModStart> ( wtap_encap_dissector_table , wtap_encap <S2SV_ModEnd> , next_tvb , <S2SV_ModStart> pinfo , tree , TRUE , phdrp
 <S2SV_ModStart> ; gint reported_length_remaining ; struct eth_phdr eth ; void * phdr <S2SV_ModStart> WTAP_ENCAP_UNKNOWN ) { switch ( linktype ) { case WTAP_ENCAP_ETHERNET : eth . fcs_len = - 1 ; phdr = & eth ; break ; default : phdr = NULL ; break ; } dissector_try_uint_new <S2SV_ModEnd> ( wtap_encap_dissector_table , <S2SV_ModStart> pinfo , top_tree , TRUE , phdr
