@@ -8,6 +8,7 @@ from pathlib import Path
 from clang.cindex import CursorKind
 from multiprocessing import Pool
 from unidiff import PatchSet
+import traceback
 
 def tokenize_pre_and_post(tmpfile,path_to_diff):
     try:
@@ -51,6 +52,7 @@ def tokenize_pre_and_post(tmpfile,path_to_diff):
             f.write(post_tokens)
     except Exception as e:
         print("Tokenize error: " + str(e))
+        print(traceback.format_exc())
         return
 
 def removeComment(path_to_file,tmpfile):
@@ -97,33 +99,38 @@ def get_func_pair_diff(pre_version_file, post_version_file):
         pre_max_index = len(pre_version_file_func_decl_cursor)
         post_max_index = len(post_version_file_func_decl_cursor)
 
-        while(pre_index < pre_max_index):
+    except Exception as e:
+        print(traceback.format_exc())
+        return
+
+    while(pre_index < pre_max_index):
+        try:
             pre_func_decl_cursor = pre_version_file_func_decl_cursor[pre_index]
+            pre_func_start_line_number = pre_func_decl_cursor.extent.start.line-1
+            pre_func_end_line_number = pre_func_decl_cursor.extent.end.line
             for index in range(post_index, post_max_index):
                 post_func_decl_cursor = post_version_file_func_decl_cursor[index]
-                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling and 
-                   pre_func_decl_cursor.extent.end_int_data <= len(pre_version_file_str) and 
-                   pre_func_decl_cursor.extent.end_int_data > pre_func_decl_cursor.extent.begin_int_data +2 and 
-                   pre_version_file_str[pre_func_decl_cursor.extent.end_int_data-2] != ';' and 
-                   post_func_decl_cursor.extent.end_int_data <= len(post_version_file_str) and 
-                   post_func_decl_cursor.extent.end_int_data > post_func_decl_cursor.extent.begin_int_data +2 and 
-                   post_version_file_str[post_func_decl_cursor.extent.end_int_data-2] != ';'):
-                    pre_func_decl_cursor_str = pre_version_file_str[pre_func_decl_cursor.extent.begin_int_data-2:pre_func_decl_cursor.extent.end_int_data-1]
-                    post_func_decl_cursor_str = post_version_file_str[post_func_decl_cursor.extent.begin_int_data-2:post_func_decl_cursor.extent.end_int_data-1]
-
-                    diff = list(difflib.unified_diff(pre_func_decl_cursor_str.splitlines(True), post_func_decl_cursor_str.splitlines(True), fromfile=pre_func_decl_cursor.spelling+'.function', tofile=pre_func_decl_cursor.spelling+'.function',  n=1000000))
+                post_func_start_line_number = post_func_decl_cursor.extent.start.line-1
+                post_func_end_line_number = post_func_decl_cursor.extent.end.line
+                if(pre_func_decl_cursor.spelling == post_func_decl_cursor.spelling and
+                   pre_version_file_lines[pre_func_end_line_number-1].strip()[-1] == '}' and
+                   post_version_file_lines[post_func_end_line_number-1].strip()[-1] == '}'):
+                    pre_func_decl_cursor_lines = pre_version_file_lines[pre_func_start_line_number:pre_func_end_line_number]
+                    post_func_decl_cursor_lines = post_version_file_lines[post_func_start_line_number:post_func_end_line_number]
+                    diff = list(difflib.unified_diff(pre_func_decl_cursor_lines, post_func_decl_cursor_lines, fromfile=pre_func_decl_cursor.spelling+'.function', tofile=pre_func_decl_cursor.spelling+'.function',  n=1000000))
                     if diff:
                         func_decl_diff_dir = Path(str(pre_version_file.parent.parent).replace('BugFix', 'BugFixFunction'))
                         func_decl_diff_file = func_decl_diff_dir / (pre_version_file.name + '__' + pre_func_decl_cursor.spelling + '__' + str(pre_func_decl_cursor.location.line) + '.diff')
                         with codecs.open("/tmp/S2SV_func.diff", 'w', 'utf-8') as f:
                             f.write(''.join(diff))
-                            f.close()
-                            tokenize_pre_and_post("/tmp/S2SV_func.diff",func_decl_diff_file)
+                        tokenize_pre_and_post("/tmp/S2SV_func.diff",func_decl_diff_file)
                     post_index = index + 1
                     break
             pre_index += 1
-    except Exception as e:
-        print("Get function pair fail: "+str(e))
+        except Exception as e:
+            pre_index += 1
+            print(traceback.format_exc())
+            continue
 
 def main(argv):
     bug_fix_pair_path = argv[1]
@@ -150,4 +157,3 @@ def main(argv):
 
 if __name__=="__main__":
     main(sys.argv)
-
