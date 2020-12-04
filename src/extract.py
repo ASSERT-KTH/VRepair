@@ -73,8 +73,8 @@ def get_func_pair_diff(pre_version_file, post_version_file):
         removeComment(pre_version_file,"/tmp/S2SV_pre.c")
         removeComment(post_version_file,"/tmp/S2SV_post.c")
 
-        pre_version_file_str = open("/tmp/S2SV_pre.c").read().splitlines(True)
-        post_version_file_str = open("/tmp/S2SV_post.c").read().splitlines(True)
+        pre_version_file_lines = open("/tmp/S2SV_pre.c").read().splitlines(True)
+        post_version_file_lines = open("/tmp/S2SV_post.c").read().splitlines(True)
 
         pre_version_file_tu = index.parse("/tmp/S2SV_pre.c")
         post_version_file_tu = index.parse("/tmp/S2SV_post.c")
