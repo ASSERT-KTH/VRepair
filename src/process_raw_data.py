@@ -15,6 +15,11 @@ parser.add_argument('-max_tgt_length', action='store',
 parser.add_argument('--split_range', action='store', nargs='+',
                     dest='split_range', type=float,
                     help='train/valid/test data range, must sum up to 100')
+parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
+                    help='If the valid/test data size is fixed, mutually exclusive with split_range')
+parser.add_argument('--fixed_split_size', action='store', type=int,
+                    dest='fixed_split_size',
+                    help='If fixed_split, the size of valid/test data')
 parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
@@ -70,15 +75,20 @@ def remove_long_sequence(src_list, tgt_list, max_src_length, max_tgt_length):
     return src_suitable_list, tgt_suitable_list
 
 
-def split_train_val_test(src_list, tgt_list, split_range):
+def split_train_val_test(src_list, tgt_list, fixed_split, split_range,
+                         fixed_split_size):
     src_tgt_pairs = list(zip(src_list, tgt_list))
     random.shuffle(src_tgt_pairs)
     src_list, tgt_list = zip(*src_tgt_pairs)
 
     list_count = len(src_list)
-    train_index = math.floor((split_range[0] / 100) * list_count)
-    validation_index = math.floor((split_range[1] / 100) * list_count)
-    validation_index += train_index
+    if fixed_split:
+        train_index = max(0, list_count-fixed_split_size-fixed_split_size)
+        validation_index = train_index + fixed_split_size
+    else:
+        train_index = math.floor((split_range[0] / 100) * list_count)
+        validation_index = math.floor((split_range[1] / 100) * list_count)
+        validation_index += train_index
 
     train_src_list = src_list[:train_index]
     train_tgt_list = tgt_list[:train_index]
@@ -95,8 +105,11 @@ def split_train_val_test(src_list, tgt_list, split_range):
 def main(argv):
     args = parser.parse_args(argv)
 
-    assert(len(args.split_range) == 3)
-    assert(sum(args.split_range) == 100)
+    assert(bool(args.split_range) != args.fixed_split)
+
+    if args.split_range:
+        assert(len(args.split_range) == 3)
+        assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
     src_list, tgt_list = read_all_data(data_dir)
@@ -105,7 +118,8 @@ def main(argv):
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
     (train_src_list, train_tgt_list, valid_src_list, valid_tgt_list,
      test_src_list, test_tgt_list) = split_train_val_test(
-        src_list, tgt_list, args.split_range)
+        src_list, tgt_list, args.fixed_split, args.split_range,
+        args.fixed_split_size)
 
     train_src_filename = 'BugFix_train_src.txt'
     train_tgt_filename = 'BugFix_train_tgt.txt'
