@@ -24,8 +24,8 @@ def tokenize_pre_and_post(tmpfile,path_to_diff):
             return
 
         # Comments have been removed so add comment tokens for line delimiters
-        pre_version_function_str = pre_version_function_str.replace('\n','//<S2SV>\n')
-        post_version_function_str = post_version_function_str.replace('\n','//<S2SV>\n')
+        pre_version_function_str = pre_version_function_str.replace('\n',' //<S2SV> ').replace('\\ //<S2SV> ','\\\n')
+        post_version_function_str = post_version_function_str.replace('\n',' //<S2SV> ').replace('\\ //<S2SV> ','\\\n')
 
         index = clang.cindex.Index.create()
         tu_pre = index.parse('tmp.c', unsaved_files=[('tmp.c', pre_version_function_str)])
