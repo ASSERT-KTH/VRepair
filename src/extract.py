@@ -24,8 +24,8 @@ def tokenize_pre_and_post(tmpfile,path_to_diff):
             return
 
         # Comments have been removed so add comment tokens for line delimiters
-        pre_version_function_str = pre_version_function_str.replace('\n',' //<S2SV> ').replace('\\ //<S2SV> ','\\\n')
-        post_version_function_str = post_version_function_str.replace('\n',' //<S2SV> ').replace('\\ //<S2SV> ','\\\n')
+        pre_version_function_str = pre_version_function_str.replace('\n',' //<S2SV>\n ').replace('\\ //<S2SV>\n','\\\n')
+        post_version_function_str = post_version_function_str.replace('\n',' //<S2SV>\n').replace('\\ //<S2SV>\n','\\\n')
 
         index = clang.cindex.Index.create()
         tu_pre = index.parse('tmp.c', unsaved_files=[('tmp.c', pre_version_function_str)])
@@ -87,10 +87,10 @@ def get_func_pair_diff(pre_version_file, post_version_file):
         post_version_file_func_decl_cursor = []
 
         for cursor in pre_version_file_tu.cursor.walk_preorder():
-            if cursor.kind == CursorKind.FUNCTION_DECL:
+            if cursor.kind == CursorKind.FUNCTION_DECL and str(cursor.extent.start.file) == "/tmp/S2SV_pre.c":
                 pre_version_file_func_decl_cursor.append(cursor)
         for cursor in post_version_file_tu.cursor.walk_preorder():
-            if cursor.kind == CursorKind.FUNCTION_DECL:
+            if cursor.kind == CursorKind.FUNCTION_DECL and str(cursor.extent.start.file) == "/tmp/S2SV_post.c":
                 post_version_file_func_decl_cursor.append(cursor)
 
         func_decl_cursor_key = lambda c: (c.spelling, c.location.line)
