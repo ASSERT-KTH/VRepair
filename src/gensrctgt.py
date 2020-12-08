@@ -158,7 +158,8 @@ def main(argv):
             pre_version_file_str=pre_version_file_str[:-1]
         if post_version_file_str.endswith(' '):
             post_version_file_str=post_version_file_str[:-1]
-        if pre_version_file_str.endswith('}') and post_version_file_str.endswith('}'):
+        # This if statement could be adjusted if any data pruning is desired
+        if True:
             (src, tgt) = get_token_pair_diff(pre_version_file, pre_version_file_str, post_version_file_str, num_tokens)
             if hash_to_cwe:
                 search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
