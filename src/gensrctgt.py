@@ -29,6 +29,9 @@ def get_token_pair_diff(pre_version_file,pre_version_file_str,
             #  300: gathering addition
             #  301 to 30x: post-addition tokens
             state = 0;  # Start state
+            src = ""
+            src_line = ""
+            bugtag = False
             tgt = ""
             pre_tokens = ["<S2SV_null>"] * num_tokens
             post_tokens = ["<S2SV_null>"] * num_tokens
@@ -41,6 +44,17 @@ def get_token_pair_diff(pre_version_file,pre_version_file_str,
                 elif state < 3:
                     print(f'ERROR: token line {t} occurred before preamble done')
                 elif t.startswith(" "):
+                    if t != " //<S2SV>":
+                        src_line += t[1:] + ' '
+                    elif bugtag:
+                        src += "<S2SV_StartBug> "+src_line+"<S2SV_EndBug> "
+                        bugtag = False
+                        src_line = ""
+                        continue
+                    else:
+                        src += src_line
+                        src_line = ""
+                        continue
                     if state == 3: # Continue idle state
                         pre_tokens = pre_tokens[1:num_tokens] + [t[1:]] 
                     elif state % 100 == num_tokens-1:
@@ -57,7 +71,19 @@ def get_token_pair_diff(pre_version_file,pre_version_file_str,
                         state += 1   # Advance post_token count
                         post_tokens = post_tokens[1:num_tokens] + [t[1:]]
                 elif t.startswith("-"):
+                    if t != "-//<S2SV>":
+                        src_line += t[1:] + ' '
+                    elif bugtag:
+                        src += "<S2SV_StartBug> "+src_line+"<S2SV_EndBug> "
+                        bugtag = False
+                        src_line = ""
+                        continue
+                    else:
+                        src += src_line
+                        src_line = ""
+                        continue
                     if state == 3: # Enter from idle state
+                        bugtag=True
                         state = 100 # Assume delete at first
                         new_tokens = []
                     elif state >= 300: # Addition changes to modification
@@ -72,7 +98,10 @@ def get_token_pair_diff(pre_version_file,pre_version_file_str,
                     post_tokens = ["<S2SV_null>"] * num_tokens
                         
                 elif t.startswith("+"):
+                    if t == "+//<S2SV>":
+                        continue
                     if state == 3: # Enter from idle state
+                        bugtag=True
                         state = 300 # Assume addition at first
                         new_tokens = [t[1:]]
                     elif state >= 300: 
@@ -99,7 +128,7 @@ def get_token_pair_diff(pre_version_file,pre_version_file_str,
                 tgt += '<S2SV_ModStart> '+' '.join(pre_tokens)+' <S2SV_ModEnd> '+' '.join(post_tokens)+' '
             if not tgt:
                 print(f'ERROR: {pre_version_file_str} found no target changes in {diff}')
-            return (pre_version_file_str,tgt)
+            return (src.strip(),tgt.strip())
         else:
             print(f'No diff found for {pre_version_file}')
             sys.exit(2)
@@ -169,7 +198,7 @@ def main(argv):
                     src_lines += 'CWE-000 '+src+'\n'
             else:
                 src_lines += src+'\n'
-            tgt_lines += tgt[:-1]+'\n' # Remove trailing space but add newline
+            tgt_lines += tgt+'\n' # add newline
     
     src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.src.txt')
     tgt_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.tgt.txt')
