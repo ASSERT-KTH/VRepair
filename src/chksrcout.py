@@ -10,7 +10,7 @@ from unidiff import PatchSet
 
 def check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens, sample):
     try:
-        pre_version_tokens = pre_version_file_str.split(' ') + ["<S2SV_null>"] * num_tokens
+        pre_version_tokens = pre_version_file_str.replace(' //<S2SV>','').split(' ') + ["<S2SV_null>"] * num_tokens
 
         parse_error=True
         special = re.compile("^<S2SV_Mod(Start|End)>$")
@@ -22,7 +22,7 @@ def check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens,
             out_pre = out_tokens[1:num_tokens+1]
             out_idx = num_tokens+1
             i = 0;
-            while i < len(pre_version_tokens)-num_tokens:
+            while i <= len(pre_version_tokens)-num_tokens:
                 if ' '.join(out_pre) == ' '.join(pre_tokens): # Found match
                     while out_idx < len(out_tokens) and not special.match(out_tokens[out_idx]):
                         chk_file_str+=out_tokens[out_idx]+' '
@@ -36,7 +36,7 @@ def check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens,
                             # Jumping num_tokens+1 is safe because of while loop
                             pre_tokens = pre_version_tokens[i+1:i+num_tokens+1]
                             i+=num_tokens+1
-                            while i < len(pre_version_tokens) and ' '.join(out_pre) != ' '.join(pre_tokens): # No match yet
+                            while i <= len(pre_version_tokens) and ' '.join(out_pre) != ' '.join(pre_tokens): # No match yet
                                 pre_tokens = pre_tokens[1:num_tokens]+[pre_version_tokens[i]]
                                 i+=1
                             if i <= len(pre_version_tokens)-num_tokens:
@@ -56,14 +56,15 @@ def check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens,
                             out_idx += num_tokens+1
                 else:
                     pre_tokens = pre_tokens[1:num_tokens]+[pre_version_tokens[i]]
-                    chk_file_str+=pre_version_tokens[i]+' '
+                    if i < len(pre_version_tokens)-num_tokens:
+                        chk_file_str+=pre_version_tokens[i]+' '
                     i+=1
             # Check if all delta tokens were processed
             if out_idx == len(out_tokens):
                 parse_error=False
-            if chk_file_str[:-1] == post_version_file_str:
+            if chk_file_str[:-1] == post_version_file_str.replace(' //<S2SV>',''):
                 break
-        if chk_file_str[:-1] == post_version_file_str:
+        if chk_file_str[:-1] == post_version_file_str.replace(' //<S2SV>',''):
             return f'Result for sample {sample} PASSED'
         elif parse_error:
             return f'Result for sample {sample} PARSE ERROR'
@@ -112,7 +113,8 @@ def main(argv):
             pre_version_file_str=pre_version_file_str[:-1]
         if post_version_file_str.endswith(' '):
             post_version_file_str=post_version_file_str[:-1]
-        if pre_version_file_str.endswith('}') and post_version_file_str.endswith('}'):
+        # This if statement could be adjusted if any data pruning is desired
+        if True:
             chk_lines += check_out(pre_version_file_str, post_version_file_str, out_beam, num_tokens,beam_group) +'\n'
             beam_group+=1
     
