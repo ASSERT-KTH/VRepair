@@ -130,17 +130,17 @@ def main(argv):
 
     output_dir = Path(args.output_dir).resolve()
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_src_list))
+        f.write('\n'.join(train_src_list) + '\n')
     with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_tgt_list))
+        f.write('\n'.join(train_tgt_list) + '\n')
     with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_src_list))
+        f.write('\n'.join(valid_src_list) + '\n')
     with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_tgt_list))
+        f.write('\n'.join(valid_tgt_list) + '\n')
     with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_src_list))
+        f.write('\n'.join(test_src_list) + '\n')
     with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_tgt_list))
+        f.write('\n'.join(test_tgt_list) + '\n')
 
 
 if __name__ == '__main__':
