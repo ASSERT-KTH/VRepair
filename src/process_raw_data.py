@@ -17,6 +17,8 @@ parser.add_argument('--split_range', action='store', nargs='+',
                     help='train/valid/test data range, must sum up to 100')
 parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
                     help='If the valid/test data size is fixed, mutually exclusive with split_range')
+parser.add_argument('--commits', action='store_true', dest='commits',
+                    help='Process BugFixTokenPairs_commits data (security vulnerabilities)')
 parser.add_argument('--fixed_split_size', action='store', type=int,
                     dest='fixed_split_size',
                     help='If fixed_split, the size of valid/test data')
@@ -24,28 +26,51 @@ parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
 
-def read_all_data(data_dir):
+def read_all_data(data_dir,commits):
     src_list = []
     tgt_list = []
     # Read all data as they are.
-    for year in ('2017', '2018'):
-        for month in ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'):
-            src_filename = f'BugFixNoDup_{year}_{month}.src.txt'
-            tgt_filename = f'BugFixNoDup_{year}_{month}.tgt.txt'
+    if commits:
+        src_filename = f'BugFixTokenPairs_commits.src.txt'
+        tgt_filename = f'BugFixTokenPairs_commits.tgt.txt'
 
-            with open(data_dir / src_filename) as f:
-                src_list.extend(f.read().splitlines())
-            with open(data_dir / tgt_filename) as f:
-                tgt_list.extend(f.read().splitlines())
+        with open(data_dir / src_filename) as f:
+            src_list.extend(f.read().splitlines())
+        with open(data_dir / tgt_filename) as f:
+            tgt_list.extend(f.read().splitlines())
+    else:
+        for year in ('2017', '2018'):
+            for month in ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'):
+                src_filename = f'BugFixNoDup_{year}_{month}.src.txt'
+                tgt_filename = f'BugFixNoDup_{year}_{month}.tgt.txt'
+
+                with open(data_dir / src_filename) as f:
+                    src_list.extend(f.read().splitlines())
+                with open(data_dir / tgt_filename) as f:
+                    tgt_list.extend(f.read().splitlines())
 
     # Remove instances where the src or tgt is whitespace only.
     src_nonempty_list = []
     tgt_nonempty_list = []
+    counts={}
+    for src in src_list:
+        cwe=src.split()[0]
+        if cwe in counts:
+            counts[cwe]+=1
+        else:
+            counts[cwe]=1
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
-            # Add null CWE value to this pretraining data
-            src_nonempty_list.append("CWE-000 "+src)
-            tgt_nonempty_list.append(tgt)
+            if commits:
+                cwe=src.split()[0]
+                # Only include CWE with at least 10 samples
+                if counts[cwe] >= 10:
+                    src_nonempty_list.append(src)
+                    tgt_nonempty_list.append(tgt)
+            else:
+                # Add null CWE value to this pretraining data
+                src_nonempty_list.append("CWE-000 "+src)
+                tgt_nonempty_list.append(tgt)
     return src_nonempty_list, tgt_nonempty_list
 
 
@@ -112,7 +137,7 @@ def main(argv):
         assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
-    src_list, tgt_list = read_all_data(data_dir)
+    src_list, tgt_list = read_all_data(data_dir,args.commits)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
     src_list, tgt_list = remove_long_sequence(
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
@@ -121,12 +146,20 @@ def main(argv):
         src_list, tgt_list, args.fixed_split, args.split_range,
         args.fixed_split_size)
 
-    train_src_filename = 'BugFix_train_src.txt'
-    train_tgt_filename = 'BugFix_train_tgt.txt'
-    valid_src_filename = 'BugFix_valid_src.txt'
-    valid_tgt_filename = 'BugFix_valid_tgt.txt'
-    test_src_filename = 'BugFix_test_src.txt'
-    test_tgt_filename = 'BugFix_test_tgt.txt'
+    if args.commits:
+        train_src_filename = 'BugFixCommits_train_src.txt'
+        train_tgt_filename = 'BugFixCommits_train_tgt.txt'
+        valid_src_filename = 'BugFixCommits_valid_src.txt'
+        valid_tgt_filename = 'BugFixCommits_valid_tgt.txt'
+        test_src_filename = 'BugFixCommits_test_src.txt'
+        test_tgt_filename = 'BugFixCommits_test_tgt.txt'
+    else:
+        train_src_filename = 'BugFix_train_src.txt'
+        train_tgt_filename = 'BugFix_train_tgt.txt'
+        valid_src_filename = 'BugFix_valid_src.txt'
+        valid_tgt_filename = 'BugFix_valid_tgt.txt'
+        test_src_filename = 'BugFix_test_src.txt'
+        test_tgt_filename = 'BugFix_test_tgt.txt'
 
     output_dir = Path(args.output_dir).resolve()
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
