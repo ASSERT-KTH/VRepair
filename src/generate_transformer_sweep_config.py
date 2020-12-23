@@ -109,6 +109,13 @@ def get_opennmt_vocab_config(save_data_path_pattern,
 def default_hpc2n_job_script(opennmt_vocab_config_path,
                              opennmt_train_config_path, gpu_type='k80',
                              number_of_gpus='1', time='120:00:00'):
+    CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-284', 'CWE-190',
+                      'CWE-476', 'CWE-787', 'CWE-000', 'CWE-200', 'CWE-189',
+                      'CWE-264', 'CWE-59', 'CWE-416', 'CWE-399', 'CWE-269',
+                      'CWE-835', 'CWE-400', 'CWE-617', 'CWE-415', 'CWE-254']
+    insert_vocab = '\\n'.join(
+        [CWE_id + '\\t1000000000' for CWE_id in CWE_vocab_list])
+    src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
     hpc2n_job_script = '''\
 #!/bin/bash
 
@@ -125,11 +132,14 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
 
 # run the program
 onmt_build_vocab -config {opennmt_vocab_config_path}
+sed -i '1i{insert_vocab} {src_vocab_file_path}'
 onmt_train --config {opennmt_train_config_path}
 
     '''.format(
         gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
         opennmt_vocab_config_path=opennmt_vocab_config_path,
+        insert_vocab=insert_vocab,
+        src_vocab_file_path=str(src_vocab_file_path).replace('\\', '\\\\'),
         opennmt_train_config_path=opennmt_train_config_path
     )
     return hpc2n_job_script
@@ -208,8 +218,8 @@ def main():
     num_layers_sweep = list((update_num_layers, num_layers)
                             for num_layers in [4, 6])
 
-
-    parameter_sweep = [learning_rate_sweep, hidden_size_sweep, num_layers_sweep]
+    parameter_sweep = [learning_rate_sweep,
+                       hidden_size_sweep, num_layers_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
