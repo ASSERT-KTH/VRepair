@@ -132,7 +132,7 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
 
 # run the program
 onmt_build_vocab -config {opennmt_vocab_config_path}
-sed -i '1i{insert_vocab} {src_vocab_file_path}'
+sed -i '1i{insert_vocab}' {src_vocab_file_path}
 onmt_train --config {opennmt_train_config_path}
 
     '''.format(
