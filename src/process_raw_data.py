@@ -63,10 +63,13 @@ def read_all_data(data_dir,commits):
         if src.strip() and tgt.strip():
             if commits:
                 cwe=src.split()[0]
-                # Only include CWE with at least 10 samples
-                if counts[cwe] >= 10:
+                # Include CWE numbers for those with over 20 samples
+                # (these account for over 90% of cases in TokenPairs_commits
+                if counts[cwe] > 20:
                     src_nonempty_list.append(src)
-                    tgt_nonempty_list.append(tgt)
+                else:
+                    src_nonempty_list.append(src.replace(cwe,'CWE-000'))
+                tgt_nonempty_list.append(tgt)
             else:
                 # Add null CWE value to this pretraining data
                 src_nonempty_list.append("CWE-000 "+src)
