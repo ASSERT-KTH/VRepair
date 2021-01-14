@@ -96,8 +96,6 @@ def get_opennmt_vocab_config(save_data_path_pattern,
     opennmt_vocab_config['save_data'] = save_data_path_pattern
     opennmt_vocab_config['overwrite'] = False
     opennmt_vocab_config['n_sample'] = -1
-    opennmt_vocab_config['src_vocab'] = save_data_path_pattern + '.vocab.src'
-    opennmt_vocab_config['tgt_vocab'] = save_data_path_pattern + '.vocab.tgt'
     opennmt_vocab_config['src_seq_length'] = src_seq_length
     opennmt_vocab_config['tgt_seq_length'] = tgt_seq_length
 
