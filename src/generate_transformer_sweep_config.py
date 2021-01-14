@@ -21,7 +21,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              src_seq_length=1000, tgt_seq_length=100,
                              number_of_gpus=1, batch_size=4,
                              valid_batch_size=1, optim='adam',
-                             learning_rate=0.0005, learning_rate_decay=0.9, 
+                             learning_rate=0.0005, learning_rate_decay=0.9,
                              label_smoothing=0.1,
                              enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
                              word_vec_size=256, transformer_ff=512,
@@ -113,10 +113,10 @@ def get_opennmt_vocab_config(save_data_path_pattern,
 
 def default_hpc2n_job_script(opennmt_vocab_config_path,
                              opennmt_train_config_path, gpu_type='k80',
-                             number_of_gpus='1', time='120:00:00'):
-    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190', 
-                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200', 
-                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189', 
+                             number_of_gpus='1', time='96:00:00'):
+    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190',
+                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200',
+                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189',
                       'CWE-59']
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
