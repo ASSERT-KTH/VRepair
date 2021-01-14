@@ -16,16 +16,17 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              tensorboard_log_dir,
                              train_features_file, train_labels_file,
                              valid_features_file, valid_labels_file,
-                             train_steps=400000, valid_steps=20000,
-                             src_vocab_size=1000, tgt_vocab_size=1000,
+                             train_steps=500000, valid_steps=20000,
+                             src_vocab_size=2000, tgt_vocab_size=2000,
                              src_seq_length=1000, tgt_seq_length=100,
-                             number_of_gpus=1, batch_size=8,
+                             number_of_gpus=1, batch_size=4,
                              valid_batch_size=1, optim='adam',
-                             learning_rate=0.001, label_smoothing=0.1,
+                             learning_rate=0.0005, learning_rate_decay=0.9, 
+                             label_smoothing=0.1,
                              enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
                              word_vec_size=256, transformer_ff=512,
                              dropout=0.1, attention_dropout=0.1,
-                             accum_count=4, early_stopping=4,
+                             accum_count=8, early_stopping=2,
                              seed=0):
     opennmt_train_config = nested_dict()
 
@@ -57,6 +58,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
 
     opennmt_train_config['optim'] = optim
     opennmt_train_config['learning_rate'] = learning_rate
+    opennmt_train_config['learning_rate_decay'] = learning_rate_decay
     opennmt_train_config['label_smoothing'] = label_smoothing
     opennmt_train_config['param_init'] = 0
     opennmt_train_config['param_init_glorot'] = True
@@ -94,6 +96,8 @@ def get_opennmt_vocab_config(save_data_path_pattern,
     opennmt_vocab_config['save_data'] = save_data_path_pattern
     opennmt_vocab_config['overwrite'] = False
     opennmt_vocab_config['n_sample'] = -1
+    opennmt_vocab_config['src_vocab'] = save_data_path_pattern + '.vocab.src'
+    opennmt_vocab_config['tgt_vocab'] = save_data_path_pattern + '.vocab.tgt'
     opennmt_vocab_config['src_seq_length'] = src_seq_length
     opennmt_vocab_config['tgt_seq_length'] = tgt_seq_length
 
@@ -110,12 +114,12 @@ def get_opennmt_vocab_config(save_data_path_pattern,
 def default_hpc2n_job_script(opennmt_vocab_config_path,
                              opennmt_train_config_path, gpu_type='k80',
                              number_of_gpus='1', time='120:00:00'):
-    CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-284', 'CWE-190',
-                      'CWE-476', 'CWE-787', 'CWE-000', 'CWE-200', 'CWE-189',
-                      'CWE-264', 'CWE-59', 'CWE-416', 'CWE-399', 'CWE-269',
-                      'CWE-835', 'CWE-400', 'CWE-617', 'CWE-415', 'CWE-254']
+    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190', 
+                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200', 
+                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189', 
+                      'CWE-59']
     insert_vocab = '\\n'.join(
-        [CWE_id + '\\t1000000000' for CWE_id in CWE_vocab_list])
+        [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
     hpc2n_job_script = '''\
 #!/bin/bash
@@ -213,14 +217,14 @@ def main():
         assert(file.exists())
 
     learning_rate_sweep = list((update_learning_rate, learning_rate)
-                               for learning_rate in [0.001, 0.0005, 0.0001])
+                               for learning_rate in [0.001, 0.0005, 0.0002])
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
-                             for hidden_size in [64, 128])
-    num_layers_sweep = list((update_num_layers, num_layers)
-                            for num_layers in [4, 6])
+                             for hidden_size in [192, 256, 384])
+    # Use default of 6 layers for final sweeps
+    # num_layers_sweep = list((update_num_layers, num_layers)
+    #                        for num_layers in [4, 6])
 
-    parameter_sweep = [learning_rate_sweep,
-                       hidden_size_sweep, num_layers_sweep]
+    parameter_sweep = [learning_rate_sweep, hidden_size_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
