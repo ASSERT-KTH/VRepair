@@ -119,6 +119,7 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
+    log_file_path = Path(opennmt_vocab_config_path).parent / 'log.txt'
     hpc2n_job_script = '''\
 #!/bin/bash
 
@@ -136,14 +137,15 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
 # run the program
 onmt_build_vocab -config {opennmt_vocab_config_path}
 sed -i '1i{insert_vocab}' {src_vocab_file_path}
-onmt_train --config {opennmt_train_config_path}
+onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
 
     '''.format(
         gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
         opennmt_vocab_config_path=opennmt_vocab_config_path,
         insert_vocab=insert_vocab,
         src_vocab_file_path=str(src_vocab_file_path).replace('\\', '\\\\'),
-        opennmt_train_config_path=opennmt_train_config_path
+        opennmt_train_config_path=opennmt_train_config_path,
+        log_file_path=str(log_file_path).replace('\\', '\\\\')
     )
     return hpc2n_job_script
 
