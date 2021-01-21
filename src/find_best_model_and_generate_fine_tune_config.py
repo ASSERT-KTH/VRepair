@@ -93,6 +93,7 @@ def main():
             opennmt_pre_train_config = yaml.safe_load(f)
 
         fine_tune_dir = sweep_path / 'fine_tune'
+        fine_tune_dir.mkdir(parents=True, exist_ok=True)
         save_model_path_pattern = fine_tune_dir / 'model'
         tensorboard_log_dir = fine_tune_dir / 'tensorboard_log_dir'
         opennmt_fine_tune_config = get_opennmt_fine_tune_config(
