@@ -19,6 +19,8 @@ parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
                     help='If the valid/test data size is fixed, mutually exclusive with split_range')
 parser.add_argument('--commits', action='store_true', dest='commits',
                     help='Process BugFixTokenPairs_commits data (security vulnerabilities)')
+parser.add_argument('--tests', action='store_true', dest='tests',
+                    help='Process BugFixTokenPairs_test data (new project vulnerabilities)')
 parser.add_argument('--fixed_split_size', action='store', type=int,
                     dest='fixed_split_size',
                     help='If fixed_split, the size of valid/test data')
@@ -26,13 +28,17 @@ parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
 
-def read_all_data(data_dir,commits):
+def read_all_data(data_dir,tests,commits):
     src_list = []
     tgt_list = []
     # Read all data as they are.
-    if commits:
-        src_filename = f'BugFixTokenPairs_commits.src.txt'
-        tgt_filename = f'BugFixTokenPairs_commits.tgt.txt'
+    if commits or tests:
+        if commits:
+            src_filename = f'BugFixTokenPairs_commits.src.txt'
+            tgt_filename = f'BugFixTokenPairs_commits.tgt.txt'
+        else:
+            src_filename = f'BugFixTokenPairs_test.src.txt'
+            tgt_filename = f'BugFixTokenPairs_test.tgt.txt'
 
         with open(data_dir / src_filename) as f:
             src_list.extend(f.read().splitlines())
@@ -52,20 +58,19 @@ def read_all_data(data_dir,commits):
     # Remove instances where the src or tgt is whitespace only.
     src_nonempty_list = []
     tgt_nonempty_list = []
-    counts={}
-    for src in src_list:
-        cwe=src.split()[0]
-        if cwe in counts:
-            counts[cwe]+=1
-        else:
-            counts[cwe]=1
+    # For CWE, we gather the top 16 numbers and assign all other cases to 000.
+    # (these account for over 90% of cases in TokenPairs_commits)
+    # The perl script to find these is:
+    #  perl -e 'while (<>) {/^(CWE-\d+) / && $n{$1}++; }; foreach $i (keys(%n)) { print "$i: $n{$i}\n" }' VRepair/data/Context3/BugFixTokenPairs_commits.src.txt | perl -ne 'if (/: (\d+) *$/) { if ($1 > 20) {$n+=$1; print $_}}'
+    cwe_set={ 'CWE-835', 'CWE-476', 'CWE-59', 'CWE-269', 'CWE-284',
+              'CWE-399', 'CWE-119', 'CWE-20', 'CWE-787', 'CWE-190',
+              'CWE-400', 'CWE-416', 'CWE-200', 'CWE-264', 'CWE-125',
+              'CWE-189', 'CWE-000'}
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
-            if commits:
+            if commits or tests:
                 cwe=src.split()[0]
-                # Include CWE numbers for those with over 20 samples
-                # (these account for over 90% of cases in TokenPairs_commits
-                if counts[cwe] > 20:
+                if cwe in cwe_set:
                     src_nonempty_list.append(src)
                 else:
                     src_nonempty_list.append(src.replace(cwe,'CWE-000'))
@@ -140,7 +145,7 @@ def main(argv):
         assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
-    src_list, tgt_list = read_all_data(data_dir,args.commits)
+    src_list, tgt_list = read_all_data(data_dir,args.tests,args.commits)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
     src_list, tgt_list = remove_long_sequence(
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
@@ -156,6 +161,13 @@ def main(argv):
         valid_tgt_filename = 'BugFixCommits_valid_tgt.txt'
         test_src_filename = 'BugFixCommits_test_src.txt'
         test_tgt_filename = 'BugFixCommits_test_tgt.txt'
+    elif args.tests:
+        train_src_filename = 'BugFixTests_train_src.txt'
+        train_tgt_filename = 'BugFixTests_train_tgt.txt'
+        valid_src_filename = 'BugFixTests_valid_src.txt'
+        valid_tgt_filename = 'BugFixTests_valid_tgt.txt'
+        test_src_filename = 'BugFixTests_test_src.txt'
+        test_tgt_filename = 'BugFixTests_test_tgt.txt'
     else:
         train_src_filename = 'BugFix_train_src.txt'
         train_tgt_filename = 'BugFix_train_tgt.txt'

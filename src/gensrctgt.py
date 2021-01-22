@@ -164,6 +164,10 @@ def main(argv):
             search = re.search(r'/([0123456789abcdef]+) *,.*, *(CWE-[0123456789]*) *,',l)
             if search:
                 hash_to_cwe[search.group(1)] = search.group(2)
+            else:
+                search = re.search(r'/(CVE-[0123456789]*-[0123456789]*).* (CWE-[0123456789]*)',l)
+                if search:
+                    hash_to_cwe[search.group(1)] = search.group(2)
 
     for day in root_path.iterdir():
         for commit_id in day.iterdir():
@@ -195,7 +199,11 @@ def main(argv):
                 if search and search.group(1) in hash_to_cwe:
                     src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
                 else:
-                    src_lines += 'CWE-000 '+src+'\n'
+                    search = re.search(r'/(CVE-[0123456789]+-[0123456789]+)/',str(pre_version_file))
+                    if search and search.group(1) in hash_to_cwe:
+                        src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
+                    else:
+                        src_lines += 'CWE-000 '+src+'\n'
             else:
                 src_lines += src+'\n'
             tgt_lines += tgt+'\n' # add newline
