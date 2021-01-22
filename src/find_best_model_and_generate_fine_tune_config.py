@@ -13,8 +13,8 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['reset_optim'] = 'all'
     opennmt_pre_train_config['save_model'] = save_model_path_pattern
 
-    opennmt_pre_train_config['data']['cve']['path_src'] = train_features_file
-    opennmt_pre_train_config['data']['cve']['path_tgt'] = train_labels_file
+    opennmt_pre_train_config['data']['github']['path_src'] = train_features_file
+    opennmt_pre_train_config['data']['github']['path_tgt'] = train_labels_file
     opennmt_pre_train_config['data']['valid']['path_src'] = valid_features_file
     opennmt_pre_train_config['data']['valid']['path_tgt'] = valid_labels_file
 
@@ -93,24 +93,25 @@ def main():
             opennmt_pre_train_config = yaml.safe_load(f)
 
         fine_tune_dir = sweep_path / 'fine_tune'
+        fine_tune_dir.mkdir(parents=True, exist_ok=True)
         save_model_path_pattern = fine_tune_dir / 'model'
         tensorboard_log_dir = fine_tune_dir / 'tensorboard_log_dir'
         opennmt_fine_tune_config = get_opennmt_fine_tune_config(
             opennmt_pre_train_config,
-            str(best_model_path).replace('\\', '\\\\'),,
+            str(best_model_path).replace('\\', '\\\\'),
             str(save_model_path_pattern).replace('\\', '\\\\'),
             str(tensorboard_log_dir).replace('\\', '\\\\'),
             str(train_features_file).replace('\\', '\\\\'),
             str(train_labels_file).replace('\\', '\\\\'),
             str(eval_features_file).replace('\\', '\\\\'),
-            str(eval_labels_file).replace('\\', '\\\\')))
+            str(eval_labels_file).replace('\\', '\\\\'))
 
         fine_tune_config_path = fine_tune_dir / 'fine_tune_config.yml'
         with open(fine_tune_config_path, mode='w', encoding='utf-8') as f:
             yaml.dump(opennmt_fine_tune_config, f, default_flow_style=False,
                       allow_unicode=True, sort_keys=False)
         hpc2n_job_script = default_hpc2n_job_script(
-            str(fine_tune_config_path).replace('\\', '\\\\'),
+            str(fine_tune_config_path).replace('\\', '\\\\'))
         hpc2n_job_script_path = fine_tune_dir / 'job.sh'
         with open(hpc2n_job_script_path, mode='w', encoding='utf8') as f:
             f.write(hpc2n_job_script)
