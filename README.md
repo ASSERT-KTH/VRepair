@@ -16,3 +16,15 @@ For experiments located in `/home/z/zimin/pfs/vulnerabilityRepair_new/Context3_m
 | 6            | 0.0002        | 192         | 78.10% (380k/500k)                  | 80.46% (5k/10k)                     | 14.54% (450/3094)                | 10.67% (330/3094)                |
 | 7            | 0.0002        | 256         | 79.05% (360k/500k)                  | 82.51% (4.5k/10k)                   | 15.16% (469/3094)                | 11.22% (347/3094)                |
 | 8            | 0.0002        | 384         | 80.15% (320k/500k)                  | 83.20% (3.5k/10k)                   | 16.84% (521/3094)                | 12.57% (389/3094)                |
+
+## Second experiment
+
+Experiments at CSU using a model with starting learning rate of x and hidden size of y.
+
+| Step count    |                           | Beam width 50               |
+| Pretrain+Tune | Training token accuracy   | 2019 test sequence accuracy |
+|---------------|---------------------------|-----------------------------|
+| 300K+0        |   77.67%                  | 20.63% (39 out of 189)      |
+| 360K+0        |   78.08%                  | 20.63% (39 out of 189)      |
+| 360K+2K       |   83.82%                  | 31.74% (60 out of 189)      |
+| 360K+10K      |   91.37%                  | 44.97% (85 out of 189)      |
