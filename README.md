@@ -21,6 +21,13 @@ For experiments located in `/home/z/zimin/pfs/vulnerabilityRepair_new/Context3_m
 
 Experiments at CSU using a model with starting learning rate of x and hidden size of y.
 
+| File                         | Samples (Lines) | Average tokens per sample | 
+|------------------------------|-----------------|---------------------------|
+| BugFixFine_train_src.txt     | 3177            | 285.1                     |
+| BugFixFine_train_tgt.txt     | 3177            |  27.8                     |
+| BugFixFine_2019_test_src.txt | 189             | 316.2                     |
+| BugFixFine_2019_test_tgt.txt | 189             |  24.1                     |
+
 | Step count    |                           | Beam width 50               |
 | Pretrain+Tune | Training token accuracy   | 2019 test sequence accuracy |
 |---------------|---------------------------|-----------------------------|
