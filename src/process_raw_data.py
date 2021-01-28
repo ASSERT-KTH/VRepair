@@ -17,10 +17,10 @@ parser.add_argument('--split_range', action='store', nargs='+',
                     help='train/valid/test data range, must sum up to 100')
 parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
                     help='If the valid/test data size is fixed, mutually exclusive with split_range')
-parser.add_argument('--commits', action='store_true', dest='commits',
-                    help='Process BugFixTokenPairs_commits data (security vulnerabilities)')
-parser.add_argument('--tests', action='store_true', dest='tests',
-                    help='Process BugFixTokenPairs_test data (new project vulnerabilities)')
+parser.add_argument('--fine', action='store_true', dest='fine',
+                    help='Process BugFixTokenPairs_fine data (fine tune data)')
+parser.add_argument('--late', action='store_true', dest='late',
+                    help='Process BugFixTokenPairs_fine_2019 data (late data)')
 parser.add_argument('--fixed_split_size', action='store', type=int,
                     dest='fixed_split_size',
                     help='If fixed_split, the size of valid/test data')
@@ -28,17 +28,17 @@ parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
 
-def read_all_data(data_dir,tests,commits):
+def read_all_data(data_dir,fine,late):
     src_list = []
     tgt_list = []
     # Read all data as they are.
-    if commits or tests:
-        if commits:
-            src_filename = f'BugFixTokenPairs_commits.src.txt'
-            tgt_filename = f'BugFixTokenPairs_commits.tgt.txt'
+    if fine or late:
+        if fine:
+            src_filename = f'BugFixTokenPairs_fine.src.txt'
+            tgt_filename = f'BugFixTokenPairs_fine.tgt.txt'
         else:
-            src_filename = f'BugFixTokenPairs_test.src.txt'
-            tgt_filename = f'BugFixTokenPairs_test.tgt.txt'
+            src_filename = f'BugFixTokenPairs_fine_2019.src.txt'
+            tgt_filename = f'BugFixTokenPairs_fine_2019.tgt.txt'
 
         with open(data_dir / src_filename) as f:
             src_list.extend(f.read().splitlines())
@@ -68,7 +68,7 @@ def read_all_data(data_dir,tests,commits):
               'CWE-189', 'CWE-000'}
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
-            if commits or tests:
+            if fine or late:
                 cwe=src.split()[0]
                 if cwe in cwe_set:
                     src_nonempty_list.append(src)
@@ -145,7 +145,7 @@ def main(argv):
         assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
-    src_list, tgt_list = read_all_data(data_dir,args.tests,args.commits)
+    src_list, tgt_list = read_all_data(data_dir,args.fine,args.late)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
     src_list, tgt_list = remove_long_sequence(
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
@@ -154,20 +154,20 @@ def main(argv):
         src_list, tgt_list, args.fixed_split, args.split_range,
         args.fixed_split_size)
 
-    if args.commits:
-        train_src_filename = 'BugFixCommits_train_src.txt'
-        train_tgt_filename = 'BugFixCommits_train_tgt.txt'
-        valid_src_filename = 'BugFixCommits_valid_src.txt'
-        valid_tgt_filename = 'BugFixCommits_valid_tgt.txt'
-        test_src_filename = 'BugFixCommits_test_src.txt'
-        test_tgt_filename = 'BugFixCommits_test_tgt.txt'
-    elif args.tests:
-        train_src_filename = 'BugFixTests_train_src.txt'
-        train_tgt_filename = 'BugFixTests_train_tgt.txt'
-        valid_src_filename = 'BugFixTests_valid_src.txt'
-        valid_tgt_filename = 'BugFixTests_valid_tgt.txt'
-        test_src_filename = 'BugFixTests_test_src.txt'
-        test_tgt_filename = 'BugFixTests_test_tgt.txt'
+    if args.fine:
+        train_src_filename = 'BugFixFine_train_src.txt'
+        train_tgt_filename = 'BugFixFine_train_tgt.txt'
+        valid_src_filename = 'BugFixFine_valid_src.txt'
+        valid_tgt_filename = 'BugFixFine_valid_tgt.txt'
+        test_src_filename = 'BugFixFine_test_src.txt'
+        test_tgt_filename = 'BugFixFine_test_tgt.txt'
+    elif args.late:
+        train_src_filename = 'BugFixFine_2019_train_src.txt'
+        train_tgt_filename = 'BugFixFine_2019_train_tgt.txt'
+        valid_src_filename = 'BugFixFine_2019_valid_src.txt'
+        valid_tgt_filename = 'BugFixFine_2019_valid_tgt.txt'
+        test_src_filename = 'BugFixFine_2019_test_src.txt'
+        test_tgt_filename = 'BugFixFine_2019_test_tgt.txt'
     else:
         train_src_filename = 'BugFix_train_src.txt'
         train_tgt_filename = 'BugFix_train_tgt.txt'

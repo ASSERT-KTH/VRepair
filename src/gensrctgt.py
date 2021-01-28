@@ -139,16 +139,22 @@ def main(argv):
     bug_fix_pair_path = argv[1]
     num_tokens = int(argv[2])
     if len(argv) > 3:
-        metadata_file = Path(argv[3])
+        if len(argv) > 4 and argv[3] == "-late":
+            metadata_file = Path(argv[4])
+            late=True
+        else:
+            metadata_file = Path(argv[3])
+            late=False
         if not metadata_file.exists():
             # Force usage error message
             num_tokens=0
     else:
         metadata_file = None
     if num_tokens < 2:
-        print("Usage: python gensrctgt.py BugFixTokenDir num_tokens [metadata]")
+        print("Usage: python gensrctgt.py BugFixTokenDir num_tokens [-late] [metadata]")
         print("       num_tokens must be 2 or more")
         print("       num_tokens set to 1000 results in whole file as target")
+        print("       late will process CVE-2019 entries, otherwise CVE-2019 are omitted")
         print("       metadata optionally includes CWE numbers for each commit")
         sys.exit(2)
     root_path = Path(bug_fix_pair_path)
@@ -161,12 +167,14 @@ def main(argv):
     if metadata_file:
         metadata_lines = open(metadata_file).read().split("\n")
         for l in metadata_lines:
+            latesearch = re.search(r'/(CVE-2019-[0123456789])/',l)
             search = re.search(r'/([0123456789abcdef]+) *,.*, *(CWE-[0123456789]*) *,',l)
-            if search:
-                hash_to_cwe[search.group(1)] = search.group(2)
-            else:
+            if not search:
                 search = re.search(r'/(CVE-[0123456789]*-[0123456789]*).* (CWE-[0123456789]*)',l)
-                if search:
+            if search:
+                if latesearch and not late or not latesearch and late:
+                    hash_to_cwe[search.group(1)] = "IGNORE"
+                else:
                     hash_to_cwe[search.group(1)] = search.group(2)
 
     for day in root_path.iterdir():
@@ -191,25 +199,32 @@ def main(argv):
             pre_version_file_str=pre_version_file_str[:-1]
         if post_version_file_str.endswith(' '):
             post_version_file_str=post_version_file_str[:-1]
-        # This if statement could be adjusted if any data pruning is desired
-        if True:
-            (src, tgt) = get_token_pair_diff(pre_version_file, pre_version_file_str, post_version_file_str, num_tokens)
-            if hash_to_cwe:
-                search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
-                if search and search.group(1) in hash_to_cwe:
+        (src, tgt) = get_token_pair_diff(pre_version_file, pre_version_file_str, post_version_file_str, num_tokens)
+        if hash_to_cwe:
+            search = re.search(r'/([0123456789abcdef]+)/',str(pre_version_file))
+            if search and search.group(1) in hash_to_cwe:
+                if hash_to_cwe[search.group(1)] != "IGNORE":
                     src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
-                else:
-                    search = re.search(r'/(CVE-[0123456789]+-[0123456789]+)/',str(pre_version_file))
-                    if search and search.group(1) in hash_to_cwe:
-                        src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
-                    else:
-                        src_lines += 'CWE-000 '+src+'\n'
+                    tgt_lines += tgt+'\n'
             else:
-                src_lines += src+'\n'
-            tgt_lines += tgt+'\n' # add newline
+                search = re.search(r'/(CVE-[0123456789]+-[0123456789]+)/',str(pre_version_file))
+                if search and search.group(1) in hash_to_cwe:
+                    if hash_to_cwe[search.group(1)] != "IGNORE":
+                        src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
+                        tgt_lines += tgt+'\n'
+                else:
+                    src_lines += 'CWE-000 '+src+'\n'
+                    tgt_lines += tgt+'\n'
+        else:
+            src_lines += src+'\n'
+            tgt_lines += tgt+'\n'
     
-    src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.src.txt')
-    tgt_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.tgt.txt')
+    if late:
+        src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '_2019.src.txt')
+        tgt_path = root_path.parent / 'SrcTgt' / (root_path.stem + '_2019.tgt.txt')
+    else:
+        src_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.src.txt')
+        tgt_path = root_path.parent / 'SrcTgt' / (root_path.stem + '.tgt.txt')
 
     src_path.parent.mkdir(parents=True, exist_ok=True)
 
