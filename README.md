@@ -19,19 +19,21 @@ For experiments located in `/home/z/zimin/pfs/vulnerabilityRepair_new/Context3_m
 
 ## Second experiment
 
-Experiments at CSU using a model with starting learning rate of x and hidden size of y.
+Experiments at CSU using a model with starting learning rate of 0.0005 and hidden size of 256.
 
 | File                         | Samples (Lines) | Average tokens per sample | 
 |------------------------------|-----------------|---------------------------|
-| BugFixFine_train_src.txt     | 3177            | 285.1                     |
-| BugFixFine_train_tgt.txt     | 3177            |  27.8                     |
-| BugFixFine_2019_test_src.txt | 189             | 316.2                     |
-| BugFixFine_2019_test_tgt.txt | 189             |  24.1                     |
+| BugFix_train_src.txt         | 524724          | 248.9                     |
+| BugFix_train_tgt.txt         | 524724          |  25.2                     |
+| BugFixFine_train_src.txt     | 2990            | 285.5                     |
+| BugFixFine_train_tgt.txt     | 2990            |  27.8                     |
+| BugFixFine_2019_test_src.txt | 187             | 279.9                     |
+| BugFixFine_2019_test_tgt.txt | 187             |  27.1                     |
 
 | Step count    |                           | Beam width 50               |
 | Pretrain+Tune | Training token accuracy   | 2019 test sequence accuracy |
 |---------------|---------------------------|-----------------------------|
-| 300K+0        |   77.67%                  | 20.63% (39 out of 189)      |
-| 360K+0        |   78.08%                  | 20.63% (39 out of 189)      |
-| 360K+2K       |   83.82%                  | 31.74% (60 out of 189)      |
-| 360K+10K      |   91.37%                  | 44.97% (85 out of 189)      |
+| 300K+0        |   77.67%                  | 12.3% (23 out of 187)      |
+| 360K+0        |   78.08%                  | 11.8% (22 out of 187)      |
+| 360K+200      |   77.04%                  | 10.2% (19 out of 189)      |
+| 360K+1000     |   79.30%                  |  9.1% (17 out of 189)      |

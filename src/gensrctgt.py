@@ -167,7 +167,7 @@ def main(argv):
     if metadata_file:
         metadata_lines = open(metadata_file).read().split("\n")
         for l in metadata_lines:
-            latesearch = re.search(r'/(CVE-2019-[0123456789])/',l)
+            latesearch = re.search(r', *(CVE-2019-[0123456789])',l)
             search = re.search(r'/([0123456789abcdef]+) *,.*, *(CWE-[0123456789]*) *,',l)
             if not search:
                 search = re.search(r'/(CVE-[0123456789]*-[0123456789]*).* (CWE-[0123456789]*)',l)
@@ -213,8 +213,9 @@ def main(argv):
                         src_lines += hash_to_cwe[search.group(1)]+' '+src+'\n'
                         tgt_lines += tgt+'\n'
                 else:
-                    src_lines += 'CWE-000 '+src+'\n'
-                    tgt_lines += tgt+'\n'
+                    if not late:
+                        src_lines += 'CWE-000 '+src+'\n'
+                        tgt_lines += tgt+'\n'
         else:
             src_lines += src+'\n'
             tgt_lines += tgt+'\n'
