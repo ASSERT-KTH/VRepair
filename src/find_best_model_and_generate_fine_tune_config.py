@@ -60,6 +60,32 @@ onmt_train --config {opennmt_fine_tune_config_path} 2>&1 | tee -a {log_file_path
     return hpc2n_job_script
 
 
+def default_c3se_job_script(opennmt_fine_tune_config_path, gpu_type='V100',
+                            number_of_gpus='1', time='6:00:00'):
+    log_file_path = Path(opennmt_fine_tune_config_path).parent / 'log.txt'
+    hpc2n_job_script = '''\
+#!/bin/bash
+
+# Project to run under
+#SBATCH -A SNIC2020-33-63 -p alvis
+# Name of the job (makes easier to find in the status lists)
+#SBATCH -J repair
+# Use GPU
+#SBATCH --gpus-per-node={gpu_type}:{number_of_gpus}
+# the job can use up to x minutes to run
+#SBATCH --time={time}
+
+# run the program
+onmt_train --config {opennmt_fine_tune_config_path} 2>&1 | tee -a {log_file_path}
+
+    '''.format(
+        gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
+        opennmt_fine_tune_config_path=opennmt_fine_tune_config_path,
+        log_file_path=str(log_file_path).replace('\\', '\\\\')
+    )
+    return hpc2n_job_script
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Automatic creating data.yml for the fine tuning process.')
@@ -73,6 +99,9 @@ def main():
                         dest='eval_labels_file', help="Path to eval_labels_file")
     parser.add_argument('-sweep_root_path', action="store", dest='sweep_root_path',
                         help="Path to the root directory of all configs sweeps")
+    parser.add_argument('-hpc2n_cluster', action="store_false", dest='hpc2n_cluster',
+                        help="Generate job script for HPC2N cluster, otherwise for "
+                        "the C3SE cluster. Default HPC2N cluster.")
     args = parser.parse_args()
 
     train_features_file = Path(args.train_features_file).resolve()
@@ -80,6 +109,7 @@ def main():
     eval_features_file = Path(args.eval_features_file).resolve()
     eval_labels_file = Path(args.eval_labels_file).resolve()
     sweep_root_path = Path(args.sweep_root_path).resolve()
+    hpc2n_cluster = args.hpc2n_cluster
 
     for file in [train_features_file, train_labels_file, eval_features_file, eval_labels_file, sweep_root_path]:
         assert(file.exists())
@@ -87,7 +117,16 @@ def main():
     for sweep_path in sweep_root_path.rglob('*_parameter_sweep'):
         all_model_checkpoints = list(sweep_path.rglob('*.pt'))
         all_model_checkpoints.sort(key=lambda x: int(x.stem.split('_')[-1]))
-        best_model_path = all_model_checkpoints[-1]
+        best_model_step = -1
+        with open(sweep_path / 'log.txt') as log_file:
+            for line in log_file:
+                if 'Best model found at step' in line:
+                    best_model_step = line.split(' ')[-1]
+                    break
+        if best_model_step == -1:
+            best_model_path = all_model_checkpoints[-1]
+        else:
+            best_model_path = sweep_path / ('model_step_' + best_model_step + '.pt')
 
         with open(sweep_path / 'train_config.yml') as f:
             opennmt_pre_train_config = yaml.safe_load(f)
@@ -110,11 +149,15 @@ def main():
         with open(fine_tune_config_path, mode='w', encoding='utf-8') as f:
             yaml.dump(opennmt_fine_tune_config, f, default_flow_style=False,
                       allow_unicode=True, sort_keys=False)
-        hpc2n_job_script = default_hpc2n_job_script(
-            str(fine_tune_config_path).replace('\\', '\\\\'))
-        hpc2n_job_script_path = fine_tune_dir / 'job.sh'
-        with open(hpc2n_job_script_path, mode='w', encoding='utf8') as f:
-            f.write(hpc2n_job_script)
+        if hpc2n_cluster:
+            job_script = default_hpc2n_job_script(
+                str(fine_tune_config_path).replace('\\', '\\\\'))
+        else:
+            job_script = default_c3se_job_script(
+                str(fine_tune_config_path).replace('\\', '\\\\'))
+        job_script_path = fine_tune_dir / 'job.sh'
+        with open(job_script_path, mode='w', encoding='utf8') as f:
+            f.write(job_script)
 
 
 if __name__ == "__main__":
