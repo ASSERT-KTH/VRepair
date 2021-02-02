@@ -150,6 +150,45 @@ onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
     return hpc2n_job_script
 
 
+def default_c3se_job_script(opennmt_vocab_config_path,
+                            opennmt_train_config_path, gpu_type='V100',
+                            number_of_gpus='1', time='96:00:00'):
+    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190',
+                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200',
+                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189',
+                      'CWE-59']
+    insert_vocab = '\\n'.join(
+        [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
+    src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
+    log_file_path = Path(opennmt_vocab_config_path).parent / 'log.txt'
+    hpc2n_job_script = '''\
+#!/bin/bash
+
+# Project to run under
+#SBATCH -A SNIC2020-33-63 -p alvis
+# Name of the job (makes easier to find in the status lists)
+#SBATCH -J repair
+# Use GPU
+#SBATCH --gpus-per-node={gpu_type}:{number_of_gpus}
+# the job can use up to x minutes to run
+#SBATCH --time={time}
+
+# run the program
+onmt_build_vocab -config {opennmt_vocab_config_path}
+sed -i '1i{insert_vocab}' {src_vocab_file_path}
+onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
+
+    '''.format(
+        gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
+        opennmt_vocab_config_path=opennmt_vocab_config_path,
+        insert_vocab=insert_vocab,
+        src_vocab_file_path=str(src_vocab_file_path).replace('\\', '\\\\'),
+        opennmt_train_config_path=opennmt_train_config_path,
+        log_file_path=str(log_file_path).replace('\\', '\\\\')
+    )
+    return hpc2n_job_script
+
+
 def update_learning_rate(config, learning_rate):
     config['learning_rate'] = learning_rate
     return config
@@ -205,6 +244,9 @@ def main():
                         dest='eval_labels_file', help="Path to eval_labels_file")
     parser.add_argument('-sweep_root_path', action="store", dest='sweep_root_path',
                         help="Path to the root directory of all configs sweeps")
+    parser.add_argument('-hpc2n_cluster', action="store_false", dest='hpc2n_cluster',
+                        help="Generate job script for HPC2N cluster, otherwise for "
+                        "the C3SE cluster. Default HPC2N cluster.")
     args = parser.parse_args()
 
     train_features_file = Path(args.train_features_file).resolve()
@@ -212,6 +254,7 @@ def main():
     eval_features_file = Path(args.eval_features_file).resolve()
     eval_labels_file = Path(args.eval_labels_file).resolve()
     sweep_root_path = Path(args.sweep_root_path).resolve()
+    hpc2n_cluster = args.hpc2n_cluster
 
     for file in [train_features_file, train_labels_file, eval_features_file, eval_labels_file, sweep_root_path]:
         assert(file.exists())
@@ -259,12 +302,17 @@ def main():
         with io.open(opennmt_train_config_path, 'w', encoding='utf8') as f:
             yaml.dump(opennmt_train_config, f, default_flow_style=False,
                       allow_unicode=True, sort_keys=False)
-        hpc2n_job_script = default_hpc2n_job_script(
-            str(opennmt_vocab_config_path).replace('\\', '\\\\'),
-            str(opennmt_train_config_path).replace('\\', '\\\\'))
-        hpc2n_job_script_path = sweep_path / 'job.sh'
-        with io.open(hpc2n_job_script_path, 'w', encoding='utf8') as f:
-            f.write(hpc2n_job_script)
+        if hpc2n_cluster:
+            job_script = default_hpc2n_job_script(
+                str(opennmt_vocab_config_path).replace('\\', '\\\\'),
+                str(opennmt_train_config_path).replace('\\', '\\\\'))
+        else:
+            job_script = default_c3se_job_script(
+                str(opennmt_vocab_config_path).replace('\\', '\\\\'),
+                str(opennmt_train_config_path).replace('\\', '\\\\'))
+        job_script_path = sweep_path / 'job.sh'
+        with io.open(job_script_path, 'w', encoding='utf8') as f:
+            f.write(job_script)
 
 
 if __name__ == "__main__":
