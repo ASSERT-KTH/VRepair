@@ -8,7 +8,8 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
                                  valid_features_file, valid_labels_file,
                                  train_steps=10000, valid_steps=500,
                                  save_checkpoint_steps=500,
-                                 start_decay_steps=1000, decay_steps=1000):
+                                 start_decay_steps=1000, decay_steps=1000,
+                                 learning_rate_decay=0.8):
     opennmt_pre_train_config['train_from'] = best_model_path
     opennmt_pre_train_config['reset_optim'] = 'all'
     opennmt_pre_train_config['save_model'] = save_model_path_pattern
@@ -19,6 +20,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['data']['valid']['path_tgt'] = valid_labels_file
 
     opennmt_pre_train_config['learning_rate'] = opennmt_pre_train_config['learning_rate'] / 10
+    opennmt_train_config['learning_rate_decay'] = learning_rate_decay
 
     opennmt_pre_train_config['train_steps'] = train_steps
     opennmt_pre_train_config['valid_steps'] = valid_steps
