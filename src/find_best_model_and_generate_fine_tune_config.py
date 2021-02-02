@@ -20,7 +20,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['data']['valid']['path_tgt'] = valid_labels_file
 
     opennmt_pre_train_config['learning_rate'] = opennmt_pre_train_config['learning_rate'] / 10
-    opennmt_train_config['learning_rate_decay'] = learning_rate_decay
+    opennmt_pre_train_config['learning_rate_decay'] = learning_rate_decay
 
     opennmt_pre_train_config['train_steps'] = train_steps
     opennmt_pre_train_config['valid_steps'] = valid_steps
