@@ -20,7 +20,7 @@ parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
 parser.add_argument('--fine', action='store_true', dest='fine',
                     help='Process BugFixTokenPairs_fine data (fine tune data)')
 parser.add_argument('--late', action='store_true', dest='late',
-                    help='Process BugFixTokenPairs_fine_2019 data (late data)')
+                    help='Process BugFixTokenPairs_fine_2018_2019 data (late data)')
 parser.add_argument('--fixed_split_size', action='store', type=int,
                     dest='fixed_split_size',
                     help='If fixed_split, the size of valid/test data')
@@ -37,8 +37,8 @@ def read_all_data(data_dir,fine,late):
             src_filename = f'BugFixTokenPairs_fine.src.txt'
             tgt_filename = f'BugFixTokenPairs_fine.tgt.txt'
         else:
-            src_filename = f'BugFixTokenPairs_fine_2019.src.txt'
-            tgt_filename = f'BugFixTokenPairs_fine_2019.tgt.txt'
+            src_filename = f'BugFixTokenPairs_fine_2018_2019.src.txt'
+            tgt_filename = f'BugFixTokenPairs_fine_2018_2019.tgt.txt'
 
         with open(data_dir / src_filename) as f:
             src_list.extend(f.read().splitlines())
@@ -162,12 +162,12 @@ def main(argv):
         test_src_filename = 'BugFixFine_test_src.txt'
         test_tgt_filename = 'BugFixFine_test_tgt.txt'
     elif args.late:
-        train_src_filename = 'BugFixFine_2019_train_src.txt'
-        train_tgt_filename = 'BugFixFine_2019_train_tgt.txt'
-        valid_src_filename = 'BugFixFine_2019_valid_src.txt'
-        valid_tgt_filename = 'BugFixFine_2019_valid_tgt.txt'
-        test_src_filename = 'BugFixFine_2019_test_src.txt'
-        test_tgt_filename = 'BugFixFine_2019_test_tgt.txt'
+        train_src_filename = 'BugFixFine_2018_2019_train_src.txt'
+        train_tgt_filename = 'BugFixFine_2018_2019_train_tgt.txt'
+        valid_src_filename = 'BugFixFine_2018_2019_valid_src.txt'
+        valid_tgt_filename = 'BugFixFine_2018_2019_valid_tgt.txt'
+        test_src_filename = 'BugFixFine_2018_2019_test_src.txt'
+        test_tgt_filename = 'BugFixFine_2018_2019_test_tgt.txt'
     else:
         train_src_filename = 'BugFix_train_src.txt'
         train_tgt_filename = 'BugFix_train_tgt.txt'
