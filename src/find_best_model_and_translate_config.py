@@ -27,7 +27,7 @@ onmt_translate -model {best_model_path} -src {test_src_path} -output {output_pat
         gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
         best_model_path=best_model_path, test_src_path=test_src_path,
         output_path=output_path, beam_size=beam_size,
-        gpu_ids=','.join([str(i) for in range(number_of_gpus)])
+        gpu_ids=','.join([str(i) for i in range(number_of_gpus)])
     )
     return hpc2n_translate_script
 
@@ -54,7 +54,7 @@ onmt_translate -model {best_model_path} -src {test_src_path} -output {output_pat
         gpu_type=gpu_type, number_of_gpus=number_of_gpus, time=time,
         best_model_path=best_model_path, test_src_path=test_src_path,
         output_path=output_path, beam_size=beam_size,
-        gpu_ids=','.join([str(i) for in range(number_of_gpus)])
+        gpu_ids=','.join([str(i) for i in range(number_of_gpus)])
     )
     return c3se_translate_script
 
