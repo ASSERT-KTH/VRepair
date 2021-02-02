@@ -123,7 +123,7 @@ def main():
         with open(sweep_path / 'log.txt') as log_file:
             for line in log_file:
                 if 'Best model found at step' in line:
-                    best_model_step = line.split(' ')[-1]
+                    best_model_step = line.strip().split(' ')[-1]
                     break
         if best_model_step == -1:
             best_model_path = all_model_checkpoints[-1]
