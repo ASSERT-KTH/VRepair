@@ -161,7 +161,7 @@ def default_c3se_job_script(opennmt_vocab_config_path,
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
     log_file_path = Path(opennmt_vocab_config_path).parent / 'log.txt'
-    hpc2n_job_script = '''\
+    c3se_job_script = '''\
 #!/bin/bash
 
 # Project to run under
@@ -186,7 +186,7 @@ onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
         opennmt_train_config_path=opennmt_train_config_path,
         log_file_path=str(log_file_path).replace('\\', '\\\\')
     )
-    return hpc2n_job_script
+    return c3se_job_script
 
 
 def update_learning_rate(config, learning_rate):

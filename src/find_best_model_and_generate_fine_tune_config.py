@@ -65,7 +65,7 @@ onmt_train --config {opennmt_fine_tune_config_path} 2>&1 | tee -a {log_file_path
 def default_c3se_job_script(opennmt_fine_tune_config_path, gpu_type='V100',
                             number_of_gpus='1', time='6:00:00'):
     log_file_path = Path(opennmt_fine_tune_config_path).parent / 'log.txt'
-    hpc2n_job_script = '''\
+    c3se_job_script = '''\
 #!/bin/bash
 
 # Project to run under
@@ -85,7 +85,7 @@ onmt_train --config {opennmt_fine_tune_config_path} 2>&1 | tee -a {log_file_path
         opennmt_fine_tune_config_path=opennmt_fine_tune_config_path,
         log_file_path=str(log_file_path).replace('\\', '\\\\')
     )
-    return hpc2n_job_script
+    return c3se_job_script
 
 
 def main():
