@@ -244,9 +244,9 @@ def main():
                         dest='eval_labels_file', help="Path to eval_labels_file")
     parser.add_argument('-sweep_root_path', action="store", dest='sweep_root_path',
                         help="Path to the root directory of all configs sweeps")
-    parser.add_argument('-hpc2n_cluster', action="store_false", dest='hpc2n_cluster',
-                        help="Generate job script for HPC2N cluster, otherwise for "
-                        "the C3SE cluster. Default HPC2N cluster.")
+    parser.add_argument('-c3se_cluster', action="store_true", dest='c3se_cluster',
+                        help="Generate job script for C3SE cluster, otherwise for "
+                        "the HPC2N cluster. Default HPC2N cluster.")
     args = parser.parse_args()
 
     train_features_file = Path(args.train_features_file).resolve()
@@ -254,7 +254,7 @@ def main():
     eval_features_file = Path(args.eval_features_file).resolve()
     eval_labels_file = Path(args.eval_labels_file).resolve()
     sweep_root_path = Path(args.sweep_root_path).resolve()
-    hpc2n_cluster = args.hpc2n_cluster
+    c3se_cluster = args.c3se_cluster
 
     for file in [train_features_file, train_labels_file, eval_features_file, eval_labels_file, sweep_root_path]:
         assert(file.exists())
@@ -302,12 +302,12 @@ def main():
         with io.open(opennmt_train_config_path, 'w', encoding='utf8') as f:
             yaml.dump(opennmt_train_config, f, default_flow_style=False,
                       allow_unicode=True, sort_keys=False)
-        if hpc2n_cluster:
-            job_script = default_hpc2n_job_script(
+        if c3se_cluster:
+            job_script = default_c3se_job_script(
                 str(opennmt_vocab_config_path).replace('\\', '\\\\'),
                 str(opennmt_train_config_path).replace('\\', '\\\\'))
         else:
-            job_script = default_c3se_job_script(
+            job_script = default_hpc2n_job_script(
                 str(opennmt_vocab_config_path).replace('\\', '\\\\'),
                 str(opennmt_train_config_path).replace('\\', '\\\\'))
         job_script_path = sweep_path / 'job.sh'
