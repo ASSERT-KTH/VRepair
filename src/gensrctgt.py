@@ -167,12 +167,13 @@ def main(argv):
     if metadata_file:
         metadata_lines = open(metadata_file).read().split("\n")
         for l in metadata_lines:
-            latesearch = re.search(r',(201[89]-..-)',l)
+            latesearch = re.search(r',(2019-..-)',l)
+            year201789 = re.search(r',(201[789]-..-)',l)
             search = re.search(r'/([0123456789abcdef]+) *,.*, *(CWE-[0123456789]*) *,',l)
             if not search:
                 search = re.search(r'/(CVE-[0123456789]*-[0123456789]*).* (CWE-[0123456789]*)',l)
             if search:
-                if latesearch and not late or not latesearch and late:
+                if not year201789 or latesearch and not late or not latesearch and late:
                     hash_to_cwe[search.group(1)] = "IGNORE"
                 else:
                     hash_to_cwe[search.group(1)] = search.group(2)
