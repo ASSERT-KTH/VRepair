@@ -6,21 +6,21 @@ from pathlib import Path
 
 parser = argparse.ArgumentParser(
     description='Generate data suitble for seq2seq training.')
-parser.add_argument('-data_dir', action='store',
+parser.add_argument('--data_dir', action='store',
                     dest='data_dir', help='Path to all raw data')
-parser.add_argument('-max_src_length', action='store',
+parser.add_argument('--max_src_length', action='store',
                     dest='max_src_length', type=int, help='Maximum src token length')
-parser.add_argument('-max_tgt_length', action='store',
+parser.add_argument('--max_tgt_length', action='store',
                     dest='max_tgt_length', type=int, help='Maximum tgt token length')
 parser.add_argument('--split_range', action='store', nargs='+',
                     dest='split_range', type=float,
                     help='train/valid/test data range, must sum up to 100')
 parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
                     help='If the valid/test data size is fixed, mutually exclusive with split_range')
-parser.add_argument('--fine', action='store_true', dest='fine',
-                    help='Process BugFixTokenPairs_fine data (fine tune data)')
-parser.add_argument('--late', action='store_true', dest='late',
-                    help='Process BugFixTokenPairs_fine_2018_2019 data (late data)')
+parser.add_argument('--src_file_patterns', action='store', dest='src_file_patterns',
+                    nargs='+', help='Src filename patterns')
+parser.add_argument('--tgt_file_patterns', action='store', dest='tgt_file_patterns',
+                    nargs='+', help='Tgt filename patterns')
 parser.add_argument('--fixed_split_size', action='store', type=int,
                     dest='fixed_split_size',
                     help='If fixed_split, the size of valid/test data')
@@ -28,32 +28,18 @@ parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
 
-def read_all_data(data_dir,fine,late):
+def read_all_data(data_dir, src_file_patterns, tgt_file_patterns):
     src_list = []
     tgt_list = []
     # Read all data as they are.
-    if fine or late:
-        if fine:
-            src_filename = f'BugFixTokenPairs_fine.src.txt'
-            tgt_filename = f'BugFixTokenPairs_fine.tgt.txt'
-        else:
-            src_filename = f'BugFixTokenPairs_fine_2018_2019.src.txt'
-            tgt_filename = f'BugFixTokenPairs_fine_2018_2019.tgt.txt'
-
-        with open(data_dir / src_filename) as f:
-            src_list.extend(f.read().splitlines())
-        with open(data_dir / tgt_filename) as f:
-            tgt_list.extend(f.read().splitlines())
-    else:
-        for year in ('2017', '2018'):
-            for month in ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'):
-                src_filename = f'BugFixNoDup_{year}_{month}.src.txt'
-                tgt_filename = f'BugFixNoDup_{year}_{month}.tgt.txt'
-
-                with open(data_dir / src_filename) as f:
-                    src_list.extend(f.read().splitlines())
-                with open(data_dir / tgt_filename) as f:
-                    tgt_list.extend(f.read().splitlines())
+    for src_file_pattern in src_file_patterns:
+        for file_path in data_dir.rglob(src_file_pattern):
+            with open(file_path) as f:
+                src_list.extend(f.read().splitlines())
+    for tgt_file_pattern in tgt_file_patterns:
+        for file_path in data_dir.rglob(tgt_file_pattern):
+            with open(file_path) as f:
+                tgt_list.extend(f.read().splitlines())
 
     # Remove instances where the src or tgt is whitespace only.
     src_nonempty_list = []
@@ -68,15 +54,14 @@ def read_all_data(data_dir,fine,late):
               'CWE-189', 'CWE-000'}
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
-            if fine or late:
-                cwe=src.split()[0]
+            if src.startswith('CWE-'):
+                cwe = src.split()[0]
                 if cwe in cwe_set:
                     src_nonempty_list.append(src)
                 else:
                     src_nonempty_list.append(src.replace(cwe,'CWE-000'))
                 tgt_nonempty_list.append(tgt)
             else:
-                # Add null CWE value to this pretraining data
                 src_nonempty_list.append("CWE-000 "+src)
                 tgt_nonempty_list.append(tgt)
     return src_nonempty_list, tgt_nonempty_list
@@ -145,7 +130,7 @@ def main(argv):
         assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
-    src_list, tgt_list = read_all_data(data_dir,args.fine,args.late)
+    src_list, tgt_list = read_all_data(data_dir, args.src_file_patterns, args.tgt_file_patterns)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
     src_list, tgt_list = remove_long_sequence(
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
@@ -154,27 +139,12 @@ def main(argv):
         src_list, tgt_list, args.fixed_split, args.split_range,
         args.fixed_split_size)
 
-    if args.fine:
-        train_src_filename = 'BugFixFine_train_src.txt'
-        train_tgt_filename = 'BugFixFine_train_tgt.txt'
-        valid_src_filename = 'BugFixFine_valid_src.txt'
-        valid_tgt_filename = 'BugFixFine_valid_tgt.txt'
-        test_src_filename = 'BugFixFine_test_src.txt'
-        test_tgt_filename = 'BugFixFine_test_tgt.txt'
-    elif args.late:
-        train_src_filename = 'BugFixFine_2018_2019_train_src.txt'
-        train_tgt_filename = 'BugFixFine_2018_2019_train_tgt.txt'
-        valid_src_filename = 'BugFixFine_2018_2019_valid_src.txt'
-        valid_tgt_filename = 'BugFixFine_2018_2019_valid_tgt.txt'
-        test_src_filename = 'BugFixFine_2018_2019_test_src.txt'
-        test_tgt_filename = 'BugFixFine_2018_2019_test_tgt.txt'
-    else:
-        train_src_filename = 'BugFix_train_src.txt'
-        train_tgt_filename = 'BugFix_train_tgt.txt'
-        valid_src_filename = 'BugFix_valid_src.txt'
-        valid_tgt_filename = 'BugFix_valid_tgt.txt'
-        test_src_filename = 'BugFix_test_src.txt'
-        test_tgt_filename = 'BugFix_test_tgt.txt'
+    train_src_filename = 'BugFix_train_src.txt'
+    train_tgt_filename = 'BugFix_train_tgt.txt'
+    valid_src_filename = 'BugFix_valid_src.txt'
+    valid_tgt_filename = 'BugFix_valid_tgt.txt'
+    test_src_filename = 'BugFix_test_src.txt'
+    test_tgt_filename = 'BugFix_test_tgt.txt'
 
     output_dir = Path(args.output_dir).resolve()
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
