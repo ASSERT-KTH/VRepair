@@ -6,9 +6,9 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
                                  save_model_path_pattern, tensorboard_log_dir,
                                  train_features_file, train_labels_file,
                                  valid_features_file, valid_labels_file,
-                                 train_steps=10000, valid_steps=500,
-                                 save_checkpoint_steps=500,
-                                 start_decay_steps=1000, decay_steps=1000,
+                                 train_steps=10000, valid_steps=100,
+                                 save_checkpoint_steps=100,
+                                 start_decay_steps=500, decay_steps=500,
                                  learning_rate_decay=0.8):
     opennmt_pre_train_config['train_from'] = best_model_path
     opennmt_pre_train_config['reset_optim'] = 'all'
