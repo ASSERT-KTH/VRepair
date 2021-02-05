@@ -125,7 +125,7 @@ def split_train_val_test(src_list, tgt_list, fixed_split, split_range,
 def main(argv):
     args = parser.parse_args(argv)
 
-    assert(bool(args.split_range) != args.fixed_split)
+    assert(any([bool(args.split_range),  args.fixed_split, args.no_split]))
 
     if args.split_range:
         assert(len(args.split_range) == 3)
