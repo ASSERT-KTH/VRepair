@@ -17,6 +17,8 @@ parser.add_argument('--split_range', action='store', nargs='+',
                     help='train/valid/test data range, must sum up to 100')
 parser.add_argument('--fixed_split', action='store_true', dest='fixed_split',
                     help='If the valid/test data size is fixed, mutually exclusive with split_range')
+parser.add_argument('--no_split', action='store_true', dest='no_split',
+                    help='Do not split the input data into train/valid/test')
 parser.add_argument('--src_file_patterns', action='store', dest='src_file_patterns',
                     nargs='+', help='Src filename patterns')
 parser.add_argument('--tgt_file_patterns', action='store', dest='tgt_file_patterns',
@@ -130,35 +132,43 @@ def main(argv):
         assert(sum(args.split_range) == 100)
 
     data_dir = Path(args.data_dir).resolve()
+    output_dir = Path(args.output_dir).resolve()
     src_list, tgt_list = read_all_data(data_dir, args.src_file_patterns, args.tgt_file_patterns)
     src_list, tgt_list = remove_duplicate(src_list, tgt_list)
     src_list, tgt_list = remove_long_sequence(
         src_list, tgt_list, args.max_src_length, args.max_tgt_length)
-    (train_src_list, train_tgt_list, valid_src_list, valid_tgt_list,
-     test_src_list, test_tgt_list) = split_train_val_test(
-        src_list, tgt_list, args.fixed_split, args.split_range,
-        args.fixed_split_size)
+    if args.no_split:
+        src_filename = 'BugFix_src.txt'
+        tgt_filename = 'BugFix_tgt.txt'
+        with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(src_list) + '\n')
+        with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(tgt_list) + '\n')
+    else:
+        (train_src_list, train_tgt_list, valid_src_list, valid_tgt_list,
+         test_src_list, test_tgt_list) = split_train_val_test(
+            src_list, tgt_list, args.fixed_split, args.split_range,
+            args.fixed_split_size)
 
-    train_src_filename = 'BugFix_train_src.txt'
-    train_tgt_filename = 'BugFix_train_tgt.txt'
-    valid_src_filename = 'BugFix_valid_src.txt'
-    valid_tgt_filename = 'BugFix_valid_tgt.txt'
-    test_src_filename = 'BugFix_test_src.txt'
-    test_tgt_filename = 'BugFix_test_tgt.txt'
+        train_src_filename = 'BugFix_train_src.txt'
+        train_tgt_filename = 'BugFix_train_tgt.txt'
+        valid_src_filename = 'BugFix_valid_src.txt'
+        valid_tgt_filename = 'BugFix_valid_tgt.txt'
+        test_src_filename = 'BugFix_test_src.txt'
+        test_tgt_filename = 'BugFix_test_tgt.txt'
 
-    output_dir = Path(args.output_dir).resolve()
-    with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_src_list) + '\n')
-    with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_tgt_list) + '\n')
-    with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_src_list) + '\n')
-    with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_tgt_list) + '\n')
-    with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_src_list) + '\n')
-    with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_tgt_list) + '\n')
+        with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(train_src_list) + '\n')
+        with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(train_tgt_list) + '\n')
+        with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(valid_src_list) + '\n')
+        with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(valid_tgt_list) + '\n')
+        with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(test_src_list) + '\n')
+        with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
+            f.write('\n'.join(test_tgt_list) + '\n')
 
 
 if __name__ == '__main__':
