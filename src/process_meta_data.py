@@ -1,4 +1,7 @@
 import argparse
+import datetime
+import dateutil
+from dateutil import parser as dateutil_parser
 import math
 import random
 import sys
@@ -99,43 +102,51 @@ def main(argv):
     triples = list(zip(src_list, tgt_list, meta_list))
     random.shuffle(triples)
     src_list, tgt_list, meta_list = zip(*triples)
-    for after, now in ((("2019-(0[23456789]|10|11|12)-","2019-01-"),
-                        ("2019-(0[3456789]|10|11|12)-","2019-02-"),
-                        ("2019-(0[456789]|10|11|12)-","2019-03-"),
-                        ("2019-(0[56789]|10|11|12)-","2019-04-"),
-                        ("2019-(0[6789]|10|11|12)-","2019-05-"),
-                        ("2019-(0[789]|10|11|12)-","2019-06-"),
-                        ("2019-(0[89]|10|11|12)-","2019-07-"),
-                        ("2019-(09|10|11|12)-","2019-08-"),
-                        ("2019-(10|11|12)-","2019-09-"),
-                        ("2019-(11|12)-","2019-10-"))):
-        src_before_list=[]
-        tgt_before_list=[]
-        src_now_list=[]
-        tgt_now_list=[]
-        for src, tgt, meta in zip(src_list, tgt_list, meta_list):
-            search=re.search(","+after,meta)
-            if not search:
-                search=re.search(","+now,meta)
-                if search:
-                    src_now_list.append(src)
-                    tgt_now_list.append(tgt)
-                else:
-                    src_before_list.append(src)
-                    tgt_before_list.append(tgt)
-        src_filename = f'BugFix-{now}src.txt'
-        tgt_filename = f'BugFix-{now}tgt.txt'
-        with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
-            f.write('\n'.join(src_now_list) + '\n')
-        with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
-            f.write('\n'.join(tgt_now_list) + '\n')
-        src_filename = f'BugFix-before{now}src.txt'
-        tgt_filename = f'BugFix-before{now}tgt.txt'
-        with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
-            f.write('\n'.join(src_before_list) + '\n')
-        with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
-            f.write('\n'.join(tgt_before_list) + '\n')
-            
+    for year in (2019, ):
+        for month in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10):
+            src_before_train_list=[]
+            tgt_before_train_list=[]
+            src_before_valid_list=[]
+            tgt_before_valid_list=[]
+            src_now_list=[]
+            tgt_now_list=[]
+            for src, tgt, meta in zip(src_list, tgt_list, meta_list):
+                create_time_token = meta.strip().split(',')[4]
+                if create_time_token:
+                    create_date = dateutil_parser.parse(create_time_token).date()
+
+                    valid_date_max = datetime.date(year, month, 1)
+                    train_data_max = valid_date_max - dateutil.relativedelta.relativedelta(months=6)
+
+                    if create_date < train_data_max:
+                        src_before_train_list.append(src)
+                        tgt_before_train_list.append(tgt)
+                    elif create_date < valid_date_max:
+                        src_before_valid_list.append(src)
+                        tgt_before_valid_list.append(tgt)
+                    elif create_date.year == year and create_date.month == month:
+                        src_now_list.append(src)
+                        tgt_now_list.append(tgt)
+
+            src_filename = f'BugFix-before-{year}-{month}-train-src.txt'
+            tgt_filename = f'BugFix-before-{year}-{month}-train-tgt.txt'
+            with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(src_before_train_list) + '\n')
+            with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(tgt_before_train_list) + '\n')
+            src_filename = f'BugFix-before-{year}-{month}-valid-src.txt'
+            tgt_filename = f'BugFix-before-{year}-{month}-valid-tgt.txt'
+            with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(src_before_valid_list) + '\n')
+            with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(tgt_before_valid_list) + '\n')
+            src_filename = f'BugFix-{year}-{month}-src.txt'
+            tgt_filename = f'BugFix-{year}-{month}-tgt.txt'
+            with open(output_dir / src_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(src_now_list) + '\n')
+            with open(output_dir / tgt_filename, encoding='utf-8', mode='w') as f:
+                f.write('\n'.join(tgt_now_list) + '\n')
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])
