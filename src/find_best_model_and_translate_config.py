@@ -72,12 +72,18 @@ def main():
     parser.add_argument('-c3se_cluster', action="store_true", dest='c3se_cluster',
                         help="Generate job script for C3SE cluster, otherwise for "
                         "the HPC2N cluster. Default HPC2N cluster.")
+    parser.add_argument('-fine_tune_dirname', action="store", dest='fine_tune_dirname',
+                        help="Directory name for fine tuning.")
     args = parser.parse_args()
 
     test_features_file = Path(args.test_features_file).resolve()
     pre_train_model = args.pre_train_model
     sweep_root_path = Path(args.sweep_root_path).resolve()
     c3se_cluster = args.c3se_cluster
+    if args.fine_tune_dirname:
+        fine_tune_dirname = args.fine_tune_dirname
+    else:
+        fine_tune_dirname = 'fine_tune'
 
     for file in [test_features_file, sweep_root_path]:
         assert(file.exists())
@@ -87,7 +93,7 @@ def main():
         if pre_train_model:
             models_path = sweep_path
         else:
-            models_path = sweep_path / 'fine_tune'
+            models_path = sweep_path / fine_tune_dirname
         all_model_checkpoints = list(models_path.rglob('*.pt'))
         all_model_checkpoints.sort(key=lambda x: int(x.stem.split('_')[-1]))
         best_model_step = -1
