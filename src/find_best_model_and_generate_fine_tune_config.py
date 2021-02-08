@@ -104,6 +104,8 @@ def main():
     parser.add_argument('-c3se_cluster', action="store_true", dest='c3se_cluster',
                         help="Generate job script for C3SE cluster, otherwise for "
                         "the HPC2N cluster. Default HPC2N cluster.")
+    parser.add_argument('-fine_tune_dirname', action="store", dest='fine_tune_dirname',
+                        help="Directory name for fine tuning.")
     args = parser.parse_args()
 
     train_features_file = Path(args.train_features_file).resolve()
@@ -112,6 +114,10 @@ def main():
     eval_labels_file = Path(args.eval_labels_file).resolve()
     sweep_root_path = Path(args.sweep_root_path).resolve()
     c3se_cluster = args.c3se_cluster
+    if args.fine_tune_dirname:
+        fine_tune_dirname = args.fine_tune_dirname
+    else:
+        fine_tune_dirname = 'fine_tune'
 
     for file in [train_features_file, train_labels_file, eval_features_file, eval_labels_file, sweep_root_path]:
         assert(file.exists())
@@ -133,7 +139,7 @@ def main():
         with open(sweep_path / 'train_config.yml') as f:
             opennmt_pre_train_config = yaml.safe_load(f)
 
-        fine_tune_dir = sweep_path / 'fine_tune'
+        fine_tune_dir = sweep_path / fine_tune_dirname
         fine_tune_dir.mkdir(parents=True, exist_ok=True)
         save_model_path_pattern = fine_tune_dir / 'model'
         tensorboard_log_dir = fine_tune_dir / 'tensorboard_log_dir'
