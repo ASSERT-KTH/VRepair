@@ -74,6 +74,8 @@ def main():
                         "the HPC2N cluster. Default HPC2N cluster.")
     parser.add_argument('-fine_tune_dirname', action="store", dest='fine_tune_dirname',
                         help="Directory name for fine tuning.")
+    parser.add_argument('-pre_train_jobname', action="store", dest='pre_train_jobname',
+                        help="Job name for the pre training prediction.")
     args = parser.parse_args()
 
     test_features_file = Path(args.test_features_file).resolve()
@@ -119,7 +121,10 @@ def main():
                 str(best_model_path).replace('\\', '\\\\'),
                 str(test_features_file).replace('\\', '\\\\'),
                 str(output_path).replace('\\', '\\\\'))
+
         translate_script_path = models_path / 'translate.sh'
+        if pre_train_model and args.pre_train_jobname:
+            translate_script_path = models_path / args.pre_train_jobname
         with open(translate_script_path, mode='w', encoding='utf8') as f:
             f.write(translate_script)
 
