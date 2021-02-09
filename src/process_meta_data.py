@@ -116,14 +116,14 @@ def main(argv):
                     create_date = dateutil_parser.parse(create_time_token).date()
 
                     valid_date_max = datetime.date(year, month, 1)
-                    train_data_max = valid_date_max - dateutil.relativedelta.relativedelta(months=6)
+                    train_date_max = valid_date_max - dateutil.relativedelta.relativedelta(months=6)
 
-                    if create_date < train_data_max:
+                    if create_date < valid_date_max:
                         src_before_train_list.append(src)
                         tgt_before_train_list.append(tgt)
-                    elif create_date < valid_date_max:
-                        src_before_valid_list.append(src)
-                        tgt_before_valid_list.append(tgt)
+                        if create_date >= train_date_max:
+                            src_before_valid_list.append(src)
+                            tgt_before_valid_list.append(tgt)
                     elif create_date.year == year and create_date.month == month:
                         src_now_list.append(src)
                         tgt_now_list.append(tgt)
