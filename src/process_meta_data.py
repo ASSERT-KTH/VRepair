@@ -43,10 +43,8 @@ def read_all_data(data_dir):
     # (these account for over 90% of cases in TokenPairs_commits)
     # The perl script to find these is:
     #  perl -e 'while (<>) {/^(CWE-\d+) / && $n{$1}++; }; foreach $i (keys(%n)) { print "$i: $n{$i}\n" }' VRepair/data/Context3/BugFixTokenPairs_commits.src.txt | perl -ne 'if (/: (\d+) *$/) { if ($1 > 20) {$n+=$1; print $_}}'
-    cwe_set={ 'CWE-835', 'CWE-476', 'CWE-59', 'CWE-269', 'CWE-284',
-              'CWE-399', 'CWE-119', 'CWE-20', 'CWE-787', 'CWE-190',
-              'CWE-400', 'CWE-416', 'CWE-200', 'CWE-264', 'CWE-125',
-              'CWE-189', 'CWE-000'}
+    cwe_set={ 'CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264', 
+              'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190', 'CWE-000'}
     for src, tgt, meta in zip(src_list, tgt_list, meta_list):
         if src.strip() and tgt.strip() and meta.strip():
             if src.startswith('CWE-'):
