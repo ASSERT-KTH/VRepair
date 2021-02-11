@@ -6,7 +6,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
                                  save_model_path_pattern, tensorboard_log_dir,
                                  train_features_file, train_labels_file,
                                  valid_features_file, valid_labels_file,
-                                 train_steps=10000, valid_steps=100,
+                                 train_steps=2000, valid_steps=100,
                                  save_checkpoint_steps=100,
                                  start_decay_steps=500, decay_steps=500,
                                  learning_rate_decay=0.8):
@@ -19,7 +19,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['data']['valid']['path_src'] = valid_features_file
     opennmt_pre_train_config['data']['valid']['path_tgt'] = valid_labels_file
 
-    opennmt_pre_train_config['learning_rate'] = opennmt_pre_train_config['learning_rate'] / 50
+    opennmt_pre_train_config['learning_rate'] = opennmt_pre_train_config['learning_rate'] / 10
     opennmt_pre_train_config['learning_rate_decay'] = learning_rate_decay
 
     opennmt_pre_train_config['train_steps'] = train_steps
@@ -27,6 +27,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['save_checkpoint_steps'] = save_checkpoint_steps
     opennmt_pre_train_config['start_decay_steps'] = start_decay_steps
     opennmt_pre_train_config['decay_steps'] = decay_steps
+    opennmt_pre_train_config['early_stopping'] = 0
 
     opennmt_pre_train_config['tensorboard'] = True
     opennmt_pre_train_config['tensorboard_log_dir'] = tensorboard_log_dir
