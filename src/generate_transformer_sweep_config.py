@@ -112,13 +112,14 @@ def get_opennmt_vocab_config(save_data_path_pattern,
 def default_hpc2n_job_script(opennmt_vocab_config_path,
                              opennmt_train_config_path, gpu_type='k80',
                              number_of_gpus='1', time='96:00:00'):
-    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190',
-                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200',
-                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189',
-                      'CWE-59']
+    CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
+                      'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
+                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415',
+                      'CWE-000']
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
-    src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
+    src_vocab_file_path = Path(
+        opennmt_vocab_config_path).parent / 'data.vocab.src'
     log_file_path = Path(opennmt_vocab_config_path).parent / 'log.txt'
     hpc2n_job_script = '''\
 #!/bin/bash
@@ -159,7 +160,8 @@ def default_c3se_job_script(opennmt_vocab_config_path,
                       'CWE-59']
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
-    src_vocab_file_path = Path(opennmt_vocab_config_path).parent / 'data.vocab.src'
+    src_vocab_file_path = Path(
+        opennmt_vocab_config_path).parent / 'data.vocab.src'
     log_file_path = Path(opennmt_vocab_config_path).parent / 'log.txt'
     c3se_job_script = '''\
 #!/bin/bash

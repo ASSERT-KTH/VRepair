@@ -46,14 +46,12 @@ def read_all_data(data_dir, src_file_patterns, tgt_file_patterns):
     # Remove instances where the src or tgt is whitespace only.
     src_nonempty_list = []
     tgt_nonempty_list = []
-    # For CWE, we gather the top 16 numbers and assign all other cases to 000.
-    # (these account for over 90% of cases in TokenPairs_commits)
-    # The perl script to find these is:
-    #  perl -e 'while (<>) {/^(CWE-\d+) / && $n{$1}++; }; foreach $i (keys(%n)) { print "$i: $n{$i}\n" }' VRepair/data/Context3/BugFixTokenPairs_commits.src.txt | perl -ne 'if (/: (\d+) *$/) { if ($1 > 20) {$n+=$1; print $_}}'
-    cwe_set={ 'CWE-835', 'CWE-476', 'CWE-59', 'CWE-269', 'CWE-284',
-              'CWE-399', 'CWE-119', 'CWE-20', 'CWE-787', 'CWE-190',
-              'CWE-400', 'CWE-416', 'CWE-200', 'CWE-264', 'CWE-125',
-              'CWE-189', 'CWE-000'}
+    # For CWE, we gather the top 15 numbers and assign all other cases to 000.
+    # (these account for over 80% of cases in TokenPairs_commits)
+    cwe_set={ 'CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
+              'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
+              'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415',
+              'CWE-000'}
     for src, tgt in zip(src_list, tgt_list):
         if src.strip() and tgt.strip():
             if src.startswith('CWE-'):
