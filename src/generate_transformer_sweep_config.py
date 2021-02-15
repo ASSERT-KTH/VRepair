@@ -16,7 +16,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              tensorboard_log_dir,
                              train_features_file, train_labels_file,
                              valid_features_file, valid_labels_file,
-                             train_steps=500000, valid_steps=20000,
+                             train_steps=1000000, valid_steps=20000,
                              src_vocab_size=2000, tgt_vocab_size=2000,
                              src_seq_length=1000, tgt_seq_length=100,
                              number_of_gpus=1, batch_size=4,
@@ -24,7 +24,7 @@ def get_opennmt_train_config(save_data_path_pattern, save_model_path_pattern,
                              learning_rate=0.0005, learning_rate_decay=0.9,
                              label_smoothing=0.1,
                              enc_layers=6, dec_layers=6, heads=8, rnn_size=256,
-                             word_vec_size=256, transformer_ff=512,
+                             word_vec_size=256, transformer_ff=2048,
                              dropout=0.1, attention_dropout=0.1,
                              accum_count=8, early_stopping=2,
                              seed=0):
@@ -262,9 +262,9 @@ def main():
         assert(file.exists())
 
     learning_rate_sweep = list((update_learning_rate, learning_rate)
-                               for learning_rate in [0.001, 0.0005, 0.0002])
+                               for learning_rate in [0.001, 0.005, 0.0001, 0.00005])
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
-                             for hidden_size in [192, 256, 384])
+                             for hidden_size in [128, 256, 512, 1024])
     # Use default of 6 layers for final sweeps
     # num_layers_sweep = list((update_num_layers, num_layers)
     #                        for num_layers in [4, 6])
