@@ -153,7 +153,7 @@ onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
 
 def default_c3se_job_script(opennmt_vocab_config_path,
                             opennmt_train_config_path, gpu_type='V100',
-                            number_of_gpus='1', time='96:00:00'):
+                            number_of_gpus='1', time='168:00:00'):
     CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190',
                       'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200',
                       'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189',
