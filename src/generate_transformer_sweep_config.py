@@ -90,12 +90,17 @@ def get_opennmt_vocab_config(save_data_path_pattern,
                              train_features_file, train_labels_file,
                              valid_features_file, valid_labels_file,
                              src_seq_length=1000, tgt_seq_length=100,
+                             src_vocab_size=2000, tgt_vocab_size=2000,
                              seed=0):
     opennmt_vocab_config = nested_dict()
 
     opennmt_vocab_config['save_data'] = save_data_path_pattern
     opennmt_vocab_config['overwrite'] = False
     opennmt_vocab_config['n_sample'] = -1
+    opennmt_vocab_config['src_vocab'] = save_data_path_pattern + '.vocab.src'
+    opennmt_vocab_config['tgt_vocab'] = save_data_path_pattern + '.vocab.tgt'
+    opennmt_vocab_config['src_vocab_size'] = src_vocab_size
+    opennmt_vocab_config['tgt_vocab_size'] = tgt_vocab_size
     opennmt_vocab_config['src_seq_length'] = src_seq_length
     opennmt_vocab_config['tgt_seq_length'] = tgt_seq_length
 
@@ -114,8 +119,7 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
                              number_of_gpus='1', time='96:00:00'):
     CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
                       'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
-                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415',
-                      'CWE-000']
+                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415' ]
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(
@@ -154,10 +158,9 @@ onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
 def default_c3se_job_script(opennmt_vocab_config_path,
                             opennmt_train_config_path, gpu_type='V100',
                             number_of_gpus='1', time='168:00:00'):
-    CWE_vocab_list = ['CWE-400', 'CWE-787', 'CWE-399', 'CWE-119', 'CWE-190',
-                      'CWE-835', 'CWE-264', 'CWE-125', 'CWE-476', 'CWE-200',
-                      'CWE-416', 'CWE-269', 'CWE-20', 'CWE-284', 'CWE-189',
-                      'CWE-59']
+    CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
+                      'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
+                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415' ]
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(

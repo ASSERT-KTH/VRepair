@@ -25,13 +25,13 @@ def read_all_data(data_dir):
     tgt_list = []
     meta_list = []
     # Read all data as they are.
-    for file_path in data_dir.rglob('*.src.txt'):
+    for file_path in data_dir.rglob('*fine.src.txt'):
         with open(file_path) as f:
             src_list.extend(f.read().splitlines())
-    for file_path in data_dir.rglob('*.tgt.txt'):
+    for file_path in data_dir.rglob('*fine.tgt.txt'):
         with open(file_path) as f:
             tgt_list.extend(f.read().splitlines())
-    for file_path in data_dir.rglob('*.meta.txt'):
+    for file_path in data_dir.rglob('*fine.meta.txt'):
         with open(file_path) as f:
             meta_list.extend(f.read().splitlines())
 
@@ -40,7 +40,7 @@ def read_all_data(data_dir):
     tgt_nonempty_list = []
     meta_nonempty_list = []
     # For CWE, we gather the top 15 numbers and assign all other cases to 000.
-    # (these account for over 80% of cases in TokenPairs_commits)
+    # (these account for over 80% of cases in commits_meta.csv)
     cwe_set={ 'CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
               'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
               'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415',
@@ -54,7 +54,8 @@ def read_all_data(data_dir):
                 else:
                     src_nonempty_list.append(src.replace(cwe,'CWE-000'))
             else:
-                src_nonempty_list.append("CWE-000 "+src)
+                print (f'ERROR! All source lines should start with CWE: {src}')
+                sys.exit(2)
             tgt_nonempty_list.append(tgt)
             meta_nonempty_list.append(meta)
     return src_nonempty_list, tgt_nonempty_list, meta_nonempty_list
