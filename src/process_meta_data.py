@@ -25,13 +25,13 @@ def read_all_data(data_dir):
     tgt_list = []
     meta_list = []
     # Read all data as they are.
-    for file_path in sorted(data_dir.rglob('*fine.src.txt')):
+    for file_path in sorted(data_dir.glob('*fine.src.txt')):
         with open(file_path) as f:
             src_list.extend(f.read().splitlines())
-    for file_path in sorted(data_dir.rglob('*fine.tgt.txt')):
+    for file_path in sorted(data_dir.glob('*fine.tgt.txt')):
         with open(file_path) as f:
             tgt_list.extend(f.read().splitlines())
-    for file_path in sorted(data_dir.rglob('*fine.meta.txt')):
+    for file_path in sorted(data_dir.glob('*fine.meta.txt')):
         with open(file_path) as f:
             meta_list.extend(f.read().splitlines())
 
