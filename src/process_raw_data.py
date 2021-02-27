@@ -35,11 +35,11 @@ def read_all_data(data_dir, src_file_patterns, tgt_file_patterns):
     tgt_list = []
     # Read all data as they are.
     for src_file_pattern in src_file_patterns:
-        for file_path in data_dir.rglob(src_file_pattern):
+        for file_path in sorted(data_dir.rglob(src_file_pattern)):
             with open(file_path) as f:
                 src_list.extend(f.read().splitlines())
     for tgt_file_pattern in tgt_file_patterns:
-        for file_path in data_dir.rglob(tgt_file_pattern):
+        for file_path in sorted(data_dir.rglob(tgt_file_pattern)):
             with open(file_path) as f:
                 tgt_list.extend(f.read().splitlines())
 
