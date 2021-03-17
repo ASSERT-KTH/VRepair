@@ -265,7 +265,7 @@ def main():
         assert(file.exists())
 
     learning_rate_sweep = list((update_learning_rate, learning_rate)
-                               for learning_rate in [0.001, 0.005, 0.0001, 0.00005])
+                               for learning_rate in [0.005, 0.001, 0.0005, 0.0001, 0.00005])
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
                              for hidden_size in [128, 256, 512, 1024])
     # Use default of 6 layers for final sweeps
