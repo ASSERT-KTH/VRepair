@@ -9,19 +9,21 @@ from multiprocessing import Pool
 from unidiff import PatchSet
 
 def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
-    src_str = src_str.replace("<S2SV_EndBug> <S2SV_StartBug> ","")
-    if re.search(r'<S2SV_StartBug>.*<S2SV_StartBug>',src_str):
-        print (f'Sample {sample} is multi-block')
-        return
     raw_tokens = src_str.split(' ')[1:] + ["<S2SV_null>"] * num_tokens
     src_tokens = []
+    endbug=0
     # Process out start/end tokens and track range for pattern start
     for i in range(len(raw_tokens)):
         if raw_tokens[i] == "<S2SV_StartBug>":
-            src_tokens = raw_tokens[max(i-num_tokens,0):i]
+            if not src_tokens:
+                src_tokens = raw_tokens[max(i-num_tokens,0):i]
         elif raw_tokens[i] == "<S2SV_EndBug>":
-            endbug=len(src_tokens)
-        else:
+            # If StartBug was token 0, we need to grab tokens
+            if not src_tokens:
+                src_tokens = raw_tokens[1:i]
+            if not endbug:
+                endbug=len(src_tokens)
+        elif src_tokens:
             src_tokens.append(raw_tokens[i])
 
     special = re.compile("^<S2SV_Mod(Start|End)>$")
@@ -33,7 +35,7 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
         matches=0
         pass_modnum=0
         # Process out_str multiple times to find how many interpretations it has
-        while True:
+        while matches < 1000:
             pre_tokens = ["<S2SV_null>"] * num_tokens
             out_tokens = out_str.split(' ')
             out_pre = out_tokens[1:num_tokens+1]
@@ -41,7 +43,10 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
             modnum=1
             skip=-1
             i = 0;
-            while i <= endbug:
+            while i < len(src_tokens):
+                if modnum == 1 and i > endbug or skip > 4:
+                    out_idx=len(out_tokens)+1 # Flag error
+                    break
                 if ' '.join(out_pre) == ' '.join(pre_tokens): # Found match
                     skip+=1
                 if ' '.join(out_pre) == ' '.join(pre_tokens) and skip==counts[modnum]: 
@@ -70,6 +75,9 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
                             if ' '.join(out_pre) != ' '.join(pre_tokens) or skip != counts[modnum]:
                                 out_idx=len(out_tokens)+1 # Flag error
                                 break
+                            if i > endbug and skip > 3:
+                                out_idx=len(out_tokens)+1 # Flag error
+                                break
                             skip=-1
                             modnum+=1
                             out_idx += num_tokens+1
@@ -84,6 +92,7 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
                 else:
                     pre_tokens = pre_tokens[1:num_tokens]+[src_tokens[i]]
                     i+=1
+            # print (f'DBG: out_str= {out_str}, src_str= {src_str}, out_idx= {out_idx}, modnum={modnum},lenout={len(out_tokens)},src_tok={src_tokens},endbug={endbug}')
             # Check if all delta tokens were processed
             if out_idx == len(out_tokens) and modnum>1:
                 matches+=1
@@ -116,6 +125,8 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, sample):
                         counts[i+1]+=1
                 if counts[pass_modnum] == 1:
                     break   # Done with mod position searches
+        if matches > 1000:
+          matches = 1000; # Overflow flag
         if (out_str == tgt_str):
             print (f'Sample {sample} beam pos {beampos} PASS with {matches} matches')
             if (matches == 0):
