@@ -205,6 +205,8 @@ def main(argv):
             if cwe_id in cwe_id_stat_dict:
                 cwe_id_stat_dict[cwe_id]['correct'] += 1
                 cwe_id_stat_dict[cwe_id]['total'] += 1
+            if tgt_line.count('<S2SV_ModStart>') > 1:
+                print(tgt_line)
         else:
             cwe_id_stat_dict['all']['total'] += 1
             if cwe_id in cwe_id_stat_dict:
