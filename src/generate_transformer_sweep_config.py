@@ -97,8 +97,6 @@ def get_opennmt_vocab_config(save_data_path_pattern,
     opennmt_vocab_config['save_data'] = save_data_path_pattern
     opennmt_vocab_config['overwrite'] = False
     opennmt_vocab_config['n_sample'] = -1
-    opennmt_vocab_config['src_vocab'] = save_data_path_pattern + '.vocab.src'
-    opennmt_vocab_config['tgt_vocab'] = save_data_path_pattern + '.vocab.tgt'
     opennmt_vocab_config['src_vocab_size'] = src_vocab_size
     opennmt_vocab_config['tgt_vocab_size'] = tgt_vocab_size
     opennmt_vocab_config['src_seq_length'] = src_seq_length
@@ -156,7 +154,7 @@ onmt_train --config {opennmt_train_config_path} 2>&1 | tee -a {log_file_path}
 
 
 def default_c3se_job_script(opennmt_vocab_config_path,
-                            opennmt_train_config_path, gpu_type='V100',
+                            opennmt_train_config_path, gpu_type='T4',
                             number_of_gpus='1', time='120:00:00'):
     CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
                       'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
