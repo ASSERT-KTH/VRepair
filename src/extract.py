@@ -60,7 +60,7 @@ def tokenize_pre_and_post(tmpfile,path_to_diff):
         return
 
 def removeComment(path_to_file,tmpfile):
-    result = subprocess.run(["gcc", "-fpreprocessed", "-dD", "-E", "-P", str(path_to_file)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(["gcc-10", "-fpreprocessed", "-dD", "-E", "-P", str(path_to_file)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output_path = Path(tmpfile)
     try:
         no_comment_file_content = result.stdout.decode('utf-8')
