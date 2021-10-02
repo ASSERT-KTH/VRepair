@@ -147,7 +147,7 @@ def generate_time_split(src_list, tgt_list, meta_list, output_dir):
     test_tgt_list = []
     test_meta_list = []
 
-    train_date_max = datetime.date(2019, 1, 1)
+    train_date_max = datetime.date(2018, 6, 1)
     valid_date_max = datetime.date(2019, 6, 1)
     for src, tgt, meta in zip(src_list, tgt_list, meta_list):
         create_time_token = meta.strip().split(',')[4]
