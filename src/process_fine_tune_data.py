@@ -97,8 +97,8 @@ def generate_random_split(src_list, tgt_list, meta_list, output_dir):
     src_list, tgt_list, meta_list = zip(*triples)
 
     num_examples = len(src_list)
-    max_train_index = math.floor(0.8 * num_examples)
-    max_valid_index = math.floor(0.9 * num_examples)
+    max_train_index = math.floor(0.7 * num_examples)
+    max_valid_index = math.floor(0.8 * num_examples)
 
     train_src_filename = 'random_fine_tune_train.src.txt'
     train_tgt_filename = 'random_fine_tune_train.tgt.txt'
@@ -147,8 +147,8 @@ def generate_time_split(src_list, tgt_list, meta_list, output_dir):
     test_tgt_list = []
     test_meta_list = []
 
-    train_date_max = datetime.date(2019, 6, 1)
-    valid_date_max = datetime.date(2020, 1, 1)
+    train_date_max = datetime.date(2019, 1, 1)
+    valid_date_max = datetime.date(2019, 6, 1)
     for src, tgt, meta in zip(src_list, tgt_list, meta_list):
         create_time_token = meta.strip().split(',')[4]
         if create_time_token:
@@ -232,8 +232,8 @@ def generate_frequency_split(src_list, tgt_list, meta_list, output_dir):
 
     for cwe in all_data_dict:
         num_examples = len(all_data_dict[cwe]['src_list'])
-        max_train_index = math.floor(0.8 * num_examples)
-        max_valid_index = math.floor(0.9 * num_examples)
+        max_train_index = math.floor(0.7 * num_examples)
+        max_valid_index = math.floor(0.8 * num_examples)
 
         train_src_list.extend(all_data_dict[cwe]['src_list'][:max_train_index])
         train_tgt_list.extend(all_data_dict[cwe]['tgt_list'][:max_train_index])
