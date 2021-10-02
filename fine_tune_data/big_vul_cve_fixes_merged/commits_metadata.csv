@@ -651,7 +651,8 @@ torvalds@linux/4edbe1d7bcffcd6269f3b5eb63f710393ff2ec7a,CVE-2021-31916,CWE-787,h
 FreeRTOS@FreeRTOS-Kernel/c7a9a01c94987082b223d3e59969ede64363da63,CVE-2021-32020,CWE-119,https://github.com/FreeRTOS/FreeRTOS-Kernel/commit/c7a9a01c94987082b223d3e59969ede64363da63,2021-05-03T22:15Z
 neomutt@neomutt/fa1db5785e5cfd9d3cd27b7571b9fe268d2ec2dc,CVE-2021-32055,CWE-125,https://github.com/neomutt/neomutt/commit/fa1db5785e5cfd9d3cd27b7571b9fe268d2ec2dc,2021-05-05T16:15Z
 torvalds@linux/e2cb6b891ad2b8caa9131e3be70f45243df82a80,CVE-2021-32399,CWE-362,https://github.com/torvalds/linux/commit/e2cb6b891ad2b8caa9131e3be70f45243df82a80,2021-05-10T22:15Z
-FFmpeg@FFmpeg/26d3c81bc5ef2f8c3f09d45eaeacfb4b1139a777,CVE-2021-33815,CWE-129,https://github.com/FFmpeg/FFmpeg/commit/26d3c81bc5ef2f8c3f09d45eaeacfb4b1139a777,2021-06-03T17:15Zbratsche@pango/4de30e5500eaeb49f4bf0b7a07f718e149a2ed5e,CVE-2009-1194,CWE-189,https://github.com/bratsche/pango/commit/4de30e5500eaeb49f4bf0b7a07f718e149a2ed5e,2009-05-11T15:30Z
+FFmpeg@FFmpeg/26d3c81bc5ef2f8c3f09d45eaeacfb4b1139a777,CVE-2021-33815,CWE-129,https://github.com/FFmpeg/FFmpeg/commit/26d3c81bc5ef2f8c3f09d45eaeacfb4b1139a777,2021-06-03T17:15Z
+bratsche@pango/4de30e5500eaeb49f4bf0b7a07f718e149a2ed5e,CVE-2009-1194,CWE-189,https://github.com/bratsche/pango/commit/4de30e5500eaeb49f4bf0b7a07f718e149a2ed5e,2009-05-11T15:30Z
 kr@beanstalkd/2e8e8c6387ecdf5923dfc4d7718d18eba1b0873d,CVE-2010-2060,,https://github.com/kr/beanstalkd/commit/2e8e8c6387ecdf5923dfc4d7718d18eba1b0873d,2010-06-08T00:30Z
 ensc@irssi-proxy/85bbc05b21678e80423815d2ef1dfe26208491ab,CVE-2010-1155,CWE-20,https://github.com/ensc/irssi-proxy/commit/85bbc05b21678e80423815d2ef1dfe26208491ab,2010-04-16T19:30Z
 memcached@memcached/d9cd01ede97f4145af9781d448c62a3318952719,CVE-2010-1152,CWE-20,https://github.com/memcached/memcached/commit/d9cd01ede97f4145af9781d448c62a3318952719,2010-04-12T18:30Z
@@ -2791,8 +2792,8 @@ torvalds@linux/979d63d50c0c0f7bc537bf821e056cc9fe5abd38,CVE-2019-7308,CWE-189,ht
 libgd@libgd/553702980ae89c83f2d6e254d62cf82e204956d0,CVE-2019-6978,CWE-415,https://github.com/libgd/libgd/commit/553702980ae89c83f2d6e254d62cf82e204956d0,2019-01-28T08:29Z
 uclouvain@openjpeg/5d00b719f4b93b1445e6fb4c766b9a9883c57949,CVE-2018-20847,CWE-190,https://github.com/uclouvain/openjpeg/commit/5d00b719f4b93b1445e6fb4c766b9a9883c57949,2019-06-26T18:15Z
 torvalds@linux/5c25f65fd1e42685f7ccd80e0621829c105785d9,CVE-2018-7191,CWE-476,https://github.com/torvalds/linux/commit/5c25f65fd1e42685f7ccd80e0621829c105785d9,2019-05-17T05:29Z
-chromium@chromium/a44b00c88bc5ea35b5b150217c5fd6e4ce168e58,,,https://github.com/chromium/chromium/commit/a44b00c88bc5ea35b5b150217c5fd6e4ce168e58, 
-chromium@chromium/44a637b47793512bfb1d2589d43b8dc492a97629,,,https://github.com/chromium/chromium/commit/44a637b47793512bfb1d2589d43b8dc492a97629, 
+chromium@chromium/a44b00c88bc5ea35b5b150217c5fd6e4ce168e58,,,https://github.com/chromium/chromium/commit/a44b00c88bc5ea35b5b150217c5fd6e4ce168e58,
+chromium@chromium/44a637b47793512bfb1d2589d43b8dc492a97629,,,https://github.com/chromium/chromium/commit/44a637b47793512bfb1d2589d43b8dc492a97629,
 chromium@chromium/3a766e0115e9799db766a88554b9ab12ee5bf2a4,CVE-2011-2834,CWE-399,https://github.com/chromium/chromium/commit/3a766e0115e9799db766a88554b9ab12ee5bf2a4,2011-09-19T12:02Z
 chromium@chromium/c9911bc93097a5df5518f5b88e1d5ed5ef275a4d,CVE-2011-2821,CWE-399,https://github.com/chromium/chromium/commit/c9911bc93097a5df5518f5b88e1d5ed5ef275a4d,2011-08-29T15:55Z
 chromium@chromium/6e487b9db2ff0324523a040180f8da42796aeef5,CVE-2012-5134,CWE-119,https://github.com/chromium/chromium/commit/6e487b9db2ff0324523a040180f8da42796aeef5,2012-11-28T01:55Z
@@ -2801,9 +2802,9 @@ chromium@chromium/9939d35f9827ed0929646607cbdb071af627ac38,CVE-2012-2870,CWE-399
 chromium@chromium/e741149a6b7872a2bf1f2b6cc0a56e836592fb77,CVE-2012-2870,CWE-399,https://github.com/chromium/chromium/commit/e741149a6b7872a2bf1f2b6cc0a56e836592fb77,2012-08-31T19:55Z
 chromium@chromium/46afbe7f7f55280947e9c06c429a68983ba9d8dd,CVE-2012-2844,,https://github.com/chromium/chromium/commit/46afbe7f7f55280947e9c06c429a68983ba9d8dd,2012-07-12T21:55Z
 chromium@chromium/f183580d61c054f7f6bb35cfe29e1b342390fbeb,CVE-2012-2807,CWE-189,https://github.com/chromium/chromium/commit/f183580d61c054f7f6bb35cfe29e1b342390fbeb,2012-06-27T10:18Z
-chromium@chromium/094c773bb6c144f07b004ff3d1886100f157f4f6,,,https://github.com/chromium/chromium/commit/094c773bb6c144f07b004ff3d1886100f157f4f6, 
+chromium@chromium/094c773bb6c144f07b004ff3d1886100f157f4f6,,,https://github.com/chromium/chromium/commit/094c773bb6c144f07b004ff3d1886100f157f4f6,
 chromium@chromium/d82b03d21f7e581f9206ef1fec4959ae7b06b8eb,CVE-2011-3919,CWE-119,https://github.com/chromium/chromium/commit/d82b03d21f7e581f9206ef1fec4959ae7b06b8eb,2012-01-07T11:55Z
-chromium@chromium/2953a669ec0a32a25c6250d34bf895ec0eb63d27,,,https://github.com/chromium/chromium/commit/2953a669ec0a32a25c6250d34bf895ec0eb63d27, 
+chromium@chromium/2953a669ec0a32a25c6250d34bf895ec0eb63d27,,,https://github.com/chromium/chromium/commit/2953a669ec0a32a25c6250d34bf895ec0eb63d27,
 chromium@chromium/4c46d7a5b0af9b7d320e709291b270ab7cf07e83,CVE-2011-3102,CWE-189,https://github.com/chromium/chromium/commit/4c46d7a5b0af9b7d320e709291b270ab7cf07e83,2012-05-16T00:55Z
 chromium@chromium/4cf106cdb83dd6b35d3b26d06cc67d1d2d99041e,CVE-2011-3045,CWE-189,https://github.com/chromium/chromium/commit/4cf106cdb83dd6b35d3b26d06cc67d1d2d99041e,2012-03-22T16:55Z
 chromium@chromium/7f3d85b096f66870a15b37c2f40b219b2e292693,CVE-2015-8126,CWE-119,https://github.com/chromium/chromium/commit/7f3d85b096f66870a15b37c2f40b219b2e292693,2015-11-13T03:59Z
