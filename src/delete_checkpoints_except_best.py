@@ -26,7 +26,7 @@ def main():
 
         for checkpoint_file in log_dir.rglob('*.pt'):
             if checkpoint_file != best_model_path:
-                print(checkpoint_file)
+                checkpoint_file.unlink()
 
 if __name__ == "__main__":
     main()
