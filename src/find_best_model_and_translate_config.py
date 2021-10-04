@@ -33,7 +33,7 @@ onmt_translate -model {best_model_path} -src {test_src_path} -output {output_pat
 
 
 def default_c3se_translate_script(best_model_path, test_src_path, output_path,
-                                  beam_size=50, gpu_type='V100',
+                                  beam_size=50, gpu_type='T4',
                                   number_of_gpus='1', time='2:00:00'):
     c3se_translate_script = '''\
 #!/bin/bash
