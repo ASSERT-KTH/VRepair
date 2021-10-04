@@ -29,6 +29,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
     opennmt_pre_train_config['decay_steps'] = decay_steps
     opennmt_pre_train_config['early_stopping'] = 4
     opennmt_pre_train_config['accum_count'] = 2
+    opennmt_pre_train_config['keep_checkpoint'] = 10
 
     opennmt_pre_train_config['tensorboard'] = True
     opennmt_pre_train_config['tensorboard_log_dir'] = tensorboard_log_dir
