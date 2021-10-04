@@ -6,7 +6,7 @@ def get_opennmt_fine_tune_config(opennmt_pre_train_config, best_model_path,
                                  save_model_path_pattern, tensorboard_log_dir,
                                  train_features_file, train_labels_file,
                                  valid_features_file, valid_labels_file,
-                                 train_steps=5000, valid_steps=100,
+                                 train_steps=10000, valid_steps=100,
                                  save_checkpoint_steps=100,
                                  start_decay_steps=500, decay_steps=500,
                                  learning_rate_decay=0.8):
@@ -65,7 +65,7 @@ onmt_train --config {opennmt_fine_tune_config_path} 2>&1 | tee -a {log_file_path
 
 
 def default_c3se_job_script(opennmt_fine_tune_config_path, gpu_type='T4',
-                            number_of_gpus='1', time='4:00:00'):
+                            number_of_gpus='1', time='24:00:00'):
     log_file_path = Path(opennmt_fine_tune_config_path).parent / 'log.txt'
     c3se_job_script = '''\
 #!/bin/bash
