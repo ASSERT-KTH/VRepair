@@ -9,9 +9,9 @@ args = parser.parse_args()
 
 def main():
     sweep_root_path = Path(args.sweep_root_path).resolve()
-    for log_file in sweep_root_path.glob('**/log.txt'):
+    for log_file in sweep_root_path.rglob('log.txt'):
         log_dir = log_file.parent
-        all_model_checkpoints = list(log_dir.rglob('*.pt'))
+        all_model_checkpoints = list(log_dir.glob('*.pt'))
         all_model_checkpoints.sort(key=lambda x: int(x.stem.split('_')[-1]))
         best_model_step = -1
         with open(log_file) as f:
@@ -26,7 +26,7 @@ def main():
 
         assert best_model_path in all_model_checkpoints
 
-        for checkpoint_file in log_dir.rglob('*.pt'):
+        for checkpoint_file in log_dir.glob('*.pt'):
             if checkpoint_file != best_model_path:
                 checkpoint_file.unlink()
 
