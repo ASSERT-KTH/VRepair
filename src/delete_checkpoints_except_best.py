@@ -22,7 +22,7 @@ def main():
         if best_model_step == -1:
             best_model_path = all_model_checkpoints[-1]
         else:
-            best_model_path = sweep_path / ('model_step_' + best_model_step + '.pt')
+            best_model_path = log_dir / ('model_step_' + best_model_step + '.pt')
 
         for checkpoint_file in log_dir.rglob('*.pt'):
             if checkpoint_file != best_model_path:
