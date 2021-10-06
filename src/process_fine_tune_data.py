@@ -18,6 +18,12 @@ parser.add_argument('--max_src_length', action='store',
                     dest='max_src_length', type=int, help='Maximum src token length')
 parser.add_argument('--max_tgt_length', action='store',
                     dest='max_tgt_length', type=int, help='Maximum tgt token length')
+parser.add_argument('--generate_random', action='store_true', dest='generate_random',
+                    help='Generate random split.')
+parser.add_argument('--generate_time', action='store_true', dest='generate_time',
+                    help='Generate split based on time.')
+parser.add_argument('--generate_frequency', action='store_true', dest='generate_frequency',
+                    help='Generate split based on cwe frequency.')
 parser.add_argument('--is_big_vul', action='store_true', dest='is_big_vul',
                     help='If set generate fine tune data for big_vul, default to cve_fixes.'
                          'This only impact the date on time split.')
@@ -297,9 +303,12 @@ def main(argv):
     src_list, tgt_list, meta_list = remove_long_sequence(
         src_list, tgt_list, meta_list, args.max_src_length, args.max_tgt_length)
 
-    generate_random_split(src_list, tgt_list, meta_list, output_dir)
-    generate_time_split(src_list, tgt_list, meta_list, output_dir, args.is_big_vul)
-    #generate_frequency_split(src_list, tgt_list, meta_list, output_dir)
+    if args.generate_random:
+        generate_random_split(src_list, tgt_list, meta_list, output_dir)
+    if args.generate_time:
+        generate_time_split(src_list, tgt_list, meta_list, output_dir, args.is_big_vul)
+    if args.generate_frequency:
+        generate_frequency_split(src_list, tgt_list, meta_list, output_dir)
 
 
 if __name__ == '__main__':
