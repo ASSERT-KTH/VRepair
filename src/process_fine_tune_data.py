@@ -292,7 +292,7 @@ def main(argv):
 
     generate_random_split(src_list, tgt_list, meta_list, output_dir)
     generate_time_split(src_list, tgt_list, meta_list, output_dir)
-    generate_frequency_split(src_list, tgt_list, meta_list, output_dir)
+    #generate_frequency_split(src_list, tgt_list, meta_list, output_dir)
 
 
 if __name__ == '__main__':
