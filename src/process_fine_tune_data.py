@@ -18,7 +18,7 @@ parser.add_argument('--max_src_length', action='store',
                     dest='max_src_length', type=int, help='Maximum src token length')
 parser.add_argument('--max_tgt_length', action='store',
                     dest='max_tgt_length', type=int, help='Maximum tgt token length')
-parser.add_argument('-is_big_vul', action='store_true', dest='is_big_vul',
+parser.add_argument('--is_big_vul', action='store_true', dest='is_big_vul',
                     help='If set generate fine tune data for big_vul, default to cve_fixes.'
                          'This only impact the date on time split.')
 parser.add_argument('--output_dir', action='store', dest='output_dir',
