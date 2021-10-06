@@ -18,6 +18,9 @@ parser.add_argument('--max_src_length', action='store',
                     dest='max_src_length', type=int, help='Maximum src token length')
 parser.add_argument('--max_tgt_length', action='store',
                     dest='max_tgt_length', type=int, help='Maximum tgt token length')
+parser.add_argument('-is_big_vul', action='store_true', dest='is_big_vul',
+                    help='If set generate fine tune data for big_vul, default to cve_fixes.'
+                         'This only impact the date on time split.')
 parser.add_argument('--output_dir', action='store', dest='output_dir',
                     default='./', help='Output directory')
 
@@ -113,28 +116,28 @@ def generate_random_split(src_list, tgt_list, meta_list, output_dir):
     test_meta_filename = 'random_fine_tune_test.meta.txt'
 
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(src_list[:max_train_index]))
+        f.write('\n'.join(src_list[:max_train_index])+'\n')
     with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(tgt_list[:max_train_index]))
+        f.write('\n'.join(tgt_list[:max_train_index])+'\n')
     with open(output_dir / train_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(meta_list[:max_train_index]))
+        f.write('\n'.join(meta_list[:max_train_index])+'\n')
 
     with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(src_list[max_train_index:max_valid_index]))
+        f.write('\n'.join(src_list[max_train_index:max_valid_index])+'\n')
     with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(tgt_list[max_train_index:max_valid_index]))
+        f.write('\n'.join(tgt_list[max_train_index:max_valid_index])+'\n')
     with open(output_dir / valid_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(meta_list[max_train_index:max_valid_index]))
+        f.write('\n'.join(meta_list[max_train_index:max_valid_index])+'\n')
 
     with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(src_list[max_valid_index:]))
+        f.write('\n'.join(src_list[max_valid_index:])+'\n')
     with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(tgt_list[max_valid_index:]))
+        f.write('\n'.join(tgt_list[max_valid_index:])+'\n')
     with open(output_dir / test_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(meta_list[max_valid_index:]))
+        f.write('\n'.join(meta_list[max_valid_index:])+'\n')
 
 
-def generate_time_split(src_list, tgt_list, meta_list, output_dir):
+def generate_time_split(src_list, tgt_list, meta_list, output_dir, is_big_vul):
     train_src_list = []
     train_tgt_list = []
     train_meta_list = []
@@ -147,8 +150,12 @@ def generate_time_split(src_list, tgt_list, meta_list, output_dir):
     test_tgt_list = []
     test_meta_list = []
 
-    train_date_max = datetime.date(2018, 6, 1)
-    valid_date_max = datetime.date(2019, 6, 1)
+    if is_big_vul:
+        train_date_max = datetime.date(2017, 6, 1)
+        valid_date_max = datetime.date(2018, 1, 1)
+    else:
+        train_date_max = datetime.date(2018, 6, 1)
+        valid_date_max = datetime.date(2019, 6, 1)
     for src, tgt, meta in zip(src_list, tgt_list, meta_list):
         create_time_token = meta.strip().split(',')[4]
         if create_time_token:
@@ -179,25 +186,25 @@ def generate_time_split(src_list, tgt_list, meta_list, output_dir):
     test_meta_filename = 'year_fine_tune_test.meta.txt'
 
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_src_list))
+        f.write('\n'.join(train_src_list)+'\n')
     with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_tgt_list))
+        f.write('\n'.join(train_tgt_list)+'\n')
     with open(output_dir / train_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_meta_list))
+        f.write('\n'.join(train_meta_list)+'\n')
 
     with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_src_list))
+        f.write('\n'.join(valid_src_list)+'\n')
     with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_tgt_list))
+        f.write('\n'.join(valid_tgt_list)+'\n')
     with open(output_dir / valid_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_meta_list))
+        f.write('\n'.join(valid_meta_list)+'\n')
 
     with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_src_list))
+        f.write('\n'.join(test_src_list)+'\n')
     with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_tgt_list))
+        f.write('\n'.join(test_tgt_list)+'\n')
     with open(output_dir / test_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_meta_list))
+        f.write('\n'.join(test_meta_list)+'\n')
 
 
 def generate_frequency_split(src_list, tgt_list, meta_list, output_dir):
@@ -260,25 +267,25 @@ def generate_frequency_split(src_list, tgt_list, meta_list, output_dir):
     test_meta_filename = 'frequency_fine_tune_test.meta.txt'
 
     with open(output_dir / train_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_src_list))
+        f.write('\n'.join(train_src_list)+'\n')
     with open(output_dir / train_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_tgt_list))
+        f.write('\n'.join(train_tgt_list)+'\n')
     with open(output_dir / train_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(train_meta_list))
+        f.write('\n'.join(train_meta_list)+'\n')
 
     with open(output_dir / valid_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_src_list))
+        f.write('\n'.join(valid_src_list)+'\n')
     with open(output_dir / valid_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_tgt_list))
+        f.write('\n'.join(valid_tgt_list)+'\n')
     with open(output_dir / valid_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(valid_meta_list))
+        f.write('\n'.join(valid_meta_list)+'\n')
 
     with open(output_dir / test_src_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_src_list))
+        f.write('\n'.join(test_src_list)+'\n')
     with open(output_dir / test_tgt_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_tgt_list))
+        f.write('\n'.join(test_tgt_list)+'\n')
     with open(output_dir / test_meta_filename, encoding='utf-8', mode='w') as f:
-        f.write('\n'.join(test_meta_list))
+        f.write('\n'.join(test_meta_list)+'\n')
 
 
 def main(argv):
@@ -291,7 +298,7 @@ def main(argv):
         src_list, tgt_list, meta_list, args.max_src_length, args.max_tgt_length)
 
     generate_random_split(src_list, tgt_list, meta_list, output_dir)
-    generate_time_split(src_list, tgt_list, meta_list, output_dir)
+    generate_time_split(src_list, tgt_list, meta_list, output_dir, args.is_big_vul)
     #generate_frequency_split(src_list, tgt_list, meta_list, output_dir)
 
 
