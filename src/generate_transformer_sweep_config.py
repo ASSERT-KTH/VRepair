@@ -234,6 +234,16 @@ def update_ffn_inner_dim(config, ffn_inner_dim):
     config['transformer_ff'] = ffn_inner_dim
     return config
 
+def update_vocab_size(config, vocab_size):
+    config['src_vocab_size'] = vocab_size
+    config['tgt_vocab_size'] = vocab_size
+    return config
+
+def update_dropout(config, dropout_prob):
+    config['dropout'] = dropout_prob
+    config['attention_dropout'] = dropout_prob
+    return config
+
 
 def main():
     parser = argparse.ArgumentParser(
