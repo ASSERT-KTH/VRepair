@@ -3,9 +3,10 @@
 use strict;
 use warnings;
 
-if ( ! -f "$ARGV[0]" ) {
-  print "Usage: prespecial.pl file\n";
+if ( ! -f "$ARGV[0]" || ($#ARGV>0 && ! -d $ARGV[1]) || ($#ARGV > 1)) {
+  print "Usage: prespecial.pl file [dir]\n";
   print "    Opens file and adds MASK tokens and creates target output \n";
+  print "    Optional dir insures no duplicate masked functions with that dir\n";
   exit(1);
 }
 
@@ -16,6 +17,15 @@ my $tgtfile=$ARGV[0];
 $tgtfile =~ s/.raw.txt/.tgt.txt/;
 open(my $masked, ">", $maskedfile) || die "open $maskedfile failed: $!";
 open(my $tgt, ">", $tgtfile) || die "open $tgtfile failed: $!";
+my %maskedfunc;
+if ($#ARGV == 1) {
+  open(my $other, "<", "$ARGV[1]/$maskedfile") || die "open $ARGV[1]/$maskedfile failed: $!";
+  while (<$other>) {
+    $maskedfunc{$_}=1;
+  }
+  close $other;
+}
+
 
 while (<$file>) {
   s/\s+$//;
@@ -120,11 +130,15 @@ while (<$file>) {
       $tgtout .= "<S2SV_null> ";
     }
   }
-  $maskout =~ s/ +$//;
-  $tgtout =~ s/ +$//;
+  # Don't print out empty src or tgt
+  $maskout =~ s/ +$/\n/ || next;
+  $tgtout =~ s/ +$/\n/ || next;
   
-  print $masked $maskout."\n";
-  print $tgt    $tgtout."\n";
+  if (! $maskedfunc{$maskout}) {
+    $maskedfunc{$maskout}=1;
+    print $masked $maskout;
+    print $tgt    $tgtout;
+  }
 }
 
 close $masked;
