@@ -155,7 +155,7 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, vrepair_beam):
                         counts[i+1]+=1
                 if counts[pass_modnum] == 1:
                     break   # Done with mod position searches
-        if (out_str == tgt_str):
+        if (out_str == tgt_str and total_matches < vrepair_beam):
             return True
         beampos+=1
     return False
