@@ -65,7 +65,7 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, vrepair_beam):
         counts=[0]*32
         pass_modnum=0
         # Process out_str multiple times to find how many interpretations it has
-        while total_matches < vrepair_beam:
+        while total_matches <= vrepair_beam:
             pre_tokens = ["<S2SV_null>"] * num_tokens
             out_tokens = out_str.split(' ')
             out_pre = out_tokens[1:num_tokens+1]
@@ -155,9 +155,13 @@ def check_out(src_str, tgt_str, out_beam, num_tokens, vrepair_beam):
                         counts[i+1]+=1
                 if counts[pass_modnum] == 1:
                     break   # Done with mod position searches
-        if (out_str == tgt_str and total_matches < vrepair_beam):
-            return True
-        beampos+=1
+        if total_matches <= vrepair_beam:
+            if out_str == tgt_str:
+                return True
+            else:
+                beampos+=1
+        else:
+            return False
     return False
 
 
