@@ -17,11 +17,38 @@ In this paper, we address the problem of automatic repair of software vulnerabil
  * fine_tune_data: Target domain data of vulnerability fixes.
  * src: scripts used to process data and create training configuration files.
 
-## CWE type discributions
+## Example data processing for big\_vul
 
-------------------------------------------
-| CWE ID | Big-Vul | CVEfixes | Description |
-------------------------------------------
-| CWE-119 | 187 | 102 | xxx |
-| CWE-20 | 51 | 55 | xxx |
-------------------------------------------
+```bash
+# Set up environment as needed
+source env.sh
+cd fine_tune_data/big_vul
+
+# Extract token data from C source files
+python ../../src/extract.py commits > extract.out 2>&1
+
+# Generate src/tgt raw files from tokenized data
+python ../../src/gensrctgt.py commits 3 -meta commits_metadata.csv > gensrctgt.out 2>&1
+
+# Create random split on data
+python ../../src/process_fine_tune_data.py --src_file=SrcTgt/commits.src.txt --tgt_file=SrcTgt/commits.tgt.txt --meta_file=SrcTgt/commits.meta.txt --max_src_length=1000 --max_tgt_length=100 --generate_random --is_big_vul --output_dir=. > process.out 2>&1
+```
+
+## CWE type descriptions for top 10 CWE labels in each test dataset
+
+|         | Big-Vul   | CVEfixes  |                                                                         |
+| CWE ID  | rand_test | rand_test | Description                                                             |
+| :------ | :-------: | :-------: | ----------------------------------------------------------------------: |
+| CWE-119 | 187       | 102       | Improper Restriction of Operations within the Bounds of a Memory Buffer                   |
+| CWE-20  | 51        | 55        | Improper Input Validation                                                                 |
+| CWE-125 | 45        | 55        | Out-of-bounds Read                                                                        |
+| CWE-264 | 32        | 26        | Permissions, Priveledges, and Access Controls                                             |
+| CWE-399 | 29        | 26        | Resource Management Errors                                                                |
+| CWE-200 | 28        | 22        | Exposure of Sensitive Information to an Unauthorized Actor                                |
+| CWE-476 | 26        | 39        | NULL Pointer Dereference                                                                  |
+| CWE-284 | 26        |  7        | Improper Access Control                                                                   |
+| CWE-189 | 26        | 11        | Numeric Errors                                                                            |
+| CWE-362 | 26        | 30        | Concurrent Execution using Shared Resource with Improper Synchronization (Race Condition) |
+| CWE-190 | 15        | 29        | Integer Overflow or Wraparound                                                            |
+| CWE-787 |  8        | 24        | Out-of-bounds Write                                                                       |
+
