@@ -37,7 +37,7 @@ python ../../src/process_fine_tune_data.py --src_file=SrcTgt/commits.src.txt --t
 ## CWE type descriptions for top 10 CWE labels in both Big-Vul and CVEfixes test datasets
 
 | CWE ID  | Big-Vul   | CVEfixes  | Description                                                                               |
-| :------ | :-------: | :-------: | ----------------------------------------------------------------------------------------: |
+| :------ | --------: | --------: | :---------------------------------------------------------------------------------------- |
 | CWE-119 | 187       | 102       | Improper Restriction of Operations within the Bounds of a Memory Buffer                   |
 | CWE-20  | 51        | 55        | Improper Input Validation                                                                 |
 | CWE-125 | 45        | 55        | Out-of-bounds Read                                                                        |
