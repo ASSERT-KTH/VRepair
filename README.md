@@ -34,11 +34,10 @@ python ../../src/gensrctgt.py commits 3 -meta commits_metadata.csv > gensrctgt.o
 python ../../src/process_fine_tune_data.py --src_file=SrcTgt/commits.src.txt --tgt_file=SrcTgt/commits.tgt.txt --meta_file=SrcTgt/commits.meta.txt --max_src_length=1000 --max_tgt_length=100 --generate_random --is_big_vul --output_dir=. > process.out 2>&1
 ```
 
-## CWE type descriptions for top 10 CWE labels in each test dataset
+## CWE type descriptions for top 10 CWE labels in both Big-Vul and CVEfixes test datasets
 
-|         | Big-Vul   | CVEfixes  |                                                                         |
-| CWE ID  | rand_test | rand_test | Description                                                             |
-| :------ | :-------: | :-------: | ----------------------------------------------------------------------: |
+| CWE ID  | Big-Vul   | CVEfixes  | Description                                                                               |
+| :------ | :-------: | :-------: | ----------------------------------------------------------------------------------------: |
 | CWE-119 | 187       | 102       | Improper Restriction of Operations within the Bounds of a Memory Buffer                   |
 | CWE-20  | 51        | 55        | Improper Input Validation                                                                 |
 | CWE-125 | 45        | 55        | Out-of-bounds Read                                                                        |
