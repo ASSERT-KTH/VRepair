@@ -280,12 +280,12 @@ def main():
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
                              for hidden_size in [256, 512, 1024])
     vocab_size_sweep = list((update_vocab_size, vocab_size)
-                            for vocab_size in [1000, 2000, 5000, 10000])
+                            for vocab_size in [2000, 5000, 10000])
     # Use default of 6 layers for final sweeps
     # num_layers_sweep = list((update_num_layers, num_layers)
     #                        for num_layers in [4, 6])
 
-    parameter_sweep = [learning_rate_sweep, hidden_size_sweep]
+    parameter_sweep = [learning_rate_sweep, hidden_size_sweep, vocab_size_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
