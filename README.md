@@ -1,125 +1,53 @@
 # VRepair
-Vulnerability Repair scripts
 
-## First experiment
+This repository provides data and source files related to our paper on "Neural Transfer Learning for Repairing Security Vulnerabilities in C Code", see <https://arxiv.org/abs/2104.08308>
 
-For experiments located in `/cephyr/NOBACKUP/groups/snic2021-23-24/vulnerability_repair/only_first_line_context3_models/`, with testing data divided randomly.
+In this paper, we address the problem of automatic repair of software vulnerabilities with deep learning. The major problem with data-driven vulnerability repair is that the few existing datasets of known confirmed vulnerabilities consist of only a few thousand examples. However, training a deep learning model often requires hundreds of thousands of examples. In this work, we leverage the intuition that the bug fixing task and the vulnerability fixing task are related, and the knowledge learned from bug fixes can be transferred to fixing vulnerabilities. In the machine learning community, this technique is called transfer learning. In this paper, we propose an approach for repairing security vulnerabilities named VRepair which is based on transfer learning. VRepair is first trained on a large bug fix corpus, and is then tuned on a vulnerability fix dataset, which is an order of magnitudes smaller. In our experiments, we show that a model trained only on a bug fix corpus can already fix some vulnerabilities. Then, we demonstrate that transfer learning improves the ability to repair vulnerable C functions. In the end, we present evidence that transfer learning produces more stable and superior neural models for vulnerability repair.
 
-| Sweep number | Learning rate | Hidden size | Pre-train validation token accuracy | Fine-tune validation token accuracy | Pre-train test sequence accuracy | Fine-tune test sequence accuracy |
-|--------------|---------------|-------------|-------------------------------------|-------------------------------------|----------------------------------|----------------------------------|
-| 0            | 0.001         | 128         | 73.76% (580k/1m)                    | 71.2% (1100/5000)                   | 8.49% (27/318)                   | 11.64% (37/318)                  |
-| 1            | 0.001         | 256         | 74.3% (460k/1m)                     | 72% (1400/5000)                     | 9.43% (30/318)                   | 11.64% (37/318)                  |
-| 2            | 0.001         | 512         | 37.89% (540k/1m)                    | 33.14% (200/5000)                   | 0.31% (1/318)                    | 0.31% (1/318)                    |
-| 3            | 0.001         | 1024        | 37.71% (460k/1m)                    | 33.93% (100/5000)                   | 0% (0/318)                       | 0% (0/318)                       |
-| 4            | 0.005         | 128         | 38.55% (420k/1m)                    | 34.04% (1000/5000)                  | 0.31% (1/318)                    | 0.31% (1/318)                    |
-| 5            | 0.005         | 256         | 34.04% (140k/1m)                    | 30.47% (400/5000)                   | 0.63% (2/318)                    | 0.31% (1/318)                    |
-| 6            | 0.005         | 512         | 31.65% (160k/1m)                    | 28.06% (400/5000)                   | 0% (0/318)                       | 0.31% (1/318)                    |
-| 7            | 0.005         | 1024        | 32.9% (220k/1m)                     | 29.61% (1600/5000)                  | 0.31% (1/318)                    | 0.31% (1/318)                    |
-| 8            | 0.0001        | 128         | 71.14% (500k/1m)                    | 69.16% (200/5000)                   | 8.81% (28/318)                   | 10.69% (34/318)                  |
-| 9            | 0.0001        | 256         | 74.86% (540k/1m)                    | 72.59% (500/5000)                   | 9.12% (29/318)                   | 12.26% (39/318)                  |
-| 10           | 0.0001        | 512         | 76.41% (420k/1m)                    | 75.48% (1700/5000)                  | 9.75% (31/318)                   | 13.52% (43/318)                  |
-| 11           | 0.0001        | 1024        | 76.91% (480k/1m)                    | 77.46% (300/5000)                   | 12.58% (40/318)                  | 17.3% (55/318)                   |
-| 12           | 0.00005       | 128         | 68.67% (500k/1m)                    | 66.22% (500/5000)                   | 5.97% (19/318)                   | 8.18% (26/318)                   |
-| 13           | 0.00005       | 256         | 72.52% (480k/1m)                    | 70.79% (800/5000)                   | 9.12% (29/318)                   | 11.32% (36/318)                  |
-| 14           | 0.00005       | 512         | 75.12% (440k/1m)                    | 73.39% (400/5000)                   | 9.75% (31/318)                   | 13.21% (42/318)                  |
-| 15           | 0.00005       | 1024        | 76.33% (380k/1m)                    | 76.2% (200/5000)                    | 10.06% (32/318)                  | 14.78% (47/318)                  |
-| 16           | 0.0005        | 128         | 73.91% (640k/1m)                    | 75.56% (2800/5000)                  | 9.75% (31/318)                   | 12.26% (39/318)                  |
-| 17           | 0.0005        | 256         | 75.94% (440k/1m)                    | 77.32% (900/5000)                   | 9.12% (29/318)                   | 12.58% (40/318)                  |
-| 18           | 0.0005        | 512         | 59.07% (20k/1m)                     | 61.41% (2100/5000)                  | 3.77% (12/319)                   | 6.29% (20/318)                   |
-| 19           | 0.0005        | 1024        | 37.05% (420k/1m)                    | 35.64% (500/5000)                   | 0% (0/318)                       | 0% (0/318)                       |
+## Software versions
 
-For experiments located in `/cephyr/NOBACKUP/groups/snic2021-23-24/vulnerability_repair/only_first_line_fine_tune_context3_models/`, with testing data divided randomly.
+ * Python: 3.9.1
+ * Clang: 13.0.0
+ * GCC: 10.2.0
+ * OpenNMT-py: 1.2.0
 
-| Sweep number | Learning rate | Hidden size | Validation token accuracy | Fine-tune test sequence accuracy |
-|--------------|---------------|-------------|---------------------------|----------------------------------|
-| 0            | 0.005         | 128         | 23.54% (1600/10000)       | 0% (0/318)                       |
-| 1            | 0.005         | 256         | 21.39% (1200/10000)       | 0% (0/318)                       |
-| 2            | 0.005         | 512         | 19.13% (1400/10000)       | 0% (0/318)                       |
-| 3            | 0.005         | 1024        | 16.62% (1200/10000)       | 0% (0/318)                       |
-| 4            | 0.001         | 128         | 33.08% (2000/10000)       | 4.72% (15/318)                   |
-| 5            | 0.001         | 256         | 29.99% (1400/10000)       | 0% (0/318)                       |
-| 6            | 0.001         | 512         | 23.55% (1000/10000)       | 0% (0/318)                       |
-| 7            | 0.001         | 1024        | 20.89% (1000/10000)       | 0% (0/318)                       |
-| 8            | 0.0005        | 128         | 37.75% (4200/10000)       | 15.41% (49/318)                  |
-| 9            | 0.0005        | 256         | 36.25% (2400/10000)       | 13.21% (42/318)                  |
-| 10           | 0.0005        | 512         | 31.91% (2200/10000)       | 5.97% (19/318)                   |
-| 11           | 0.0005        | 1024        | 26.02% (1600/10000)       | 0% (0/318)                       |
-| 12           | 0.0001        | 128         | 36.68% (5000/10000)       | 5.66% (18/318)                   |
-| 13           | 0.0001        | 256         | 38.79% (3600/10000)       | 10.37% (33/318)                  |
-| 14           | 0.0001        | 512         | 39.27% (2400/10000)       | 14.47% (46/318)                  |
-| 15           | 0.0001        | 1024        | 37.53% (2200/10000)       | 14.15% (45/318)                  |
-| 16           | 0.00005       | 128         | 34.91% (6600/10000)       | 2.2% (7/318)                     |
-| 17           | 0.00005       | 256         | 37.69% (4600/10000)       | 7.23% (23/318)                   |
-| 18           | 0.00005       | 512         | 38.95% (3000/10000)       | 12.26% (39/318)                  |
-| 19           | 0.00005       | 1024        | 37.51% (2000/10000)       | 12.89% (41/318)                  |
+## Git file descriptions
+ * data/Context3/OnlyFirstLine: Data used to train source domain task. Includes single and multiline bug fixes from GitHub with only the first line identified as buggy with special tokens.
+ * data/PreSpecial*: 2 Directories with 2 denoising passes on each function used to provide denoising pretraining samples.
+ * fine_tune_data: Target domain data of vulnerability fixes.
+ * src: scripts used to process data and create training configuration files.
 
-For experiments located in `/cephyr/NOBACKUP/groups/snic2021-23-24/vulnerability_repair/only_first_line_year_fine_tune_context3_models/`, with testing data divided based on year.
+## Example data processing for big\_vul
 
-| Sweep number | Learning rate | Hidden size | Validation token accuracy | Fine-tune test sequence accuracy |
-|--------------|---------------|-------------|---------------------------|----------------------------------|
-| 0            | 0.005         | 128         | 23.03% (1400/10000)       | 0% (0/603)                       |
-| 1            | 0.005         | 256         | 22.84% (2000/10000)       | 0% (0/603)                       |
-| 2            | 0.005         | 512         | 19.29% (600/10000)        | 0% (0/603)                       |
-| 3            | 0.005         | 1024        | 19.14% (1200/10000)       | 0% (0/603)                       |
-| 4            | 0.001         | 128         | 33.22% (2400/10000)       | 1.33% (8/603)                    |
-| 5            | 0.001         | 256         | 33.09% (3800/10000)       | 1.49% (9/603)                    |
-| 6            | 0.001         | 512         | 25.34% (1600/10000)       | 0% (0/603)                       |
-| 7            | 0.001         | 1024        | 22.38% (1000/10000)       | 0% (0/603)                       |
-| 8            | 0.0005        | 128         | 36.94% (3400/10000)       | 1.49% (9/603)                    |
-| 9            | 0.0005        | 256         | 35.01% (2200/10000)       | 1.66% (10/603)                   |
-| 10           | 0.0005        | 512         | 34.86% (2600/10000)       | 1.49% (9/603)                    |
-| 11           | 0.0005        | 1024        | 24.79% (1000/10000)       | 1% (6/603)                       |
-| 12           | 0.0001        | 128         | 37.12% (4000/10000)       | 1.82% (11/603)                   |
-| 13           | 0.0001        | 256         | 38.31% (2600/10000)       | 1.49% (9/603)                    |
-| 14           | 0.0001        | 512         | 39.39% (2200/10000)       | 1.99% (12/603)                   |
-| 15           | 0.0001        | 1024        | 37.26% (2200/10000)       | 1.66% (10/603)                   |
-| 16           | 0.00005       | 128         | 32.92% (3600/10000)       | 0% (0/603)                       |
-| 17           | 0.00005       | 256         | 37.27% (2800/10000)       | 1.49% (9/603)                    |
-| 18           | 0.00005       | 512         | 38.66% (3200/10000)       | 1.66% (10/603)                   |
-| 19           | 0.00005       | 1024        | 38.87% (2000/10000)       | 1.99% (12/603)                   |
+```bash
+# Set up environment as needed
+source env.sh
+cd fine_tune_data/big_vul
 
-For experiments located in `/cephyr/NOBACKUP/groups/snic2021-23-24/vulnerability_repair/only_first_line_cwe_fine_tune_context3_models/`, with testing data divided based on CWE IDs.
+# Extract token data from C source files
+python ../../src/extract.py commits > extract.out 2>&1
 
-| Sweep number | Learning rate | Hidden size | Validation token accuracy | Fine-tune test sequence accuracy |
-|--------------|---------------|-------------|---------------------------|----------------------------------|
-| 0            | 0.005         | 128         | 24.38% (1800/10000)       | 0% (0/235)                       |
-| 1            | 0.005         | 256         | 21.13% (1400/10000)       | 0% (0/235)                       |
-| 2            | 0.005         | 512         | 20.88% (2000/10000)       | 0% (0/235)                       |
-| 3            | 0.005         | 1024        | 9.76% (800/10000)         | 0% (0/235)                       |
-| 4            | 0.001         | 128         | 39.34% (2800/10000)       | 4.26% (10/235)                   |
-| 5            | 0.001         | 256         | 40.14% (4200/10000)       | 3.83% (9/235)                    |
-| 6            | 0.001         | 512         | 27.76% (2400/10000)       | 0% (0/235)                       |
-| 7            | 0.001         | 1024        | 22.89% (1400/10000)       | 0% (0/235)                       |
-| 8            | 0.0005        | 128         | 43.05% (3200/10000)       | 6.81% (16/235)                   |
-| 9            | 0.0005        | 256         | 44.65% (4000/10000)       | 7.23% (17/235)                   |
-| 10           | 0.0005        | 512         | 37.18% (2800/10000)       | 1.7% (4/235)                     |
-| 11           | 0.0005        | 1024        | 26.81% (1000/10000)       | 0% (0/235)                       |
-| 12           | 0.0001        | 128         | 41.94% (4200/10000)       | 2.55% (6/235)                    |
-| 13           | 0.0001        | 256         | 43.81% (2600/10000)       | 2.55% (6/235)                    |
-| 14           | 0.0001        | 512         | 47.5% (2400/10000)        | 6.38% (15/235)                   |
-| 15           | 0.0001        | 1024        | 48.37% (3800/10000)       | 7.23% (17/235)                   |
-| 16           | 0.00005       | 128         | 38.11% (4000/10000)       | 1.28% (3/235)                    |
-| 17           | 0.00005       | 256         | 46.55% (7600/10000)       | 5.11% (12/235)                   |
-| 18           | 0.00005       | 512         | 48.81% (5000/10000)       | 7.66% (18/235)                   |
-| 19           | 0.00005       | 1024        | 50.11% (3400/10000)       | 8.94% (21/235)                   |
+# Generate src/tgt raw files from tokenized data
+python ../../src/gensrctgt.py commits 3 -meta commits_metadata.csv > gensrctgt.out 2>&1
 
-## Second experiment
+# Create random split on data
+python ../../src/process_fine_tune_data.py --src_file=SrcTgt/commits.src.txt --tgt_file=SrcTgt/commits.tgt.txt --meta_file=SrcTgt/commits.meta.txt --max_src_length=1000 --max_tgt_length=100 --generate_random --is_big_vul --output_dir=. > process.out 2>&1
+```
 
-Experiments at CSU using a model with starting learning rate of 0.0005 and hidden size of 256.
+## CWE type descriptions for top 10 CWE labels in both Big-Vul and CVEfixes test datasets
 
-| File                         | Samples (Lines) | Average tokens per sample |
-|------------------------------|-----------------|---------------------------|
-| BugFix_train_src.txt         | 524724          | 248.9                     |
-| BugFix_train_tgt.txt         | 524724          |  25.2                     |
-| BugFixFine_train_src.txt     | 2990            | 285.5                     |
-| BugFixFine_train_tgt.txt     | 2990            |  27.8                     |
-| BugFixFine_2019_test_src.txt | 187             | 279.9                     |
-| BugFixFine_2019_test_tgt.txt | 187             |  27.1                     |
+| CWE ID  | Big-Vul   | CVEfixes  | Description                                                                               |
+| :------ | --------: | --------: | :---------------------------------------------------------------------------------------- |
+| CWE-119 | 187       | 102       | Improper Restriction of Operations within the Bounds of a Memory Buffer                   |
+| CWE-20  | 51        | 55        | Improper Input Validation                                                                 |
+| CWE-125 | 45        | 55        | Out-of-bounds Read                                                                        |
+| CWE-264 | 32        | 26        | Permissions, Priveledges, and Access Controls                                             |
+| CWE-399 | 29        | 26        | Resource Management Errors                                                                |
+| CWE-200 | 28        | 22        | Exposure of Sensitive Information to an Unauthorized Actor                                |
+| CWE-476 | 26        | 39        | NULL Pointer Dereference                                                                  |
+| CWE-284 | 26        |  7        | Improper Access Control                                                                   |
+| CWE-189 | 26        | 11        | Numeric Errors                                                                            |
+| CWE-362 | 26        | 30        | Concurrent Execution using Shared Resource with Improper Synchronization (Race Condition) |
+| CWE-190 | 15        | 29        | Integer Overflow or Wraparound                                                            |
+| CWE-787 |  8        | 24        | Out-of-bounds Write                                                                       |
 
-| Step count    |                           | Beam width 50               |
-| Pretrain+Tune | Training token accuracy   | 2019 test sequence accuracy |
-|---------------|---------------------------|-----------------------------|
-| 300K+0        |   77.67%                  | 12.3% (23 out of 187)      |
-| 360K+0        |   78.08%                  | 11.8% (22 out of 187)      |
-| 360K+200      |   77.04%                  | 10.2% (19 out of 189)      |
-| 360K+1000     |   79.30%                  |  9.1% (17 out of 189)      |
