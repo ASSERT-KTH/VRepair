@@ -118,7 +118,7 @@ def default_hpc2n_job_script(opennmt_vocab_config_path,
                              number_of_gpus='1', time='96:00:00'):
     CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
                       'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
-                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415' ]
+                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415']
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(
@@ -159,7 +159,7 @@ def default_c3se_job_script(opennmt_vocab_config_path,
                             number_of_gpus='1', time='120:00:00'):
     CWE_vocab_list = ['CWE-119', 'CWE-125', 'CWE-20', 'CWE-200', 'CWE-264',
                       'CWE-476', 'CWE-399', 'CWE-189', 'CWE-416', 'CWE-190',
-                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415' ]
+                      'CWE-362', 'CWE-787', 'CWE-284', 'CWE-772', 'CWE-415']
     insert_vocab = '\\n'.join(
         [CWE_id + '\\t99999999' for CWE_id in CWE_vocab_list])
     src_vocab_file_path = Path(
@@ -234,10 +234,12 @@ def update_ffn_inner_dim(config, ffn_inner_dim):
     config['transformer_ff'] = ffn_inner_dim
     return config
 
+
 def update_vocab_size(config, vocab_size):
     config['src_vocab_size'] = vocab_size
     config['tgt_vocab_size'] = vocab_size
     return config
+
 
 def update_dropout(config, dropout_prob):
     config['dropout'] = dropout_prob
@@ -274,9 +276,11 @@ def main():
         assert(file.exists())
 
     learning_rate_sweep = list((update_learning_rate, learning_rate)
-                               for learning_rate in [0.005, 0.001, 0.0005, 0.0001, 0.00005])
+                               for learning_rate in [0.0005, 0.0001, 0.00005])
     hidden_size_sweep = list((update_embedding_size_and_num_units, hidden_size)
-                             for hidden_size in [128, 256, 512, 1024])
+                             for hidden_size in [256, 512, 1024])
+    vocab_size_sweep = list((update_vocab_size, vocab_size)
+                            for vocab_size in [1000, 2000, 5000, 10000])
     # Use default of 6 layers for final sweeps
     # num_layers_sweep = list((update_num_layers, num_layers)
     #                        for num_layers in [4, 6])
