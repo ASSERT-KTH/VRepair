@@ -281,13 +281,9 @@ def main():
                              for hidden_size in [256, 512, 1024])
     vocab_size_sweep = list((update_vocab_size, vocab_size)
                             for vocab_size in [2000, 5000, 10000])
-    num_layers_sweep = list((update_num_layers, num_layers)
-                            for num_layers in [4, 6])
-    dropout_sweep = list((update_dropout, dropout_prob)
-                         for dropout_prob in [0.0, 0.1])
 
     parameter_sweep = [learning_rate_sweep,
-                       hidden_size_sweep, vocab_size_sweep, num_layers_sweep, dropout_sweep]
+                       hidden_size_sweep, vocab_size_sweep]
     for index, updates in enumerate(itertools.product(*parameter_sweep)):
         sweep_path = sweep_root_path / (str(index) + '_parameter_sweep')
         sweep_path.mkdir(parents=True, exist_ok=True)
