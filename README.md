@@ -34,20 +34,23 @@ python ../../src/gensrctgt.py commits 3 -meta commits_metadata.csv > gensrctgt.o
 python ../../src/process_fine_tune_data.py --src_file=SrcTgt/commits.src.txt --tgt_file=SrcTgt/commits.tgt.txt --meta_file=SrcTgt/commits.meta.txt --max_src_length=1000 --max_tgt_length=100 --generate_random --is_big_vul --output_dir=. > process.out 2>&1
 ```
 
-## CWE type descriptions for top 10 CWE labels in both Big-Vul and CVEfixes test datasets
+## CWE type descriptions for our extracted function pairs from both Big-Vul and CVEfixes datasets
 
-| CWE ID  | Big-Vul   | CVEfixes  | Description                                                                               |
-| :------ | --------: | --------: | :---------------------------------------------------------------------------------------- |
-| CWE-119 | 187       | 102       | Improper Restriction of Operations within the Bounds of a Memory Buffer                   |
-| CWE-20  | 51        | 55        | Improper Input Validation                                                                 |
-| CWE-125 | 45        | 55        | Out-of-bounds Read                                                                        |
-| CWE-264 | 32        | 26        | Permissions, Priveledges, and Access Controls                                             |
-| CWE-399 | 29        | 26        | Resource Management Errors                                                                |
-| CWE-200 | 28        | 22        | Exposure of Sensitive Information to an Unauthorized Actor                                |
-| CWE-476 | 26        | 39        | NULL Pointer Dereference                                                                  |
-| CWE-284 | 26        |  7        | Improper Access Control                                                                   |
-| CWE-189 | 26        | 11        | Numeric Errors                                                                            |
-| CWE-362 | 26        | 30        | Concurrent Execution using Shared Resource with Improper Synchronization (Race Condition) |
-| CWE-190 | 15        | 29        | Integer Overflow or Wraparound                                                            |
-| CWE-787 |  8        | 24        | Out-of-bounds Write                                                                       |
+| CWE ID  | Big-Vul | CVEfixes | Description                                                                                 |
+|---------|---------|----------|---------------------------------------------------------------------------------------------|
+| CWE-119 | 993     | 461      | Improper Restriction of Operations within the Bounds of a Memory Buffer                     |
+| CWE-20  | 228     | 297      | Improper Input Validation                                                                   |
+| CWE-125 | 224     | 333      | Out-of-bounds Read                                                                          |
+| CWE-264 | 177     | 149      | Permissions, Privileges, and Access Controls                                                |
+| CWE-200 | 150     | 147      | Exposure of Sensitive Information to an Unauthorized Actor                                  |
+| CWE-399 | 143     | 109      | Resource Management Errors                                                                  |
+| CWE-476 | 125     | 180      | NULL Pointer Dereference                                                                    |
+| CWE-416 | 114     | 102      | Use After Free                                                                              |
+| CWE-362 | 104     | 149      | Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') |
+| CWE-284 | 102     | 32       | Improper Access Control                                                                     |
+| CWE-190 | 94      | 144      | Integer Overflow or Wraparound                                                              |
+| CWE-189 | 92      | 78       | Numeric Errors                                                                              |
+| CWE-787 | 54      | 136      | Out-of-bounds Write                                                                         |
+| CWE-415 | 22      | 38       | Double Free                                                                                 |
+| CWE-772 | 8       | 35       | Missing Release of Resource after Effective Lifetime                                        |
 
