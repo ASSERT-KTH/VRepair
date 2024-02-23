@@ -47,6 +47,10 @@ To decompress:
 # usage for multi-part archive, the central directory and zipfile comment
 # will be found on the last disk(s) of the archive, which is all_VRepair_models_parts.zip
 # takes 1-2 hours
+
+## 7z can also do it
+7z x all_VRepair_models_parts.zip 
+
 unzip all_VRepair_models_parts.zip -d all_VRepair_models
 ```
 
