@@ -33,13 +33,20 @@ In this paper, we address the problem of automatic repair of software vulnerabil
 
 ## Trained models
 
-The trained models are currently uploaded to OneDrive:
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/EV9uVzTRIF5HlMrRNHPHjfoBOivr63Is023EFzNe1Ax9zg?e=RbQHNa
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/EVy6M7UZ0rVPr3c28wxKH2cBYZPKGSPqb5_lqLOrduzvlQ?e=1JTNw4
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/EVTHzJRcIW9Ak5PVn38RYX8BEWH5zyKlSlJh9KgKXU3SYw?e=XnCsJO
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/ESU_mesDK3lPq2aF4kve2_4BwM41wyFarIOe9E8JpD2dLw?e=XNzmuf
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/ESEhDRyeJ9pGtB7kEqjEfYUBPL19rR3g7ASYuUUqb5y-LQ?e=WZ3SQU
-* https://kth-my.sharepoint.com/:u:/g/personal/zimin_ug_kth_se/Edn05UsQUmpDrGZNJK6GmuIBPdIFp4_llmFuU7RegWYhCw?e=OMysLs
+The trained models are available at:
+* all_VRepair_models_parts.z01  https://zenodo.org/records/10445594 md5:f4029f3f48298b20cf085f3f37d798fd
+* all_VRepair_models_parts.z02  https://zenodo.org/records/10448514 md5:9b74b49484fba0cd72361d81618c6a9f 
+* all_VRepair_models_parts.z03  https://zenodo.org/records/10693640 md5:dc05f8b53d947e24b38124fa07d73636
+* all_VRepair_models_parts.z04 https://zenodo.org/records/10694133 md5:ce4ac1a83e2d33e73bf59b7582400466
+* all_VRepair_models_parts.z05 https://zenodo.org/records/10694179 md5:21a2de5969f34113cdbd13b78a1fd2fc
+* all_VRepair_models_parts.zip  https://zenodo.org/records/10695406 md5:82ed7c8bc58c867755e8a2616cf8dd5d
+
+To decompress: 
+
+```sh
+zip -F all_VRepair_models_parts.zip --out vrepair.zip
+unzip vrepair.zip
+```
 
 272G compressed, 350G decompressed
 
