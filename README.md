@@ -41,6 +41,7 @@ The trained models are available at:
 * all_VRepair_models_parts.z05 https://zenodo.org/records/10694179 md5:21a2de5969f34113cdbd13b78a1fd2fc
 * all_VRepair_models_parts.zip  https://zenodo.org/records/10695406 md5:82ed7c8bc58c867755e8a2616cf8dd5d
 
+
 To decompress: 
 
 ```sh
@@ -56,7 +57,7 @@ unzip all_VRepair_models_parts.zip -d all_VRepair_models
 
 272G compressed, 350G decompressed
 
-Once decompressed, the models are stored in different folder corresponding to different training strategies:
+Once decompressed ([archive content](https://gist.github.com/monperrus/1c59bca00ddeddc8ee91e49444139a3a)), the models are stored in different folder corresponding to different training strategies:
 * `ablation_study_models`: Models trained for ablation study
 * `all_buggy_lines_context3_models`: Models trained with all buggy lines identified
 * `bigger_pre_train_context3_models`: Models trained with pre-training (token masking) and then target domain training
@@ -64,11 +65,12 @@ Once decompressed, the models are stored in different folder corresponding to di
 * `one_block_context3_models`: Models trained where the buggy lines is in a contigoues block of lines
 * `only_first_line_big_vul_random_fine_tune_context3_models`: Models trained only on Big-Vul^{rand}
 * `only_first_line_big_vul_year_fine_tune_context3_models`: Models trained only on Big-Vul^{year}
-* `only_first_line_context3_more_parameters_models`: The main apporach, source domain training + target domain training (ie. transfer learning)
+* `only_first_line_context3_more_parameters_models`: The main approach, source domain training + target domain training (ie. transfer learning)
 * `only_first_line_context3_rnn_models`: Models trained with LSTM instead of transformer
 * `only_first_line_cve_fixes_random_fine_tune_context3_models`: Models trained only on CVEfixes^{rand}
 * `only_first_line_cve_fixes_year_fine_tune_context3_models`: Models trained only on CVEfixes^{year}
 
+The source domain training dataset  for the main approach is available at <https://github.com/ASSERT-KTH/VRepair/releases/download/v20240223/BugFix.tar.bz2> (extracted from the Zenodo package) 
 
 ## Example data processing for big\_vul
 
