@@ -44,8 +44,10 @@ The trained models are available at:
 To decompress: 
 
 ```sh
-zip -F all_VRepair_models_parts.zip --out vrepair.zip
-unzip vrepair.zip
+# usage for multi-part archive, the central directory and zipfile comment
+# will be found on the last disk(s) of the archive, which is all_VRepair_models_parts.zip
+# takes 1-2 hours
+unzip all_VRepair_models_parts.zip -d all_VRepair_models
 ```
 
 272G compressed, 350G decompressed
